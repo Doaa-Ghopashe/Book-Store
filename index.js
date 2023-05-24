@@ -2,6 +2,7 @@ const express = require('express');
 require('dotenv').config();
 const mongoose = require("mongoose");
 const user = require('./routes/user')
+const author = require('./routes/author')
 
  PORT=5000;
 //  PORT = process.env.SERVER_PORT,
@@ -10,6 +11,7 @@ const user = require('./routes/user')
  app_server = express(),
  app_server.use(express.json())
  app_server.use(user)
+ app_server.use(author)
 
 
 
