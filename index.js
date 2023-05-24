@@ -2,7 +2,6 @@ require('dotenv').config();
 
 const express = require('express'),
 
-
  PORT = process.env.SERVER_PORT,
 
  Mongoose_URL = process.env.MONGOOES_URL,
@@ -11,10 +10,14 @@ const express = require('express'),
 
  app_server.use(express.json());
 
-//  const bookRouter=require('./routes/book');
-//  const categoryRouter=require('./routes/category');
-//  app_server.use('/book',bookRouter);
-//  app_server.use('/category',categoryRouter);
+ app_server.use(cors())
+
+const bookRouter=require('./routes/book');
+
+const categoryRouter=require('./routes/category');
+
+app_server.use('/book',bookRouter);
+app_server.use('/category',categoryRouter);
  
 
  mongoose = require('mongoose');

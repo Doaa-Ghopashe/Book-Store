@@ -17,17 +17,18 @@ updateReview = (req,res)=>{
     })
 },
 
-deleteReview = (req,res)=>{
-    let {id} =req.params;
-    review_model.findByIdAndRemove({_id:id},(err,data)=>{
-        if(!err) return res.status(200).json(data);
-        console.log(err);
-        return res.status(500).json('there is an error in database');
-    })
-},
+// deleteReview = (req,res)=>{
+//     let {id} =req.params;
+//     review_model.findByIdAndRemove({_id:id},(err,data)=>{
+//         if(!err) return res.status(200).json(data);
+//         console.log(err);
+//         return res.status(500).json('there is an error in database');
+//     })
+// },
 
 getReview = (req,res)=>{
-    review_model.find({},(err,data)=>{
+    let {id} = req.params;
+    review_model.find({_id:id},(err,data)=>{
         if(!err) return res.status(200).json(data);
         console.log(err)
         res.status(500).json({Error: "DB_ERR"})
