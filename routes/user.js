@@ -1,13 +1,13 @@
 const express = require('express');
-const userModel = require('../models/user');
+const userController = require('../controllers/user')
 const router=express.Router();
 
-router.post('/', function(req, res){
-    userModel.create({...req.body},(err,userData)=>{
-        if(!err) return res.status(201).json(userData);
-        res.status(500).json({Error:"DB error"});
-    })
+router.post('/user' , userController.add )
+router.get('/user' , userController.list )
+router.get('/user/:id' , userController.getById )
+router.delete('/user/:id' , userController.remove )
+router.put('/user/:id' , userController.edit )
 
 
-    console.log(req.body);
-})
+
+module.exports = router;

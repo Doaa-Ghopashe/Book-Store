@@ -1,20 +1,17 @@
 const express = require('express');
 require('dotenv').config();
 const mongoose = require("mongoose");
-
+const user = require('./routes/user')
 
  PORT=5000;
 //  PORT = process.env.SERVER_PORT,
 //  Mongoose_URL = process.env.MONGOOES_URL,
  
  app_server = express(),
- 
+ app_server.use(express.json())
+ app_server.use(user)
 
 
- //midderware
-app_server.use('/',(req,res)=>{
-    res.send("this is our start");
-})
 
 mongoose.connect('mongodb://127.0.0.1:27017/BookStore',{useNewUrlParser: true,useUnifiedTopology: true},(err)=>{
     if(!err) return console.log("the database is connected");
