@@ -3,14 +3,14 @@ const bookModel = require("../models/book");
 
 const getAllBooks = async (req, res) => {
   try {
+    //pagination
+
     //query at url
     const queryObj = {...req.query};
     const excludedFields = ['page','limit']
     excludedFields.forEach(el => delete queryObj[el]);
     
     let query = bookModel.find(queryObj);
-
-    //pagination
     const page = req.query.page * 1 || 1;
     const limit = req.query.limit * 1 || 10;
     const skip = (page - 1) * limit;

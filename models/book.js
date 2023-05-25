@@ -2,7 +2,7 @@ const mongoose =require("mongoose");
 
 const bookSchema = new mongoose.Schema({
 
-Name:{type:String,required:true},
+Name:{type:String,required:true,trim:true},
 categoryId:{type:[mongoose.Schema.Types.ObjectId],required:true,ref:"category"},
 AuthorId:{type:[mongoose.Schema.Types.ObjectId],required:true,ref:"author"},
 shevle:{

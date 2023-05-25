@@ -13,9 +13,14 @@ const express = require('express'),
 
  const bookRouter=require('./routes/book');
  const categoryRouter=require('./routes/category');
+ const user = require('./routes/user')
+const author = require('./routes/author')
+
  app_server.use('/book',bookRouter);
  app_server.use('/category',categoryRouter);
- 
+ app_server.use(user)
+ app_server.use(author)
+
 
  mongoose = require('mongoose');
 
