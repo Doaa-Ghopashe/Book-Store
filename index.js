@@ -11,10 +11,10 @@ const express = require('express'),
 
  app_server.use(express.json());
 
-//  const bookRouter=require('./routes/book');
-//  const categoryRouter=require('./routes/category');
-//  app_server.use('/book',bookRouter);
-//  app_server.use('/category',categoryRouter);
+ const bookRouter=require('./routes/book');
+ const categoryRouter=require('./routes/category');
+ app_server.use('/book',bookRouter);
+ app_server.use('/category',categoryRouter);
  
 
  mongoose = require('mongoose');
