@@ -50,21 +50,17 @@ router.post("/register",async (req, res) => {
     });
 
 
-
-
-    
     // Login
  router.post("/login", async(req, res) => {
  
   try {
-    // Get user input
+    
     const { email, password } = req.body;
 
-    // Validate user input
     if (!(email && password)) {
      return res.status(400).send("All input is required");
     }
-    // Validate if user exist in our database
+    
     const user = await User.findOne({ email });
 
     if (user && (await bcrypt.compare(password, user.password))) {
@@ -87,12 +83,12 @@ router.post("/register",async (req, res) => {
   } catch (err) {
     console.log(err);
   }
-  // Our register logic ends here
+
     });
 
 
     router.post("/welcome", auth, (req, res) => {
-        res.status(200).send("Welcome 🤗❤");
+        res.status(200).send("Welcome");
         
       });
 
