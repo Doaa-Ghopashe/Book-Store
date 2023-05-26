@@ -1,1 +1,31 @@
+<div class="container">
+    <div class="row align-items-center">
+        <div class="col-md-6">
+            <form  [formGroup]="regestrationForm" (ngSubmit)="login()" class="py-4">
+                <h4 class="mb-4">Login</h4>
+                <div class="form-group mb-4">
+                    <!-- <label for="">Email:</label> -->
+                    <input type="email" class="form-control my-2 bg-transparent" placeholder="Enter your email" formControlName="email">
+                    <div *ngIf="regestrationForm.controls['email'].errors&& regestrationForm.controls['email'].touched ">
+                        <span *ngIf="regestrationForm.controls['email'].errors?.['required']!==undefined" class="text-danger">email is required</span>
+                        <span *ngIf="!regestrationForm.controls['email'].errors?.['required'] && regestrationForm.controls['email'].errors!=null " class="text-danger">Email not valid </span>   
+                    </div>
+                </div>
+                <div class="form-group mb-4">
+                    <!-- <label for="">Password:</label> -->
+                    <input type="password" class="form-control my-2 bg-transparent" placeholder="Enter password" formControlName="password">
+                    <div *ngIf="regestrationForm.controls['password'].errors&& regestrationForm.controls['password'].touched ">
+                        <span *ngIf="regestrationForm.controls['password'].errors?.['required']!==undefined" class="text-danger">password is required</span>
+                        <span *ngIf="!regestrationForm.controls['password'].errors?.['required'] && regestrationForm.controls['password'].errors!=null " class="text-danger">Password must start with small letter then conatin from 3 to 8 numbers </span>   
+                    </div>
+                </div>
+                <button [disabled]="regestrationForm.status=='INVALID'"  type="submit" class="btn">Login</button>
+                <span class="ms-4"><a (click)="navigate()">Do have account <span class="navigate">plz Register?</span></a></span>
+            </form>
+        </div>
 
+        <div class="col-md-6 p-5">
+            <img src="../../../assets/images/360_F_339709134_9FKW6cgJi0uosfWb2bD4zdcerTvRvNXv.jpg" alt="" srcset="">
+        </div>
+    </div>
+</div>
