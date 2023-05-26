@@ -12,6 +12,13 @@ router.get('/user/:id' , userController.getById )
 router.delete('/user/:id' , userController.remove )
 router.put('/user/:id' , userController.edit )
 
+// user profile
+router.get('/user/profile',auth,async (req, res, next)=>{
+  const profile = await User.findById(req.user._id).select("-password")
+  res.send(profile);
+});
+
+
 // Register
 router.post("/register",async (req, res) => {
      
@@ -87,7 +94,7 @@ router.post("/register",async (req, res) => {
     });
 
 
-    router.post("/welcome", auth, (req, res) => {
+ router.post("/welcome", auth, (req, res) => {
         res.status(200).send("Welcome");
         
       });
