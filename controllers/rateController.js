@@ -1,38 +1,60 @@
-const rate_model = require('../models/rate'),
+const rate_model = require('../models/rating'),
 
-createRate = (req,res)=>{
-    rate_model.create({...req.body},(err, data)=>{
-        if(!err) return res.status(200).json(data);
-        console.log(err);
-        return res.status(500).json('there is an error in database');
-    })
-},
+    errors = require('../errormessages/errors'),
 
-updateRate = (req,res)=>{
-    let {id} =req.params;
-    rate_model.findByIdAndUpdate({_id:id},(err,data)=>{
-        if(!err) return res.status(200).json(data);
-        console.log(err);
-        return res.status(500).json('there is an error in database');
-    })
-},
+//the five api methods
+    createRate = async (req, res, next) => {
+        try {
+            await rate_model.create({ ...req.body }, (err, data) => {
+                if (!err) return res.status(200).json(data);
 
-deleteRate = (req,res)=>{
-    let {id} =req.params;
-    rate_model.findByIdAndRemove({_id:id},(err,data)=>{
-        if(!err) return res.status(200).json(data);
-        console.log(err);
-        return res.status(500).json('there is an error in database');
-    })
-},
+                throw new Error("notFound")
+            })
+        } catch (err) {
+            next({status:errors[err.message].status,message:errors[err.message].errmessage})
+        }
+    },
 
-getRate = (req,res)=>{
-    rate_model.find({},(err,data)=>{
-        if(!err) return res.status(200).json(data);
-        console.log(err)
-        res.status(500).json({Error: "DB_ERR"})
-    })
-};
+    updateRate = async (req, res, next) => {
+        try {
+            let { id } = req.params;
+            await rate_model.findByIdAndUpdate({ _id: id }, (err, data) => {
+                if (!err) return res.status(200).json(data);
+
+                throw new Error('notFound')
+            })
+        } catch (err) {
+            next({status:errors[err.message].status,message:errors[err.message].errmessage})
+        }
+    },
+
+    deleteRate = async (req, res, next) => {
+        try {
+            let { id } = req.params;
+            await rate_model.findByIdAndRemove({ _id: id }, (err, data) => {
+                if (!err) return res.status(200).json(data);
+
+                throw new Error('notFound')
+            })
+        } catch (err) {
+            next({status:errors[err.message].status,message:errors[err.message].errmessage})
+        }
+    },
+
+    getRate = async (req, res, next) => {
+        try {
+            let { id } = req.params;
+            await rate_model.find({_id:id}, (err, data) => {
+                if (!err) return res.status(200).json(data);
+
+                throw new Error('notFound')
+            })
+        } catch (err) {
+            next({status:errors[err.message].status,message:errors[err.message].errmessage})
+        }
+    };
+
+//exports
 
 module.exports = {
     createRate,

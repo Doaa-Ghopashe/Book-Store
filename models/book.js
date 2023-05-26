@@ -2,12 +2,12 @@ const mongoose =require("mongoose");
 
 const bookSchema = new mongoose.Schema({
 
-Name:{type:String,required:true},
-categoryId:{type:Number,required:true,ref:"category"},
-AuthorId:{type:String,required:true,ref:"author"},
+Name:{type:String,required:true,trim:true},
+categoryId:{type:[mongoose.Schema.Types.ObjectId],required:true,ref:"category"},
+AuthorId:{type:[mongoose.Schema.Types.ObjectId],required:true,ref:"author"},
 shevle:{
     type:String,
-    enum:['wanttoread','reading','currrentlyreading'], required:true},
+    enum:['wanttoread','reading','currentlyreading'], required:true},
     image:{type:String},
     avgRating:{type:Number},
 })

@@ -1,43 +1,77 @@
 const review_model = require('../models/review'),
 
-createReview = (req,res)=>{
-    review_model.create({...req.body},(err, data)=>{
-        if(!err) return res.status(200).json(data);
-        console.log(err);
-        return res.status(500).json('there is an error in database');
-    })
-},
+    errors = require('../errormessages/errors'),
 
-updateReview = (req,res)=>{
-    let {id} =req.params;
-    review_model.findByIdAndUpdate({_id:id},(err,data)=>{
-        if(!err) return res.status(200).json(data);
-        console.log(err);
-        return res.status(500).json('there is an error in database');
-    })
-},
+    //the five api methods 
 
-// deleteReview = (req,res)=>{
-//     let {id} =req.params;
-//     review_model.findByIdAndRemove({_id:id},(err,data)=>{
-//         if(!err) return res.status(200).json(data);
-//         console.log(err);
-//         return res.status(500).json('there is an error in database');
-//     })
-// },
+    createReview = async (req, res, next) => {
+        try {
+            await review_model.create({ ...req.body }, (err, data) => {
+                if (!err) return res.status(200).json(data);
 
-getReview = (req,res)=>{
-    let {id} = req.params;
-    review_model.find({_id:id},(err,data)=>{
-        if(!err) return res.status(200).json(data);
-        console.log(err)
-        res.status(500).json({Error: "DB_ERR"})
-    })
-};
+                throw new Error("notFound")
+            })
+        } catch (err) {
+            next({status:errors[err.message].status,message:errors[err.message].errmessage})
+        }
+    },
 
+    updateReview = async (req, res, next) => {
+        try {
+            let { id } = req.params;
+            await review_model.findByIdAndUpdate({ _id: id }, (err, data) => {
+                if (!err) return res.status(200).json(data);
+
+                throw new Error("notFound")
+            })
+        } catch (err) {
+            next({status:errors[err.message].status,message:errors[err.message].errmessage})
+        }
+    },
+
+    deleteReview = async (req, res, next) => {
+        try {
+            let { id } = req.params;
+            await review_model.findByIdAndRemove({ _id: id }, (err, data) => {
+                if (!err) return res.status(200).json(data);
+
+                throw new Error("notFound")
+            })
+        } catch (err) {
+            next({status:errors[err.message].status,message:errors[err.message].errmessage})
+        }
+    },
+
+    getOneReview = async (req, res, next) => {
+        try {
+            let { id } = req.params;
+            await review_model.find({ _id: id }, (err, data) => {
+                if (!err) return res.status(200).json(data);
+
+                throw new Error("notFound")
+            })
+        } catch (err) {
+            next({status:errors[err.message].status,message:errors[err.message].errmessage})
+        }
+    },
+
+    getReviews = async (req, res, next) => {
+        try {
+            await review_model.find((err, data) => {
+                if (!err) return res.status(200).json(data);
+
+                throw new Error("notFound")
+            })
+        } catch (err) {
+            next({status:errors[err.message].status,message:errors[err.message].errmessage})
+        }
+    };
+
+//exports
 module.exports = {
     createReview,
     updateReview,
     deleteReview,
-    getReview
+    getReviews,
+    getOneReview
 };
