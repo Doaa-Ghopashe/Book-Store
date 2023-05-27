@@ -30,7 +30,7 @@ export class LoginComponent {
       this.auth.login(this.regestrationForm.value).subscribe(
       {
         next: res => {
-          this._router.navigateByUrl('/home')
+          this._router.navigateByUrl('/mybook')
         },
         error: err => alert(err.error.message),
         complete: () => {

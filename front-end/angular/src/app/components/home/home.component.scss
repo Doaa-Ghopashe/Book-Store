@@ -3,7 +3,7 @@
 .home-info
 {
     background-color:#efd7f6;
-    height: 450px;
+    //height: 510px;
     .info button
     {
         background-color: #ab64bd;
@@ -14,14 +14,10 @@
         font-weight: 600;
         font-family: 'Segoe UI light';
         font-size: 50px;
-        margin-bottom: 10px;
+        margin-bottom: 20px;
     }
 }
-.typed-cursor--blink
-{
-    font-size: 100px;
-    color: #ab64bd;
-}
+
 
 
 .ring .col-md-3 div

@@ -25,6 +25,8 @@ import { SearchPipe } from './pipes/search.pipe';
 import { HeaderComponent } from './components/header/header.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule}   from '@angular/common/http';
+import { MyBoosComponent } from './components/my-boos/my-boos.component';
+import { NgxPaginationModule } from 'ngx-pagination'; 
 
 @NgModule({
   declarations: [
@@ -46,7 +48,8 @@ import { HttpClientModule}   from '@angular/common/http';
     UserBooksComponent,
     UserReviewsComponent,
     SearchPipe,
-    HeaderComponent
+    HeaderComponent,
+    MyBoosComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +57,8 @@ import { HttpClientModule}   from '@angular/common/http';
     BrowserAnimationsModule,
     CarouselModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

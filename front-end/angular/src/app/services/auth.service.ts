@@ -13,11 +13,11 @@ export class AuthService {
 
   signUp(signData:any):Observable<any>
   {
-     return this._http.post('',signData);
+     return this._http.post('https://route-ecommerce.onrender.com/api/v1/auth/signup',signData);
   }
 
   login(loginData:any):Observable<any>
   {
-    return this._http.post('',loginData);
+    return this._http.post('https://route-ecommerce.onrender.com/api/v1/auth/signin',loginData);
   }
 }
