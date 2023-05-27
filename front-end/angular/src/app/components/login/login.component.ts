@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {FormControl,FormGroup,Validators} from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
-  constructor(private _router:Router)
+  constructor(private _router:Router, private auth: AuthService)
   {
   }
 
@@ -22,21 +23,19 @@ export class LoginComponent {
 
   login()
   {
-      // if(this.regestrationForm.status=='INVALID')
-      // {
-      //   return;
-      // }
-      // this.auth.signUp(this.regestrationForm.value).subscribe(
-      // {
-      //   next: res => {
-      //     this._router.navigateByUrl('/login')
-      //   },
-      //   error: err => alert(err.error.message),
-      //   complete: () => {
-      //     // let spin = document.getElementById("spin")!;
-      //     // spin.style.display = "none";
-      //   }
-      // })
+      if(this.regestrationForm.status=='INVALID')
+      {
+        return;
+      }
+      this.auth.login(this.regestrationForm.value).subscribe(
+      {
+        next: res => {
+          this._router.navigateByUrl('/home')
+        },
+        error: err => alert(err.error.message),
+        complete: () => {
+        }
+      })
     }
 
     navigate()
