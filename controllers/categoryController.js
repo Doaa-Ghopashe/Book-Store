@@ -2,16 +2,8 @@ const categoryModel=require('../models/category');
 
 const getAllCategories=async(req,res)=>{
     try {
-        // const categories = await categoryModel.populate({
-        //     path:'category',
-        //     options:{ 
-        //         limit:parseInt(req.params.limit),
-        //         skip:parseInt(req.params.skip)
-        //     }
-        // }).execPopulate()
-         //pagination
-
-    //query at url
+        //  pagination
+    // query at url
     const queryObj = {...req.query};
     const excludedFields = ['page','limit']
     excludedFields.forEach(el => delete queryObj[el]);
@@ -101,4 +93,20 @@ const deleteCategory=async(req,res)=>{
     }
 };
 
-module.exports={getAllCategories,getOneCategory,editCategory,deleteCategory,addNewCategory}
+const deleteAllCategories= async(req,res)=>{
+    try {
+      
+       const deleteAll= await categoryModel.find({}).deleteMany({})
+       res.status(200).json({
+       status: 'success',
+       data:"deleted All successfully"
+   });
+    } catch (error) {
+       res.status(404).json({
+           status:"failed",
+           err:error.message
+       });   
+    }
+}
+
+module.exports={getAllCategories,getOneCategory,editCategory,deleteCategory,addNewCategory, deleteAllCategories}
