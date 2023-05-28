@@ -4,25 +4,25 @@
             <img src="../../../assets/images/360_F_339709048_ZITR4wrVsOXCKdjHncdtabSNWpIhiaR7.jpg" alt="" srcset="">
         </div>
         <div class="col-md-6">
-            <form  [formGroup]="regestrationForm" (ngSubmit)="login()" class="py-4">
+            <form  [formGroup]="loginForm" (ngSubmit)="login()" class="py-4">
                 <h4 class="mb-4">Login</h4>
                 <div class="form-group mb-4">
                     <!-- <label for="">Email:</label> -->
                     <input type="email" class="form-control my-2 bg-transparent" placeholder="Enter your email" formControlName="email">
-                    <div *ngIf="regestrationForm.controls['email'].errors&& regestrationForm.controls['email'].touched ">
-                        <span *ngIf="regestrationForm.controls['email'].errors?.['required']!==undefined" class="text-danger">email is required</span>
-                        <span *ngIf="!regestrationForm.controls['email'].errors?.['required'] && regestrationForm.controls['email'].errors!=null " class="text-danger">Email not valid </span>   
+                    <div *ngIf="loginForm.controls['email'].errors&& loginForm.controls['email'].touched ">
+                        <span *ngIf="loginForm.controls['email'].errors?.['required']!==undefined" class="text-danger">email is required</span>
+                        <span *ngIf="!loginForm.controls['email'].errors?.['required'] && loginForm.controls['email'].errors!=null " class="text-danger">Email not valid </span>   
                     </div>
                 </div>
                 <div class="form-group mb-4">
                     <!-- <label for="">Password:</label> -->
                     <input type="password" class="form-control my-2 bg-transparent" placeholder="Enter password" formControlName="password">
-                    <div *ngIf="regestrationForm.controls['password'].errors&& regestrationForm.controls['password'].touched ">
-                        <span *ngIf="regestrationForm.controls['password'].errors?.['required']!==undefined" class="text-danger">password is required</span>
-                        <span *ngIf="!regestrationForm.controls['password'].errors?.['required'] && regestrationForm.controls['password'].errors!=null " class="text-danger">Password must start with small letter then conatin from 3 to 8 numbers </span>   
+                    <div *ngIf="loginForm.controls['password'].errors&& loginForm.controls['password'].touched ">
+                        <span *ngIf="loginForm.controls['password'].errors?.['required']!==undefined" class="text-danger">password is required</span>
+                        <span *ngIf="!loginForm.controls['password'].errors?.['required'] && loginForm.controls['password'].errors!=null " class="text-danger">Password must start with small letter then conatin from 3 to 8 numbers </span>   
                     </div>
                 </div>
-                <button [disabled]="regestrationForm.status=='INVALID'"  type="submit" class="btn">Login</button>
+                <button [disabled]="loginForm.status=='INVALID'"  type="submit" class="btn">Login</button>
                 <span class="ms-4"><a (click)="navigate()">Do have account <span class="navigate">plz Register?</span></a></span>
             </form>
         </div>

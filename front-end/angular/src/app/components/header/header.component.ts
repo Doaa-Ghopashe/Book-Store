@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 import Swiper from 'swiper';
 
 @Component({
@@ -7,6 +9,16 @@ import Swiper from 'swiper';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
+
+
+  isLog:any;
+
+  constructor( private _authservice :AuthService, private _router:Router)
+  {
+    this._authservice.logged()
+    this.isLog = this._authservice.isLogin;
+
+  }
 
   
   books:any[]=
@@ -18,7 +30,13 @@ export class HeaderComponent {
    
   ]
 
+  logOut()
+  {
+    localStorage.clear();
+    console.log("clear")
+    this._router.navigateByUrl("/user/login");
 
+  }
 
   ngOnInit() {
 
