@@ -8,16 +8,19 @@ import { CatrgoriesComponent } from './books/catrgories/catrgories.component';
 import { BooksComponent } from './books/books/books.component';
 import { AuthorsComponent } from './author/authors/authors.component';
 import { BookDetailsComponent } from './books/book-details/book-details.component';
+import { UserBookComponent } from './user/user-books/user-books.component';
+import { AuthService } from './services/auth.service';
 
 const routes: Routes = [
   {path : "", redirectTo:"home", pathMatch : "full"},
   {path : "home", component : HomeComponent},
   {path : "user/register", component : RegistrationComponent},
   {path : "user/login", component : LoginComponent},
-  {path : "categories", component : CatrgoriesComponent},
-  {path : "books", component : BooksComponent},
-  {path : "authors", component : AuthorsComponent},
-  {path : "book/:id", component : BookDetailsComponent},
+  {path : "categories", component : CatrgoriesComponent,canActivate:[AuthService]},
+  {path : "books", component : BooksComponent,canActivate:[AuthService]},
+  {path : "authors", component : AuthorsComponent,canActivate:[AuthService]},
+  {path : "book/:id", component : BookDetailsComponent,canActivate:[AuthService]},
+  {path : "mybook", component : UserBookComponent,canActivate:[AuthService]},
   {path : "**", component : NotFoundComponent}
 ];
 

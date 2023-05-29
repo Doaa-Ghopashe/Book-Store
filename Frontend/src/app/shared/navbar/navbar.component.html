@@ -3,7 +3,7 @@
   <a class="nav-link " routerLink="home">Home</a>
   <a class="nav-link" routerLink="about">About</a>
   <a class="nav-link" routerLink="contact">Contact</a>
-  <a class="nav-link " routerLink="categories">Categories</a>
-  <a class="nav-link" routerLink="books">Books</a>
-  <a class="nav-link" routerLink="authors">Authors</a>
+  <a *ngIf="isLog" class="nav-link " routerLink="categories">Categories</a>
+  <a *ngIf="isLog" class="nav-link" routerLink="books">Books</a>
+  <a *ngIf="isLog" class="nav-link" routerLink="authors">Authors</a>
 </nav>
