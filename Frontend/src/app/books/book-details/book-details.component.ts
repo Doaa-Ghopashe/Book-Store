@@ -21,7 +21,6 @@ export class BookDetailsComponent {
     
   }
   changestatus(e:any){
-    
       this.userbook.reseveBook(e.target.value,this.bookid)
   }
 }

@@ -5,6 +5,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { RouterModule, Routes } from '@angular/router';
+import { ContactComponent } from './contact/contact.component';
+import { AboutComponent } from './about/about.component';
 
 
 
@@ -13,7 +15,9 @@ import { RouterModule, Routes } from '@angular/router';
     NotFoundComponent,
     NavbarComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    ContactComponent,
+    AboutComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +27,9 @@ import { RouterModule, Routes } from '@angular/router';
     NotFoundComponent,
     NavbarComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    ContactComponent,
+    AboutComponent
   ]
 })
 export class SharedModule { }

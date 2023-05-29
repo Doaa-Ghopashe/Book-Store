@@ -33,7 +33,6 @@ export class HeaderComponent {
   logOut()
   {
     localStorage.clear();
-    console.log("clear")
     this._router.navigateByUrl("/user/login");
 
   }

@@ -10,6 +10,8 @@ import { AuthorsComponent } from './author/authors/authors.component';
 import { BookDetailsComponent } from './books/book-details/book-details.component';
 import { UserBookComponent } from './user/user-books/user-books.component';
 import { AuthService } from './services/auth.service';
+import { AboutComponent } from './shared/about/about.component';
+import { ContactComponent } from './shared/contact/contact.component';
 
 const routes: Routes = [
   {path : "", redirectTo:"home", pathMatch : "full"},
@@ -19,8 +21,10 @@ const routes: Routes = [
   {path : "categories", component : CatrgoriesComponent,canActivate:[AuthService]},
   {path : "books", component : BooksComponent,canActivate:[AuthService]},
   {path : "authors", component : AuthorsComponent,canActivate:[AuthService]},
-  {path : "book/:id", component : BookDetailsComponent,canActivate:[AuthService]},
+  {path : "book/:id", component : BookDetailsComponent},
   {path : "mybook", component : UserBookComponent,canActivate:[AuthService]},
+  {path : "about", component : AboutComponent},
+  {path : "contact", component : ContactComponent},
   {path : "**", component : NotFoundComponent}
 ];
 
