@@ -5,20 +5,15 @@ const bookSchema = new mongoose.Schema({
   categoryId: {
     type: [mongoose.Schema.Types.ObjectId],
     required: true,
-    ref: "category",
+    ref: "Category",
   },
   AuthorId: {
     type: [mongoose.Schema.Types.ObjectId],
     required: true,
-    ref: "author",
+    ref: "Author",
   },
   desc: { type: String },
-  shevle: {
-    type: String,
-    enum: ["wanttoread", "reading", "currentlyreading"],
-    required: true,
-  },
-  image: { type: String },
+ photo: { type: String },
   avgRating: { type: Number },
 });
 const bookModel = mongoose.model("book", bookSchema);

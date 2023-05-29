@@ -11,6 +11,8 @@ const express = require('express'),
  app_server = express();
  app_server.use(express.json());
 
+//  app_server.use('assets/imgs/books',express.static('assets/imgs/books')) 
+app_server.use(express.static('assets'));
  const bookRouter=require('./routes/book');
  const categoryRouter=require('./routes/category');
  const user = require('./routes/user')

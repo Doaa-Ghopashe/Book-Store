@@ -1,7 +1,7 @@
 export interface Book {
     title: string;
     desc: string;
-    image: string;
+    photo: string;
     AuthorId:string;
     avgRating:number;
     shevle:string;

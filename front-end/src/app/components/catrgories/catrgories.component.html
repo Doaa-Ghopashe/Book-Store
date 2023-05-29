@@ -3,8 +3,8 @@
     <br><br>
     <div class="portfolio">
         <div class="row" >
-            <div *ngFor="let category of allCategories " class="col-md-4 my-3">
-                <div class="card" style="width:400px">
+            <div *ngFor="let category of allCategories | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage } " class="col-md-4 my-3">
+                <div class="card" (click)="getDetails(category._id)" style="width:400px">
                     <div class="card-body">
                     <h4 my-3>{{category.Name}}</h4>
                     </div>
@@ -13,3 +13,6 @@
         </div>
     </div>
 </div>
+<pagination-controls class="text-center mt-5" (pageChange)="currentPage = $event"></pagination-controls>
+
+<app-footer></app-footer>

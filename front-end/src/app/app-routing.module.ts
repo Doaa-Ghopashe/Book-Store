@@ -7,6 +7,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { CatrgoriesComponent } from './components/catrgories/catrgories.component';
 import { BooksComponent } from './components/books/books.component';
 import { AuthorsComponent } from './components/authors/authors.component';
+import { CategoryDetailsComponent } from './components/category-details/category-details.component';
 
 const routes: Routes = [
   {path : "", redirectTo:"home", pathMatch : "full"},
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path : "categories", component : CatrgoriesComponent},
   {path : "books", component : BooksComponent},
   {path : "authors", component : AuthorsComponent},
+  {path:"category-details/:id",component:CategoryDetailsComponent},
   {path : "**", component : NotFoundComponent}
 ];
 

@@ -7,6 +7,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
+  getAuthor() {
+    throw new Error('Method not implemented.');
+  }
 
   constructor(private _http : HttpClient) { 
    }

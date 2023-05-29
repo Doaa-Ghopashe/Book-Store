@@ -11,8 +11,10 @@ allAuthors!:Author[];
 constructor(private _AuthorService:AuthorService){
 this._AuthorService.getAuthor().subscribe((res)=>{
 this.allAuthors=res
-console.log(res);
+// console.log(res);
 
 })
 }
+currentPage = 1; 
+itemsPerPage = 6;
 }

@@ -4,7 +4,7 @@
     <br><br>
     <div>
         <div class="row" >
-            <div *ngFor="let author of allAuthors " class="col-md-4 my-3">
+            <div *ngFor="let author of allAuthors | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }" class="col-md-4 my-3">
                 <div class="card" style="width:400px">
                     <div class="card-body">
                         <img [src]="author.Image" alt="">
@@ -18,7 +18,9 @@
         </div>
     </div>
 </div>
+<pagination-controls class="text-center mt-5" (pageChange)="currentPage = $event"></pagination-controls>
 
+<app-footer></app-footer>
 
 
 

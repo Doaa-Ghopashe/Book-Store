@@ -25,7 +25,7 @@ import { SearchPipe } from './pipes/search.pipe';
 import { HeaderComponent } from './components/header/header.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule}   from '@angular/common/http';
-
+import { NgxPaginationModule } from 'ngx-pagination';    
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +54,8 @@ import { HttpClientModule}   from '@angular/common/http';
     BrowserAnimationsModule,
     CarouselModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

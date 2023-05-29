@@ -1,5 +1,4 @@
 const multer = require('multer');
-
 //Configuration for Multer
 const multerStorageBook = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -7,7 +6,7 @@ const multerStorageBook = multer.diskStorage({
   },
   filename: (req, file, cb) => {
     const ext = file.mimetype.split('/')[1];
-    cb(null, `image-${file.fieldname}-${Date.now()}.${ext}`);
+    cb(null, `${file.fieldname}-${Date.now()}.${ext}`);
   },
 });
 
@@ -29,7 +28,6 @@ const multerFilter = (req, file, cb) => {
     file.mimetype == 'image/jpg' ||
     file.mimetype == 'image/jpeg'||
     file.mimetype == 'image/webp'
-
   ) {
     cb(null, true);
   } else {

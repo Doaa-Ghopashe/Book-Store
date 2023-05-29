@@ -1,13 +1,15 @@
 
+    <div>
+        
     <div class="container">
         <h1 class="mt-5" style="text-align: center;"> BOOKS </h1>
         <br><br>
         <div>
             <div class="row" >
-                <div *ngFor="let book of allBooks " class="col-md-4 my-3">
+                <div *ngFor="let book of allBooks  | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }" class="col-md-4 my-3">
                     <div class="card" style="width:400px">
                         <div class="card-body">
-                            <img [src]="book.image" alt="">
+                            <img [src]="image + '/' + book.photo" alt="title">
                         <h4 my-3>{{book.title}}</h4>
                          <p>{{book.desc}}</p>
                         </div>
@@ -16,6 +18,10 @@
             </div>
         </div>
     </div>
+      </div>
+      
+      <pagination-controls class="text-center" (pageChange)="currentPage = $event"></pagination-controls>
+    <app-footer></app-footer>
 
 
 

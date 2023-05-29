@@ -8,18 +8,20 @@ import { BooksService } from 'src/app/services/books.service';
 })
 export class BooksComponent {
   allBooks:any[]=[];
-prex='../../../../../back-end/assets/';
+  image = `http://localhost:5000`;
+
   constructor(private _booksService:BooksService){
     _booksService.getBooks().subscribe((res)=>{
       this.allBooks=res.data.book
-      console.log(this.allBooks);
+        // this.img=this.allBooks.photo.slice(5);
 
-    })
-   //console.log(this.allBooks);
-   
-}
+      // console.log(this.allBooks);
+  })}
+  //  items = this.allBooks 
+   currentPage = 1; 
+   itemsPerPage = 6;
+ 
 ngOnInit() {
-  // console.log(data);
-
+  
 }
 }
