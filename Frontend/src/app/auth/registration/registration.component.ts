@@ -16,12 +16,12 @@ export class RegistrationComponent {
 
   regestrationForm:FormGroup = new FormGroup(
     {
-      first_name: new FormControl('',[Validators.required,Validators.minLength(3), Validators.maxLength(20)]),
-      last_name: new FormControl('',[Validators.required,Validators.minLength(3), Validators.maxLength(20)]),
+      firstName: new FormControl('',[Validators.required,Validators.minLength(3), Validators.maxLength(20)]),
+      lastName: new FormControl('',[Validators.required,Validators.minLength(3), Validators.maxLength(20)]),
       email :  new FormControl('',[Validators.required,Validators.email]),
       password : new FormControl('',[Validators.required,Validators.pattern(/^[a-z]{1}[0-9]{3,8}/)]),
-      rePassword : new FormControl('',[Validators.required]),
-      image : new FormControl('',[Validators.required])
+      // rePassword : new FormControl('',[Validators.required]),
+      // image : new FormControl('',[Validators.required])
     }
   )
 

@@ -1,6 +1,8 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+//...
+//....
 const auth = require("../Middleware/auth");
 const admin=require('../Middleware/admin');
 const userController = require('../controllers/userController')
@@ -10,7 +12,7 @@ const router=express.Router();
 router.post('/user' , userController.add )
 router.get('/user' , userController.list )
 router.get('/user/:id' , userController.getById )
-router.delete('/user/:id',[auth,admin] , userController.remove )
+router.delete('/user/:id' , userController.remove )
 router.put('/user/:id' , userController.edit )
 
 // user profile
@@ -51,7 +53,7 @@ router.post("/register",async (req, res) => {
     const user = await User.create({
       firstName,
       lastName,
-      email: email.toLowerCase(), // sanitize: convert email to lowercase
+      email: email.toLowerCase(), 
       password: encryptedPassword,
     });
 
@@ -106,5 +108,15 @@ router.post("/register",async (req, res) => {
         res.status(200).send("Welcome 🤗❤");
         
       });
+
+
+      //logout
+// router.all("/logout", (req, res)=>{
+//   // req.session.destroy();
+//   jwt.destroy(token)
+//   res.redirect('/user');
+// });
+
+
 
 module.exports = router;

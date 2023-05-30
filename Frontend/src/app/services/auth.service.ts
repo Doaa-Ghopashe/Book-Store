@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient}   from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {Router } from '@angular/router';
+import jwtDecode from 'jwt-decode';
 
 
 
@@ -40,13 +41,22 @@ export class AuthService {
          return false;
    }
 
+
+  saveCrrentUser()
+  {
+    let encryptedToken:any = localStorage.getItem("token");
+    console.log(encryptedToken);
+    let decriptedToken:any = jwtDecode(encryptedToken);
+    console.log(decriptedToken);
+  }
+
   signUp(signData:any):Observable<any>
   {
-     return this._http.post('https://route-ecommerce.onrender.com/api/v1/auth/signup',signData);
+     return this._http.post('http://localhost:5000/register',signData);
   }
 
   login(loginData:any):Observable<any>
   {
-    return this._http.post('https://route-ecommerce.onrender.com/api/v1/auth/signin',loginData);
+    return this._http.post('http://localhost:5000/login',loginData);
   }
 }

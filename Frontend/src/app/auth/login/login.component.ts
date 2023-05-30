@@ -34,8 +34,9 @@ export class LoginComponent {
       this.auth.login(this.loginForm.value).subscribe(
       {
         next: res => {
-          this._router.navigateByUrl('/mybook');
           localStorage.setItem("token",res.token);
+          this.auth.saveCrrentUser();
+          this._router.navigateByUrl('/mybook');
         },
         error: err => alert(err.error.message),
         complete: () => {
