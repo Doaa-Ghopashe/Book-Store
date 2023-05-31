@@ -10,9 +10,12 @@ export class NavbarComponent {
 
 
   isLog:any;
-
+  isAdmine:any;
   constructor( private _authservice :AuthService)
   {
+
+    this.isAdmine = localStorage.getItem("isAdmine");
+    console.log(this.isAdmine)
 
     this._authservice.logged()
     this.isLog = this._authservice.isLogin;

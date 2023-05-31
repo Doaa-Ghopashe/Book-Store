@@ -21,6 +21,7 @@ import { BooksModule } from './books/books.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { TagsContainerComponent } from './components/tags-container/tags-container.component';
+import { AdminDahboardComponent } from './admin/admin-dahboard/admin-dahboard.component';
 
 
 
@@ -33,6 +34,7 @@ import { TagsContainerComponent } from './components/tags-container/tags-contain
     HomeComponent,
     TagsContainerComponent,
     SearchPipe,
+    AdminDahboardComponent,
   ],
   imports: [
     BrowserModule,

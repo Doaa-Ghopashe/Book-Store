@@ -3,8 +3,8 @@
     <br><br>
     <div>
         <div class="row" >
-            <div *ngFor="let author of allAuthors " class="col-md-4 my-3">
-                <div class="card" style="width:400px">
+            <div *ngFor="let author of allAuthors " class="col-md-3 my-3">
+                <div class="card" style="height:200px">
                     <div class="card-body">
                         <img [src]="author.Image" alt="">
                         <h4 my-3>{{author.firstName}} {{author.lastName}}</h4>

@@ -36,7 +36,16 @@ export class LoginComponent {
         next: res => {
           localStorage.setItem("token",res.token);
           this.auth.saveCrrentUser();
-          this._router.navigateByUrl('/mybook');
+          let isAdmin:any = localStorage.getItem("isAdmin");
+          if(isAdmin == "true")
+          {
+            this._router.navigateByUrl('/admin');
+          }
+          else
+          {
+            this._router.navigateByUrl('/mybook');
+          }
+    
         },
         error: err => alert(err.error.message),
         complete: () => {

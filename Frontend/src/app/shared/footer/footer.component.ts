@@ -7,6 +7,9 @@ import { Component } from '@angular/core';
 })
 export class FooterComponent {
 
-
-  
+  isAdmine:any;
+  constructor()
+  {
+    this.isAdmine = localStorage.getItem("isAdmine");
+  }
 }

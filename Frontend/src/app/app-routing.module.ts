@@ -13,6 +13,7 @@ import { AuthService } from './services/auth.service';
 import { AboutComponent } from './shared/about/about.component';
 import { ContactComponent } from './shared/contact/contact.component';
 import { CategoryDetailsComponent } from './books/category-details/category-details.component';
+import { AdminDahboardComponent } from './admin/admin-dahboard/admin-dahboard.component';
 
 const routes: Routes = [
   {path : "", redirectTo:"home", pathMatch : "full"},
@@ -27,6 +28,7 @@ const routes: Routes = [
   {path : "about", component : AboutComponent},
   {path : "contact", component : ContactComponent},
   {path : "categoryDetails/:id", component : CategoryDetailsComponent},
+  {path : "admin", component : AdminDahboardComponent},
   {path : "**", component : NotFoundComponent}
 ];
 
