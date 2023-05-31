@@ -12,6 +12,7 @@ import { UserBookComponent } from './user/user-books/user-books.component';
 import { AuthService } from './services/auth.service';
 import { AboutComponent } from './shared/about/about.component';
 import { ContactComponent } from './shared/contact/contact.component';
+import { CategoryDetailsComponent } from './books/category-details/category-details.component';
 
 const routes: Routes = [
   {path : "", redirectTo:"home", pathMatch : "full"},
@@ -25,6 +26,7 @@ const routes: Routes = [
   {path : "mybook", component : UserBookComponent,canActivate:[AuthService]},
   {path : "about", component : AboutComponent},
   {path : "contact", component : ContactComponent},
+  {path : "categoryDetails/:id", component : CategoryDetailsComponent},
   {path : "**", component : NotFoundComponent}
 ];
 

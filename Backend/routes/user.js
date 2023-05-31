@@ -50,11 +50,13 @@ router.post("/register",async (req, res) => {
     encryptedPassword = await bcrypt.hash(password, 10);
 
     // Create user in our database
+    const isAdmin = req.body.isAdmin || false;
     const user = await User.create({
       firstName,
       lastName,
       email: email.toLowerCase(), 
       password: encryptedPassword,
+      isAdmin:isAdmin,
     });
 
     // return new user
@@ -84,7 +86,7 @@ router.post("/register",async (req, res) => {
     if (user && (await bcrypt.compare(password, user.password))) {
       // Create token
       const token = jwt.sign(
-        { user_id: user._id, email,isAdmin:this.isAdmin },
+        { user_id: user._id, email,isAdmin:user.isAdmin },
         process.env.TOKEN_KEY,
         {
           expiresIn: "2h",

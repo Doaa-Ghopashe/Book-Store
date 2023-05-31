@@ -47,7 +47,7 @@ export class AuthService {
     let encryptedToken:any = localStorage.getItem("token");
     console.log(encryptedToken);
     let decriptedToken:any = jwtDecode(encryptedToken);
-    console.log(decriptedToken);
+    console.log(decriptedToken.isAdmin);
   }
 
   signUp(signData:any):Observable<any>
