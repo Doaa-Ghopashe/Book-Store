@@ -46,6 +46,8 @@ app_server.use(author)
 
 app_server.use(error_handler)
 
+app_server.use(express.static('assets'));
+
 //
 app_server.listen(PORT,(err)=>{
     if(!err) return console.log("the server is being listened on port "+PORT);
