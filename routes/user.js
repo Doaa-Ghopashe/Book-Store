@@ -1,16 +1,19 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+//...
+//....
 const auth = require("../Middleware/auth");
 const admin=require('../Middleware/admin');
 const userController = require('../controllers/userController')
 const User = require("../models/user");
+const { model, models } = require('mongoose');
 const router=express.Router();
 
 router.post('/user' , userController.add )
 router.get('/user' , userController.list )
 router.get('/user/:id' , userController.getById )
-router.delete('/user/:id',[auth,admin] , userController.remove )
+router.delete('/user/:id' , userController.remove )
 router.put('/user/:id' , userController.edit )
 
 // user profile
@@ -48,11 +51,14 @@ router.post("/register",async (req, res) => {
     encryptedPassword = await bcrypt.hash(password, 10);
 
     // Create user in our database
+    const isAdmin = req.body.isAdmin || false;
+
     const user = await User.create({
       firstName,
       lastName,
-      email: email.toLowerCase(), // sanitize: convert email to lowercase
+      email: email.toLowerCase(), 
       password: encryptedPassword,
+      isAdmin:isAdmin,
     });
 
     // return new user
@@ -82,20 +88,22 @@ router.post("/register",async (req, res) => {
     if (user && (await bcrypt.compare(password, user.password))) {
       // Create token
       const token = jwt.sign(
-        { user_id: user._id, email,isAdmin:this.isAdmin },
+        { user_id: user._id, email,isAdmin:user.isAdmin },
         process.env.TOKEN_KEY,
         {
           expiresIn: "2h",
         }
       );
-
       // save user token
       user.token = token;
 
       // user
-      res.status(200).json(user);
+      res.json(user);
     }
+    else{
     res.status(400).send("Invalid Credentials");
+
+    }
   } catch (err) {
     console.log(err);
   }
@@ -107,4 +115,18 @@ router.post("/register",async (req, res) => {
         
       });
 
+
+      //logout
+// router.all("/logout", (req, res)=>{
+//   // req.session.destroy();
+//   jwt.destroy(token)
+//   res.redirect('/user');
+// });
+
+
+
+
+
 module.exports = router;
+
+
