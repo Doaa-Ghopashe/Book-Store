@@ -7,7 +7,7 @@ import { CatrgoriesComponent } from './catrgories/catrgories.component';
 import { PostComponent } from './post/post.component';
 import { RateComponent } from './rate/rate.component';
 import { ReviewsComponent } from './reviews/reviews.component';
-
+import {NgxPaginationModule} from 'ngx-pagination'; 
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -34,7 +34,8 @@ import { BrowserModule } from '@angular/platform-browser';
     FormsModule,
     NgbModule,
     ReactiveFormsModule,
-    BrowserModule
+    BrowserModule,
+    NgxPaginationModule
   ],
   exports:[
     BooksComponent,

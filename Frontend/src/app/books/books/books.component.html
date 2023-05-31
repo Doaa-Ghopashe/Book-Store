@@ -4,8 +4,8 @@
     <br><br>
     <div>
         <div class="row" >
-            <div *ngFor="let book of allBooks " class="col-md-3 my-3">
-                <div class="card">
+            <div *ngFor="let book of allBooks | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage } " class="col-md-3 my-3">
+                <div class="card" (click)="getBookDetails(book._id)">
                     <div class="card-body">
                         <img [src]="book.image" alt="">
                     <h4 my-3>{{book.title}}</h4>
@@ -13,6 +13,9 @@
                     </div>
                 </div>
             </div>  
+        </div>
+        <div class="text-center paginationNav mt-2">
+            <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
         </div>
     </div>
 </div>
