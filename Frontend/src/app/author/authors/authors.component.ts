@@ -8,6 +8,8 @@ import { AuthorService } from 'src/app/services/author.service';
 })
 export class AuthorsComponent {
 allAuthors!:Author[];
+currentPage = 1; // start with the first page
+  itemsPerPage = 5; // show 5 items per page
 constructor(private _AuthorService:AuthorService){
 this._AuthorService.getAuthor().subscribe((res)=>{
 this.allAuthors=res

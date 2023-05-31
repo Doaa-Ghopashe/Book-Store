@@ -3,7 +3,7 @@
     <br><br>
     <div>
         <div class="row" >
-            <div *ngFor="let author of allAuthors " class="col-md-3 my-3">
+            <div *ngFor="let author of allAuthors | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }" class="col-md-3 my-3">
                 <div class="card" style="height:200px">
                     <div class="card-body">
                         <img [src]="author.Image" alt="">
@@ -14,6 +14,9 @@
                     </div>
                 </div>
             </div>  
+        </div>
+        <div class="text-center paginationNav mt-2">
+            <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
         </div>
     </div>
 </div>

@@ -29,6 +29,7 @@ const routes: Routes = [
   {path : "contact", component : ContactComponent},
   {path : "categoryDetails/:id", component : CategoryDetailsComponent},
   {path : "admin", component : AdminDahboardComponent},
+  {path: "bookDetails/:id" ,component: BookDetailsComponent},
   {path : "**", component : NotFoundComponent}
 ];
 

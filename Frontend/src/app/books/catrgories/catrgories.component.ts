@@ -10,6 +10,10 @@ import { CategoryService } from 'src/app/services/category.service';
 })
 export class CatrgoriesComponent {
   allCategories!:any[];
+
+ // items: any[]=[]; // your list of items
+  currentPage = 1; // start with the first page
+  itemsPerPage = 5; // show 5 items per page
 constructor(private _category:CategoryService, private _Route: Router){
   _category.getCategory().subscribe((res)=>{
     this.allCategories=res.data.categories  
