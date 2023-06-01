@@ -6,7 +6,7 @@ const addBookValidateRule=[
 
     body('categoryId').isMongoId().withMessage("this field is required"),
     body('AuthorId').isMongoId().withMessage("this field is required"),
-    body('image').notEmpty().withMessage("this field is required"),
+    // body('photo').notEmpty().withMessage("this field is required"),
     body('desc').isString().withMessage("this field accept string only")
                 .notEmpty().withMessage("this field is required")
                 .isLength({min:10}).withMessage("Min length is 3"),
@@ -26,7 +26,7 @@ check('AuthorId')
 .optional()
 .isMongoId().withMessage("this field is required"),
 
-check('image')
+check('photo')
 .optional()
 .isString().withMessage("this field is required"),
 

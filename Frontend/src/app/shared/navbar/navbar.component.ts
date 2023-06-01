@@ -10,15 +10,18 @@ export class NavbarComponent {
 
 
   isLog:any;
-  isAdmine:any;
+  isAdmin:any;
   constructor( private _authservice :AuthService)
   {
 
-    this.isAdmine = localStorage.getItem("isAdmine");
-    console.log(this.isAdmine)
+    // this.isAdmin = localStorage.getItem("isAdmin");
+    // console.log(this.isAdmin)
 
     this._authservice.logged()
     this.isLog = this._authservice.isLogin;
-    console.log(this.isLog)
+    console.log(this.isLog);
+
+    this._authservice.isAdmin();
+    this.isAdmin = this._authservice.isAdmine;
   }
 }

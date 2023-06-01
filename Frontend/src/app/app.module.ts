@@ -22,6 +22,9 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { TagsContainerComponent } from './components/tags-container/tags-container.component';
 import { AdminDahboardComponent } from './admin/admin-dahboard/admin-dahboard.component';
+import { CategoeyForAdminComponent } from './admin/categoey-for-admin/categoey-for-admin.component';
+import { BookForAdminComponent } from './admin/book-for-admin/book-for-admin.component';
+import { AuthorForAdminComponent } from './admin/author-for-admin/author-for-admin.component';
 
 
 
@@ -35,6 +38,9 @@ import { AdminDahboardComponent } from './admin/admin-dahboard/admin-dahboard.co
     TagsContainerComponent,
     SearchPipe,
     AdminDahboardComponent,
+    CategoeyForAdminComponent,
+    BookForAdminComponent,
+    AuthorForAdminComponent,
   ],
   imports: [
     BrowserModule,
