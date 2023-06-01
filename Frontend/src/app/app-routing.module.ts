@@ -14,6 +14,9 @@ import { AboutComponent } from './shared/about/about.component';
 import { ContactComponent } from './shared/contact/contact.component';
 import { CategoryDetailsComponent } from './books/category-details/category-details.component';
 import { AdminDahboardComponent } from './admin/admin-dahboard/admin-dahboard.component';
+import { CategoeyForAdminComponent } from './admin/categoey-for-admin/categoey-for-admin.component';
+import { BookForAdminComponent } from './admin/book-for-admin/book-for-admin.component';
+import { AuthorForAdminComponent } from './admin/author-for-admin/author-for-admin.component';
 
 const routes: Routes = [
   {path : "", redirectTo:"home", pathMatch : "full"},
@@ -29,6 +32,9 @@ const routes: Routes = [
   {path : "contact", component : ContactComponent},
   {path : "categoryDetails/:id", component : CategoryDetailsComponent},
   {path : "admin", component : AdminDahboardComponent},
+  {path : "admin/category", component : CategoeyForAdminComponent},
+  {path : "admin/book", component : BookForAdminComponent},
+  {path : "admin/authors", component : AuthorForAdminComponent},
   {path: "bookDetails/:id" ,component: BookDetailsComponent},
   {path : "**", component : NotFoundComponent}
 ];

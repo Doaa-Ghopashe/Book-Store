@@ -39,7 +39,7 @@ export class LoginComponent {
           let isAdmin:any = localStorage.getItem("isAdmin");
           if(isAdmin == "true")
           {
-            this._router.navigateByUrl('/admin');
+            this._router.navigateByUrl('/admin/category');
           }
           else
           {

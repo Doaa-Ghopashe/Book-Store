@@ -14,4 +14,16 @@ allCategories:any[]=[];
 
   }
 
+  deleteCategory(id:any):Observable<any>{
+    return this._httpClinent.delete(`http://localhost:5000/category/${id}`)
+   }
+
+   addCategry(categoryData:any):Observable<any>{
+    return this._httpClinent.post(`http://localhost:5000/category`,categoryData)
+   }
+
+   updateCategory(id:any,newData:any):Observable<any>{
+    return this._httpClinent.put(`http://localhost:5000/category/${id}`,newData)
+   }
+
 }
