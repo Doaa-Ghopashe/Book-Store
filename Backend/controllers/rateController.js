@@ -19,9 +19,9 @@ const rate_model = require('../models/rating'),
     updateRate = async (req, res, next) => {
         try {
             let { id } = req.params;
-            await rate_model.findByIdAndUpdate({ _id: id }, (err, data) => {
+            let body =req.body;
+            await rate_model.findByIdAndUpdate({ _id:id },body, (err,data) => {
                 if (!err) return res.status(200).json(data);
-
                 throw new Error('notFound')
             })
         } catch (err) {
@@ -66,7 +66,6 @@ const rate_model = require('../models/rating'),
         }
     }
 //exports
-
 module.exports = {
     createRate,
     updateRate,
