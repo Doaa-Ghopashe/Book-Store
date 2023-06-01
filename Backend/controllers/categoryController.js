@@ -10,7 +10,7 @@ const getAllCategories=async(req,res)=>{
     
     let query = categoryModel.find(queryObj);
     const page = req.query.page * 1 || 1;
-    const limit = req.query.limit * 1 || 10;
+    const limit = req.query.limit * 1 || 30;
     const skip = (page - 1) * limit;
     query = query.skip(skip).limit(limit);
 
