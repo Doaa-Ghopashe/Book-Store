@@ -2,7 +2,7 @@ const express=require('express');
 const bookRouter=express.Router();
 const bookController=require('../controllers/bookController.js')
 const{validate}= require('../Middleware/validation/validator.js')
-const{addBookValidateRule,updateBookValidateRule}=require('../validators/validator.js');
+const{addBookValidateRule,updateValidatieRule}=require('../validators/validator.js');
 
 bookRouter.get('/',bookController.getAllBooks);
 bookRouter.get('/:id',bookController.getOneBook);
@@ -15,11 +15,13 @@ const upload=multer({
     fileFilter: multerFilter,
     storage:multerStorageBook
 })
-bookRouter.post('/',upload.single('photo')
-//  validate(addBookValidateRule)
+bookRouter.post('/',upload.single('photo'),
+ validate(addBookValidateRule)
  ,bookController.addNewBook);
+
 bookRouter.put('/:id',
-validate(updateBookValidateRule),bookController.editBook);
+validate(updateValidatieRule),
+bookController.editBook);
 
 bookRouter.delete('/:id',bookController.deleteBook,(req,res)=>{
 });
