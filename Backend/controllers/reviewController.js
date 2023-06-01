@@ -20,7 +20,7 @@ const review_model = require('../models/review'),
     updateReview = async (req, res, next) => {
         try {
             let { id } = req.params;
-            await review_model.findByIdAndUpdate({ _id: id }, (err, data) => {
+            await review_model.findByIdAndUpdate({ _id: id },req.body,(err, data) => {
                 if (!err) return res.status(200).json(data);
 
                 throw new Error("notFound")

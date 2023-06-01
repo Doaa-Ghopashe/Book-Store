@@ -71,7 +71,7 @@ const editBook = async (req, res) => {
   try {
     const { id } = req.params;
     const data = {...req.body};
-    const Book = await bookModel.findOneAndUpdate({ _id: id }, data, { new: true, });
+    const Book = await bookModel.findOneAndUpdate({ _id: id }, data, {new: true});
     res.status(200).json({
       status: "success",
       data: "Updated Book successfully",

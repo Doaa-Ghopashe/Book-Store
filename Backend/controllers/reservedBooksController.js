@@ -40,7 +40,7 @@ const reservedbooksModel = require("../models/reservedbooks"),
     editReservedBook = async (req, res) => {
         try {
             let { id } = req.params;
-            await reservedbooksModel.findByIdAndUpdate({ _id: id }, (err, data) => {
+            await reservedbooksModel.findByIdAndUpdate({ _id: id }, req.body,(err, data) => {
                 if (!err) return res.status(200).json(data);
 
                 throw new Error("notFound")

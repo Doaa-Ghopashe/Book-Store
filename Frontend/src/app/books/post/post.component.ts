@@ -8,27 +8,25 @@ import { ReviewService } from 'src/app/services/review.service';
   styleUrls: ['./post.component.scss']
 })
 export class PostComponent {
-  @Input()review!:string
-  
-  constructor(private http: HttpClient,private reviewService:ReviewService) { }
-  sendReview(e:any)
-  {
+  @Input() review!: string
+
+  constructor(private http: HttpClient, private reviewService: ReviewService) { }
+  sendReview(e: any) {
     e.preventDefault();
-    if(this.review)
-    {
+    if (this.review) {
       const headers = new HttpHeaders()
-            .set('Authorization', 'my-auth-token')
-            .set('Content-Type', 'application/json');
-    
-      this.http.post('http://localhost:5000/review',JSON.stringify({review:this.review, book_id:"1", user_id:"5"}),{
+        .set('Authorization', 'my-auth-token')
+        .set('Content-Type', 'application/json');
+
+      this.http.post('http://localhost:5000/review', JSON.stringify({ review: this.review, book_id: "1", user_id: "5" }), {
         headers: headers
       }).subscribe()
 
       this.reviewService.setReviews()
-      
-      this.review  = '';
+
+      this.review = '';
     }
-    
+
   }
-  
+
 }
