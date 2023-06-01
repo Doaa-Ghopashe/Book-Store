@@ -14,20 +14,24 @@
                 </thead>
                 <div class="py-2"></div>
                 <tbody>
-                    <tr *ngFor = "let category of allCategories; index as i">
-                        <td >{{i+1}}</td>
+                    <tr *ngFor = "let category of allCategories | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
+                        <td >{{1}}</td>
                         <td>{{category.Name}}</td>
                         <td>
                             <a (click)="showUpdateBox(category._id)">
-                                <i class="fa-solid fa-pen me-3 mt-3"></i>
+                                <i class="fa-solid fa-pen me-3 mt-4"></i>
                             </a>
                             <a (click)="deleteCategory(category._id)">
-                                <i class="fa-regular fa-trash-can mt-3"></i>
+                                <i class="fa-regular fa-trash-can mt-4"></i>
                             </a>
                         </td>
                     </tr>
                 </tbody>
              </table>
+
+             <div class="text-center paginationNav mt-2">
+                <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+            </div>
         </div>
       </div>
 

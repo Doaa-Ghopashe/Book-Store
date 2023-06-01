@@ -58,3 +58,13 @@ border-bottom: 1px solid #f7f7f7;
   right:15px;
   color: #fff;
 }
+.paginationNav
+  {
+    min-width: 100%;
+    position: absolute;
+    bottom: 0px;
+  }
+  .ngx-pagination .current
+  {
+    color :#ab64bd !important
+  }
