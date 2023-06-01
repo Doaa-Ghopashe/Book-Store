@@ -13,12 +13,12 @@ const getAllBooks = async (req, res) => {
     query = query.skip(skip).limit(limit);
     //excute query
     const book = await query
-      .populate({
-        path: "AuthorId",
-      })
-      .populate({
-        path: "categoryId",
-      });
+      // .populate({
+      //   path: "AuthorId",
+      // })
+      // .populate({
+      //   path: "categoryId",
+      // });
     // const book = await bookModel.find({});
     res.status(200).json({
       status: "success",
@@ -78,9 +78,15 @@ const addNewBook = async (req, res) => {
 };
 const editBook = async (req, res) => {
   try {
+<<<<<<< HEAD
     const {id} = req.params;
     const data = req.body;
     const Book = await bookModel.updateOne({ _id:id }, data, { new: true});
+=======
+    const { id } = req.params;
+    const data = {...req.body};
+    const Book = await bookModel.findOneAndUpdate({ _id: id }, data, {new: true});
+>>>>>>> 2cc368955533c378493e944bd3f617568d463b01
     res.status(200).json({
       status: "Updated successfully",
       data: {Book}

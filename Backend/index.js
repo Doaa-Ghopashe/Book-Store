@@ -42,7 +42,7 @@ app_server.use('/rate',rateRouter);
 
 app_server.use(user)
 
-app_server.use(author)
+app_server.use('/authors',author)
 
 app_server.use(error_handler)
 

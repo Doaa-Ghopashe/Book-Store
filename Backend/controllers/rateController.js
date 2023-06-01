@@ -5,11 +5,11 @@ const rate_model = require('../models/rating'),
 //the five api methods
     createRate = async (req, res, next) => {
         try {
-            console.log(req)
+            // console.log(req)
             await rate_model.create({ ...req.body }, (err, data) => {
                 if (!err) return res.status(200).json(data);
 
-                console.log(err)
+                // console.log(err)
             })
         } catch (err) {
             next({status:errors[err.message].status,message:errors[err.message].errmessage})
@@ -17,11 +17,14 @@ const rate_model = require('../models/rating'),
     },
 
     updateRate = async (req, res, next) => {
+        
         try {
             let { id } = req.params;
-            let body =req.body;
-            await rate_model.findByIdAndUpdate({ _id:id },body, (err,data) => {
-                if (!err) return res.status(200).json(data);
+            // console.log(id)
+            await rate_model.findOneAndUpdate({ _id: id },req.body,(err, data) => {
+                // console.log(req.body)
+                if (!err) return res.status(200).send(data);
+
                 throw new Error('notFound')
             })
         } catch (err) {
@@ -66,6 +69,7 @@ const rate_model = require('../models/rating'),
         }
     }
 //exports
+
 module.exports = {
     createRate,
     updateRate,

@@ -26,7 +26,7 @@ const routes: Routes = [
   {path : "categories", component : CatrgoriesComponent,canActivate:[AuthService]},
   {path : "books", component : BooksComponent,canActivate:[AuthService]},
   {path : "authors", component : AuthorsComponent,canActivate:[AuthService]},
-  {path : "book/:id", component : BookDetailsComponent},
+  {path : "book/:id", component : BookDetailsComponent , canActivate:[AuthService]},
   {path : "mybook", component : UserBookComponent,canActivate:[AuthService]},
   {path : "about", component : AboutComponent},
   {path : "contact", component : ContactComponent},
