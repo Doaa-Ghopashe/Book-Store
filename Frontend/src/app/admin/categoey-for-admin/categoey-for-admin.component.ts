@@ -11,6 +11,8 @@ export class CategoeyForAdminComponent {
 
 
   updatedCurrentElementId:any;
+  currentPage = 1; // start with the first page
+  itemsPerPage = 6; // show 5 items per page
 
   allCategories:any;
   constructor(private _categoryService: CategoryService)
@@ -69,11 +71,18 @@ export class CategoeyForAdminComponent {
     updateCategory(form:any)
     {
       let formValue:object = form.value
-      this._categoryService.updateCategory(this.updatedCurrentElementId,formValue).subscribe((res)=>
-      {
+      this._categoryService.updateCategory(this.updatedCurrentElementId,formValue).subscribe(
+        {
+        next: res => {
+          alert(res.status)
+          let updatelayer:any = document.getElementById("updatelayer");
+          updatelayer.style.display = "none";
+        },
+        error: err => alert(`${err.error.status} Category is already exist`),
+        complete: () => {
+  
+        }
       })
-      let updatelayer:any = document.getElementById("updatelayer");
-      updatelayer.style.display = "none";
     }
 
     deleteCategory(id:any)
