@@ -17,8 +17,8 @@ prex=`localhost:5000/`;
 img!:any[];
   constructor(private _booksService:BooksService, private _route:Router){
     _booksService.getBooks().subscribe((res)=>{
-      this.allBooks=res.data.book.photo
-      console.log(this.allBooks);
+      this.allBooks=res.data.book
+      // console.log(this.allBooks);
       // this.img=this.allBooks.photo.slice(6);
       // this.img=this.allBooks.photo
     })
