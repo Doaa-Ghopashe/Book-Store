@@ -13,6 +13,7 @@ import jwtDecode from 'jwt-decode';
 export class AuthService {
 
   isLogin:any;
+  isAdmine:any;
   constructor(private _http : HttpClient, private _router : Router) {
    }
 
@@ -28,6 +29,21 @@ export class AuthService {
       {
         this.isLogin = false;
       }
+  }
+
+  isAdmin()
+  {
+      // let isAdmin:any = localStorage.getItem("admin");
+      // if(isAdmin == true)
+      // {
+      //   this.isAdmine = true;
+      //   console.log("isAdmin" ,this.isAdmine)
+      // }
+      // else
+      // {
+      //   this.isAdmine = false;
+      //   console.log("isAdmin" ,this.isAdmine)
+      // }
   }
 
   canActivate():boolean | Observable<boolean>
