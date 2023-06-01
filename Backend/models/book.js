@@ -13,7 +13,7 @@ const bookSchema = new mongoose.Schema({
     ref: "author",
   },
   desc: { type: String },
-  image: { 
+  photo: { 
     type: String,
     requireda:true
    },
