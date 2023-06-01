@@ -24,10 +24,24 @@ export class BooksService {
     //   this.allBooks=res
     //   return res
     //  });
-    getBooks():Observable<any>{
-   return  this._httpClinet.get('http://localhost:5000/book')
-   
-  }
+    
+  getBooks():Observable<any>{
+    return  this._httpClinet.get('http://localhost:5000/book')
+   }
+ 
+   deleteBook(id:any):Observable<any>{
+     return this._httpClinet.delete(`http://localhost:5000/book/${id}`)
+    }
+ 
+    addBook(bookData:any):Observable<any>{
+     return this._httpClinet.post(`http://localhost:5000/book`,bookData)
+    }
+ 
+    updateBook(id:any,newData:any):Observable<any>{
+     return this._httpClinet.put(`http://localhost:5000/book/${id}`,newData)
+    }
+ 
+
   loadBooks(): void {
     this._httpClinet.get('http://localhost:5000/book').
     subscribe((res: any) => this.bookList.next(res.data.book));
