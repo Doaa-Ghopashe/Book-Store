@@ -8,14 +8,15 @@ export class UserbooksService {
 
   constructor(private http: HttpClient) { }
 
-  reseveBook(status: string, id: string) {
+  reseveBook(status: string, id: string,user_id:string) {
     const headers = new HttpHeaders()
       .set('Authorization', 'my-auth-token')
       .set('Content-Type', 'application/json');
-    this.http.post('http://localhost:5000/reservebook', JSON.stringify({ book_id: id, user_id: "DD18", shelve: status }),
+    this.http.post('http://localhost:5000/reservebook', JSON.stringify({ book_id: id, user_id:user_id, shelve: status }),
       {
         headers
       }).subscribe()
   }
+
 
 }

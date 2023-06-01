@@ -3,64 +3,69 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Book } from '../interfaces/book';
 import { BooksService } from './books.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class AvgrateService {
-  //need the number of raters
-  //need the summation of rates
-  //all of this according to speco
+  //some variables
+  private rate_list = new BehaviorSubject([]);
+  pubRateList = this.rate_list.asObservable();
+  private readers_count = new BehaviorSubject(0); //number of records of the same book
+  pubReadersCount = this.readers_count.asObservable();
+  private avg_rate = new BehaviorSubject(0); //**still have no idea if i leave it or not
+  pubAvgRateVal = this.avg_rate.asObservable();
+  private book = new BehaviorSubject({}); // to got specific book
+  pubBook = this.book.asObservable();
 
-  private ratelist = new BehaviorSubject([]);
-  counter: number = 0
-  private readerscount = new BehaviorSubject(0);
-  private book = new BehaviorSubject({});
+  book_id!:string;
+  counter: number = 0;
+  totalrate: number = 0;
 
-  pubBook = this.book.asObservable()
-  pubReadersCount = this.readerscount.asObservable();
-  totalrate: number = 0
-  pubRateList = this.ratelist.asObservable()
-  private avgrate = new BehaviorSubject(0);
-  pubAvgRateVal = this.avgrate.asObservable();
-
-  constructor(private _http: HttpClient, private bookservice: BooksService) {
-    this._http.get('http://localhost:5000/rate').subscribe((res: any) => this.ratelist.next(res))
+  //constructor
+  constructor(private _http: HttpClient, private bookservice: BooksService,private activatedroute:ActivatedRoute) {
+    //at the begin we need to get all rated books
+    this._http.get('http://localhost:5000/rate').subscribe((res: any) => this.rate_list.next(res));
   }
-  countAvgRate(bookid: string) {
-    this.totalrate = 0
-    //here we get the book data
-    this.bookservice.getSpecificBook(bookid).subscribe((res: any) => {
+
+  //to count the average rate we have to know the book id
+  countAvgRate(book_id:string) {
+    
+    this.totalrate = 0;
+    this.readers_count.next(0)
+    //here we got the book to assign the avgrate to after we finish the function
+    
+    this.bookservice.getSpecificBook(book_id).subscribe((res: any) => {
       this.book.next(res)
     })
-    //we search on rate list for the book we stopped on 
+
+    //we need to search for the book in the booklist 
     this.pubRateList.subscribe((res) => {
-      res.filter((rateObj) => {
+      //
+      this.counter = 0;
+      this.totalrate = 0;
+      res.filter((result) => {
+        //check if this book exist on the list
+        if (result['book_id'] === book_id) {
+          //here we add all rates value in the total rate var
+          this.totalrate += result['rate_val'];
 
-        if (rateObj['book_id'] == bookid) {
-          //after getting the rate records of this book we add all rates and the number of records
-          this.totalrate += rateObj['rate_val'];
-
-          this.readerscount.next(res.length)
+          this.readers_count.next(++this.counter)
         }
+        
         //we count the average by dividing the total rate on the total records and assign it to the var avgrate
-        this.avgrate.next(Math.round(this.totalrate / this.readerscount.value))
+        this.avg_rate.next(Math.round(this.totalrate / this.readers_count.value))
         
         //store the result on book model specifically on the avgRating property
-        this.book.subscribe((res: any) => res.avgRating = this.avgrate)
-
+        this.book.subscribe((res: any) => res.avgRating = this.avg_rate)
+        
       })
-
     })
-    //update the book record in the model
-    // this._http.put(`http://localhost:5000/book/${bookid}`, this.book).subscribe()
-
     return this.pubAvgRateVal
   }
-
   getAvgRate() {
     return this.pubAvgRateVal
   }
-
-
 }
