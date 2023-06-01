@@ -19,7 +19,7 @@ getId(){
 //  console.log(id);
 this._BooksService.getBooks().subscribe((res)=>{
   this.AllBooks=res.data.book
-  // this.AllBooks=res.data.book[0].categoryId._id;
+  // this.AllBooks=res.data.book[0]
   // console.log( this.AllBooks);
   for(let i=0; i<this.AllBooks.length; i++){
    this.categoryId= this.AllBooks[i].categoryId._id
@@ -27,7 +27,7 @@ this._BooksService.getBooks().subscribe((res)=>{
    if(this.categoryId==id){
     // console.log(this.AllBooks[i]);
     this.currentBooks.push(this.AllBooks[i])
-    console.log(this.currentBooks); 
+    // console.log(this.currentBooks); 
    } }  
 })
 }
