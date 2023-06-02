@@ -1,39 +1,20 @@
 import { Component } from '@angular/core';
-<<<<<<< HEAD
 import { ActivatedRoute } from '@angular/router';
 import { Book } from 'src/app/interfaces/book';
 import { DecodetokenService } from 'src/app/services/decodetoken.service';
 import { ReservedbooksService } from 'src/app/services/reservedbooks.service';
 import { UserbooksService } from 'src/app/services/userbooks.service';
-=======
-import { UserService } from 'src/app/services/user.service';
->>>>>>> 36239c9a055f7e833c2bc4a23edbbcebc0fe2495
-
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-user-books',
   templateUrl: './user-books.component.html',
   styleUrls: ['./user-books.component.scss']
 })
 export class UserBookComponent {
-<<<<<<< HEAD
   // allratedbooks!:any
   user_id!:string;
   constructor(private reservedBooks:ReservedbooksService,private decodeservice:DecodetokenService,private userbook:UserbooksService,){}
   
-=======
-  constructor(private _userService :UserService)
-  {
-    this.getAll("all")
-  }
-
-  getAllReservedBook()
-  {
-    this._userService.getReservedBookForUser().subscribe((res)=>
-    {
-      console.log(res)
-      })
-  }
->>>>>>> 36239c9a055f7e833c2bc4a23edbbcebc0fe2495
 
   currentContect:any[]=[];
 

@@ -38,16 +38,12 @@ export class BookDetailsComponent {
     this.bookid = this.activetedrouter.snapshot.params['id']
     this.user_id = this.decodeservice.getDecodedAccessToken(localStorage.getItem('token')||'')?.['user_id']
     this.listedBooks.loadBooks();
-<<<<<<< HEAD
+
     
     this.reservedbooksservice.getResevedBooks(this.bookid,this.user_id).subscribe((res:any)=>{
       document.querySelectorAll('option').forEach((option)=>{
         if(res == undefined)
           document.querySelectorAll('option')[0].selected = true
-=======
-    this.reservedbooksservice.getResevedBooks(this.bookid,this.user_id).subscribe((res)=>{
-      document.querySelectorAll('option').forEach((option)=>{
->>>>>>> 36239c9a055f7e833c2bc4a23edbbcebc0fe2495
         if(option.value == res)
           option.selected=true
       })
@@ -85,10 +81,8 @@ export class BookDetailsComponent {
 
   }
   changestatus(e:any){
-<<<<<<< HEAD
+
       this.userbook.checkreservedbooks(e.target.value,this.bookid,this.user_id)
-=======
-      this.userbook.reseveBook(e.target.value,this.bookid,this.user_id)
->>>>>>> 36239c9a055f7e833c2bc4a23edbbcebc0fe2495
+
   }
 }

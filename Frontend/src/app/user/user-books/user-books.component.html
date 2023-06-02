@@ -3,7 +3,7 @@
     <div class="row flex-nowrap">
       <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0" style="background-color: white">
         <h2 matSubheader class="mt-4" style="text-align: center;">
-            <b>My Book</b>
+            <b>Book shelf</b>
           </h2>
           <div class="content">
             <a  class="contentType" routerLinkActive="contentType" (click)="getAll('all')"> All</a>
@@ -33,7 +33,7 @@
                         <td ><ngb-rating [max]="5" [rate]="0" class="controllablestars" [readonly]="false"></ngb-rating></td>
                         <td>
                             <div class="dropdown">
-                                <select (change)="changestatus($event,item['book_id']['_id'])" id="shelve">
+                                <select (change)="changestatus($event,item['book_id']['_id'])" [(ngModel)]="item.shelve" id="shelve">
                                     <option value="" >--Reserve a book--</option>
                                     <option value="want to read">want to read</option>
                                     <option value="currently reading">currently reading</option>

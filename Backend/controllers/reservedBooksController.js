@@ -6,13 +6,12 @@ const reservedbooksModel = require("../models/reservedbooks"),
                 if (!err) return res.status(200).json(data);
 
                 throw new Error("notFound")
-<<<<<<< HEAD
-            }).populate({path:"book_id",populate : {
-                path : 'AuthorId'
-              }})
-=======
-            }).populate({path:"book_id"})
->>>>>>> 36239c9a055f7e833c2bc4a23edbbcebc0fe2495
+            }).populate({
+                path: "book_id", populate: {
+                    path: 'AuthorId'
+                }
+            })
+
         } catch (err) {
             next({ status: errors[err.message].status, message: errors[err.message].errmessage })
         }
@@ -31,7 +30,7 @@ const reservedbooksModel = require("../models/reservedbooks"),
         }
     },
 
-    reserveBook = async (req, res) => {                                                                                                                                                                                                     
+    reserveBook = async (req, res) => {
         try {
             await reservedbooksModel.create({ ...req.body }, (err, data) => {
                 if (!err) return res.status(200).json(data);
@@ -46,7 +45,7 @@ const reservedbooksModel = require("../models/reservedbooks"),
     editReservedBook = async (req, res) => {
         try {
             let { id } = req.params;
-            await reservedbooksModel.findByIdAndUpdate({ _id: id }, req.body,(err, data) => {
+            await reservedbooksModel.findByIdAndUpdate({ _id: id }, req.body, (err, data) => {
                 if (!err) return res.status(200).json(data);
 
                 throw new Error("notFound")

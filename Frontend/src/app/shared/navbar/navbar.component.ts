@@ -28,10 +28,8 @@ export class NavbarComponent {
 
     this._authservice.logged()
     this.isLog = this._authservice.isLogin;
-<<<<<<< HEAD
-    // console.log(this.isLog);
-=======
->>>>>>> 36239c9a055f7e833c2bc4a23edbbcebc0fe2495
+
+    console.log(this.isLog);
 
   }
 }
