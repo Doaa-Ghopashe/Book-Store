@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-user-books',
@@ -6,11 +7,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./user-books.component.scss']
 })
 export class UserBookComponent {
-  constructor()
+  constructor(private _userService :UserService)
   {
-    this.getAll("all")
+    this.getAllReservedBook()
+    this.getAll("all");
   }
 
+  getAllReservedBook()
+  {
+    this._userService.getReservedBookForUser().subscribe((res)=>
+    {
+      console.log(res)
+      })
+  }
 
   currentContect:any[]=[];
 

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +22,9 @@ export class ReviewService {
       this.reviews.next(res)
     )
   }
+
+  getAllReviews():Observable<any>
+  {
+     return this.http.get('http://localhost:5000/review')
+   }
 }
-  

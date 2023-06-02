@@ -18,7 +18,7 @@ export class BookForAdminComponent {
   {
     this.__bookServices.getBooks().subscribe((res)=>
     {
-      this.allBook = res;
+      this.allBook = res.data.book;
       console.log(this.allBook)
     })
   }
@@ -33,7 +33,7 @@ export class BookForAdminComponent {
         let layer:any = document.getElementById("layer");
         layer.style.display = "none";
       },
-      error: err => console.log(`${err} Author is already exist`),
+      error: err => console.log(`${err} Failed to Add Book`),
       complete: () => {
 
      }
@@ -72,7 +72,7 @@ export class BookForAdminComponent {
           let updatelayer:any = document.getElementById("updatelayer");
           updatelayer.style.display = "none";
         },
-        error: err => alert(`${err.error.status} Author is already exist`),
+        error: err => alert(`${err.error.status} Failed to update2`),
         complete: () => {
   
         }

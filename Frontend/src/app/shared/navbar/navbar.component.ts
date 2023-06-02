@@ -10,18 +10,24 @@ export class NavbarComponent {
 
 
   isLog:any;
-  isAdmin:any;
+  isadmine:boolean = false;
   constructor( private _authservice :AuthService)
   {
 
-    // this.isAdmin = localStorage.getItem("isAdmin");
-    // console.log(this.isAdmin)
+    let cuurentUserSate = localStorage.getItem("Admin");
+    if(cuurentUserSate == "true")
+    {
+      this.isadmine = true;
+      console.log(this.isadmine)
+    }
+    else
+    {
+      this.isadmine = false;
+      console.log(this.isadmine)
+    }
 
     this._authservice.logged()
     this.isLog = this._authservice.isLogin;
-    console.log(this.isLog);
 
-    this._authservice.isAdmin();
-    this.isAdmin = this._authservice.isAdmine;
   }
 }

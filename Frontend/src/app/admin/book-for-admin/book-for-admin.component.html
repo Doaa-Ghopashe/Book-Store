@@ -17,8 +17,8 @@
                 </thead>
                 <div class="py-2"></div>
                 <tbody>
-                    <tr *ngFor = "let book of allBook | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
-                        <td >{{1}}</td>
+                    <tr *ngFor = "let book of allBook | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage };index as i">
+                        <td >{{i+1}}</td>
                         <td>
                             <img [src]="book.image" alt="Author Photo">
                         </td>
@@ -57,10 +57,10 @@
     <a (click)="closeAddBox()" class="position-absolute close">
         <i class="fa fa-close fs-5"></i>
     </a>
-    <h1 class="mt-4">Add Author</h1>
+    <h1 class="mt-4">Add Book</h1>
     <form  #addBookInput="ngForm"  (ngSubmit)="addBook(addBookInput)">
             <div class="form-group mb-3">
-                <input required minlength="3" maxlength="10" ngModel class="form-control" name="title" #userEmail="ngModel" placeholder="First Name">
+                <input required minlength="3" maxlength="10" ngModel class="form-control" name="title" #userEmail="ngModel" placeholder="Enter Name">
                 <!-- <div *ngIf="userEmail.touched">
                     <p *ngIf="userEmail.errors?.['required']" class="text-danger mt-2">Category Name is required</p>
                     <p *ngIf="userEmail.errors?.['minlength']" class="text-danger mt-2">Min length must be 3</p>
@@ -76,7 +76,7 @@
                 </div> -->
             </div>
             <div class="form-group mb-3">
-                <input required minlength="3" maxlength="15" ngModel class="form-control" name="AuthorId" #userEmail="ngModel" placeholder="Enter Category Id">
+                <input required minlength="3" maxlength="15" ngModel class="form-control" name="AuthorId" #userEmail="ngModel" placeholder="Enter Author Id">
                 <!-- <div *ngIf="userEmail.touched">
                     <p *ngIf="userEmail.errors?.['required']" class="text-danger mt-2">Category Name is required</p>
                     <p *ngIf="userEmail.errors?.['minlength']" class="text-danger mt-2">Min length must be 3</p>
@@ -101,7 +101,7 @@
             </div>
 
 
-      <button [disabled]="addBookInput.invalid" type="submit" class=" mb-2 btn text-light">Add Author</button>
+      <button [disabled]="addBookInput.invalid" type="submit" class=" mb-2 btn text-light">Add Book</button>
     </form>
 </div>
 
@@ -109,10 +109,10 @@
     <a (click)="closeUpdateBox()" class="position-absolute close">
         <i class="fa fa-close fs-5"></i>
     </a>
-    <h1 class="mt-4">Update Author</h1>
+    <h1 class="mt-4">Update Book</h1>
     <form  #updateBookInput="ngForm"  (ngSubmit)="updateBook(updateBookInput)">
         <div class="form-group mb-3">
-            <input required minlength="3" maxlength="10" ngModel class="form-control" name="title" #userEmail="ngModel" placeholder="First Name">
+            <input required minlength="3" maxlength="10" ngModel class="form-control" name="title" #userEmail="ngModel" placeholder="Enter Name">
             <!-- <div *ngIf="userEmail.touched">
                 <p *ngIf="userEmail.errors?.['required']" class="text-danger mt-2">Category Name is required</p>
                 <p *ngIf="userEmail.errors?.['minlength']" class="text-danger mt-2">Min length must be 3</p>
@@ -128,7 +128,7 @@
             </div> -->
         </div>
         <div class="form-group mb-3">
-            <input required minlength="3" maxlength="15" ngModel class="form-control" name="AuthorId" #userEmail="ngModel" placeholder="Enter Category Id">
+            <input required minlength="3" maxlength="15" ngModel class="form-control" name="AuthorId" #userEmail="ngModel" placeholder="Enter Author Id">
             <!-- <div *ngIf="userEmail.touched">
                 <p *ngIf="userEmail.errors?.['required']" class="text-danger mt-2">Category Name is required</p>
                 <p *ngIf="userEmail.errors?.['minlength']" class="text-danger mt-2">Min length must be 3</p>
@@ -144,7 +144,7 @@
             </div> -->
         </div>
         <div class="form-group mb-3">
-            <input type="file" required ngModel class="form-control" name="image" #userEmail="ngModel" placeholder="Image">
+            <input type="file" required ngModel class="form-control" name="image" #userEmail="ngModel" placeholder="Enter Image">
             <!-- <div *ngIf="userEmail.touched">
                 <p *ngIf="userEmail.errors?.['required']" class="text-danger mt-2">Category Name is required</p>
                 <p *ngIf="userEmail.errors?.['minlength']" class="text-danger mt-2">Min length must be 3</p>
@@ -154,7 +154,7 @@
 
 
 
-      <button [disabled]="updateBookInput.invalid" type="submit" class=" mb-2 btn text-light">Update Author</button>
+      <button [disabled]="updateBookInput.invalid" type="submit" class=" mb-2 btn text-light">Update Book</button>
     </form>
 </div> 
 

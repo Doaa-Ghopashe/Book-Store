@@ -30,12 +30,12 @@ const routes: Routes = [
   {path : "mybook", component : UserBookComponent,canActivate:[AuthService]},
   {path : "about", component : AboutComponent},
   {path : "contact", component : ContactComponent},
-  {path : "categoryDetails/:id", component : CategoryDetailsComponent},
-  {path : "admin", component : AdminDahboardComponent},
-  {path : "admin/category", component : CategoeyForAdminComponent},
-  {path : "admin/book", component : BookForAdminComponent},
-  {path : "admin/authors", component : AuthorForAdminComponent},
-  {path: "bookDetails/:id" ,component: BookDetailsComponent},
+  {path : "categoryDetails/:id", component : CategoryDetailsComponent, canActivate:[AuthService]},
+  {path : "admin", component : AdminDahboardComponent, canActivate:[AuthService]},
+  {path : "admin/category", component : CategoeyForAdminComponent, canActivate:[AuthService]},
+  {path : "admin/book", component : BookForAdminComponent, canActivate:[AuthService]},
+  {path : "admin/authors", component : AuthorForAdminComponent, canActivate:[AuthService]},
+  {path: "bookDetails/:id" ,component: BookDetailsComponent, canActivate:[AuthService]},
   {path : "**", component : NotFoundComponent}
 ];
 
