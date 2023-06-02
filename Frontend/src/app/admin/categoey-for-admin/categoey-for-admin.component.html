@@ -14,8 +14,8 @@
                 </thead>
                 <div class="py-2"></div>
                 <tbody>
-                    <tr *ngFor = "let category of allCategories | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
-                        <td >{{1}}</td>
+                    <tr *ngFor = "let category of allCategories | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage };index as i">
+                        <td >{{i+1}}</td>
                         <td>{{category.Name}}</td>
                         <td>
                             <a (click)="showUpdateBox(category._id)">

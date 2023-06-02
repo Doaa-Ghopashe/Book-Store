@@ -1,1 +1,162 @@
-<p>book-for-admin works!</p>
+
+<div class="container-fluid" style="background-color: #f1f5f9">
+    <a (click)="showAddBox()">
+        <i class="fa fa-plus-square fs-5 mt-2"></i>
+    </a>
+    <div class="row flex-nowrap">
+      <div class="container-fluid" style="width: 82vw">
+        <div class="pageBox mt-4 ">
+            <table class="text-center">
+                <thead class="mb-3">
+                    <th>ID</th>
+                    <th>Photo</th>
+                    <th>Name</th>
+                    <th>Category Id</th>
+                    <th>Auther Id</th>
+                    <th>Action</th>
+                </thead>
+                <div class="py-2"></div>
+                <tbody>
+                    <tr *ngFor = "let book of allBook | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage };index as i">
+                        <td >{{i+1}}</td>
+                        <td>
+                            <img src="http://localhost:5000/{{ book.photo.split('assets')[1] }}" alt="Author Photo">
+                        </td>
+                        <td>{{book.title}}</td>
+                        <td>{{book.categoryId._id}}</td>
+                        <td>{{book.AuthorId._id}}</td>
+                        <td>
+                            <a (click)="showUpdateBox(book._id)">
+                                <i class="fa-solid fa-pen me-3 mt-4"></i>
+                            </a>
+                            <a (click)="deleteBook(book._id)">
+                                <i class="fa-regular fa-trash-can mt-4"></i>
+                            </a> 
+                            <!-- <a (click)="showUpdateBox(autor._id)">
+                                <i class="fa-solid fa-pen me-3 mt-4"></i>
+                            </a>
+                            <a (click)="deleteCategory(category._id)">
+                                <i class="fa-regular fa-trash-can mt-4"></i>
+                            </a> -->
+                        </td>
+                    </tr>
+                </tbody>
+             </table>
+
+             <div class="text-center paginationNav mt-2">
+                <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+            </div>
+        </div>
+      </div>
+
+
+    </div>
+</div>
+
+<div class="layer position-absolute position-relative px-5 py-3 rounded text-center" id="layer">
+    <a (click)="closeAddBox()" class="position-absolute close">
+        <i class="fa fa-close fs-5"></i>
+    </a>
+    <h1 class="mt-4">Add Book</h1>
+    <form  enctype="multipart/form-data" method="post" #addBookInput="ngForm"  (ngSubmit)="addBook(addBookInput)">
+            <div class="form-group mb-3">
+                <input required  ngModel class="form-control" name="title" #userEmail="ngModel" placeholder="Enter Name">
+                <!-- <div *ngIf="userEmail.touched">
+                    <p *ngIf="userEmail.errors?.['required']" class="text-danger mt-2">Category Name is required</p>
+                    <p *ngIf="userEmail.errors?.['minlength']" class="text-danger mt-2">Min length must be 3</p>
+                    <p *ngIf="userEmail.errors?.['maxlength']" class="text-danger mt-2">Min length must be 7</p>
+                </div> -->
+            </div>
+            <div class="form-group mb-3">
+                <input required  ngModel class="form-control" name="categoryId" #userEmail="ngModel" placeholder="Enter Category Id">
+                <!-- <div *ngIf="userEmail.touched">
+                    <p *ngIf="userEmail.errors?.['required']" class="text-danger mt-2">Category Name is required</p>
+                    <p *ngIf="userEmail.errors?.['minlength']" class="text-danger mt-2">Min length must be 3</p>
+                    <p *ngIf="userEmail.errors?.['maxlength']" class="text-danger mt-2">Min length must be 7</p>
+                </div> -->
+            </div>
+            <div class="form-group mb-3">
+                <input required ngModel class="form-control" name="AuthorId" #userEmail="ngModel" placeholder="Enter Author Id">
+                <!-- <div *ngIf="userEmail.touched">
+                    <p *ngIf="userEmail.errors?.['required']" class="text-danger mt-2">Category Name is required</p>
+                    <p *ngIf="userEmail.errors?.['minlength']" class="text-danger mt-2">Min length must be 3</p>
+                    <p *ngIf="userEmail.errors?.['maxlength']" class="text-danger mt-2">Min length must be 7</p>
+                </div> -->
+            </div>
+            <div class="form-group mb-3">
+                <textarea required  ngModel class="form-control" name="desc" #userEmail="ngModel" placeholder="Description"></textarea>
+                <!-- <div *ngIf="userEmail.touched">Breif
+                    <p *ngIf="userEmail.errors?.['required']" class="text-danger mt-2">Category Name is required</p>
+                    <p *ngIf="userEmail.errors?.['minlength']" class="text-danger mt-2">Min length must be 3</p>
+                    <p *ngIf="userEmail.errors?.['maxlength']" class="text-danger mt-2">Min length must be 7</p>
+                </div> -->
+            </div>
+            <div class="form-group mb-3">
+                <input type="file" required ngModel class="form-control" name="photo" #userEmail="ngModel" placeholder="photo">
+                <!-- <div *ngIf="userEmail.touched">
+                    <p *ngIf="userEmail.errors?.['required']" class="text-danger mt-2">Category Name is required</p>
+                    <p *ngIf="userEmail.errors?.['minlength']" class="text-danger mt-2">Min length must be 3</p>
+                    <p *ngIf="userEmail.errors?.['maxlength']" class="text-danger mt-2">Min length must be 7</p>
+                </div> -->
+            </div>
+
+
+      <button [disabled]="addBookInput.invalid" type="submit" class=" mb-2 btn text-light">Add Book</button>
+    </form>
+</div>
+
+<div class="updatelayer position-absolute position-relative px-5 py-3 rounded text-center" id="updatelayer">
+    <a (click)="closeUpdateBox()" class="position-absolute close">
+        <i class="fa fa-close fs-5"></i>
+    </a>
+    <h1 class="mt-4">Update Book</h1>
+    <form  #updateBookInput="ngForm"  (ngSubmit)="updateBook(updateBookInput)">
+        <div class="form-group mb-3">
+            <input required ngModel class="form-control" name="title" #userEmail="ngModel" placeholder="Enter Name">
+            <!-- <div *ngIf="userEmail.touched">
+                <p *ngIf="userEmail.errors?.['required']" class="text-danger mt-2">Category Name is required</p>
+                <p *ngIf="userEmail.errors?.['minlength']" class="text-danger mt-2">Min length must be 3</p>
+                <p *ngIf="userEmail.errors?.['maxlength']" class="text-danger mt-2">Min length must be 7</p>
+            </div> -->
+        </div>
+        <div class="form-group mb-3">
+            <input required ngModel class="form-control" name="categoryId" #userEmail="ngModel" placeholder="Enter Category Id">
+            <!-- <div *ngIf="userEmail.touched">
+                <p *ngIf="userEmail.errors?.['required']" class="text-danger mt-2">Category Name is required</p>
+                <p *ngIf="userEmail.errors?.['minlength']" class="text-danger mt-2">Min length must be 3</p>
+                <p *ngIf="userEmail.errors?.['maxlength']" class="text-danger mt-2">Min length must be 7</p>
+            </div> -->
+        </div>
+        <div class="form-group mb-3">
+            <input required  ngModel class="form-control" name="AuthorId" #userEmail="ngModel" placeholder="Enter Author Id">
+            <!-- <div *ngIf="userEmail.touched">
+                <p *ngIf="userEmail.errors?.['required']" class="text-danger mt-2">Category Name is required</p>
+                <p *ngIf="userEmail.errors?.['minlength']" class="text-danger mt-2">Min length must be 3</p>
+                <p *ngIf="userEmail.errors?.['maxlength']" class="text-danger mt-2">Min length must be 7</p>
+            </div> -->
+        </div>
+        <div class="form-group mb-3">
+            <textarea required ngModel class="form-control" name="desc" #userEmail="ngModel" placeholder="Description"></textarea>
+            <!-- <div *ngIf="userEmail.touched">Breif
+                <p *ngIf="userEmail.errors?.['required']" class="text-danger mt-2">Category Name is required</p>
+                <p *ngIf="userEmail.errors?.['minlength']" class="text-danger mt-2">Min length must be 3</p>
+                <p *ngIf="userEmail.errors?.['maxlength']" class="text-danger mt-2">Min length must be 7</p>
+            </div> -->
+        </div>
+        <div class="form-group mb-3">
+            <!-- <input type="file" required ngModel class="form-control" name="image" #userEmail="ngModel" placeholder="Enter Image"> -->
+            <!-- <div *ngIf="userEmail.touched">
+                <p *ngIf="userEmail.errors?.['required']" class="text-danger mt-2">Category Name is required</p>
+                <p *ngIf="userEmail.errors?.['minlength']" class="text-danger mt-2">Min length must be 3</p>
+                <p *ngIf="userEmail.errors?.['maxlength']" class="text-danger mt-2">Min length must be 7</p>
+            </div> -->
+        </div>
+
+
+
+      <button [disabled]="updateBookInput.invalid" type="submit" class=" mb-2 btn text-light">Update Book</button>
+    </form>
+</div> 
+
+
+

@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { AuthorService } from 'src/app/services/author.service';
+import { BooksService } from 'src/app/services/books.service';
+import { ReviewService } from 'src/app/services/review.service';
 import Swiper from 'swiper';
 import Typed from 'typed.js';
 
@@ -12,22 +15,45 @@ import Typed from 'typed.js';
 })
 export class HomeComponent {
 
-  books:any[]=
-  [
-    {image : '../../../assets/images/work-3.jpg'},
-    {image : '../../../assets/images/work-1.jpg'},
-    {image : '../../../assets/images/work-2.jpg'},
-    {image : '../../../assets/images/work-3.jpg'},
-    {image : '../../../assets/images/work-1.jpg'},
-    {image : '../../../assets/images/work-2.jpg'},
-    {image : '../../../assets/images/work-3.jpg'},
-    {image : '../../../assets/images/work-1.jpg'},
-    {image : '../../../assets/images/work-2.jpg'},
-    {image : '../../../assets/images/work-3.jpg'},
-    {image : '../../../assets/images/work-1.jpg'},
-    {image : '../../../assets/images/work-2.jpg'}
-  ]
-  
+  constructor(private _booksevices: BooksService, private _authorsevices: AuthorService,private _reviewSevices: ReviewService)
+  {
+    this.getPopularBook();
+    this.getPopularAuthor();
+    this.getPopularReviews();
+  }
+
+  books:any[]=[];
+  getPopularBook()
+  {
+    this._booksevices.getBooks().subscribe((res)=>
+    {
+       this.books= res.data.book
+       console.log(this.books)
+    })
+  }
+
+
+  author:any[]=[];
+  getPopularAuthor()
+  {
+    this._authorsevices.getAuthor().subscribe((res)=>
+    {
+       this.author= res
+       console.log(this.author)
+    })
+  }
+
+
+
+  reviwes:any[]=[];
+  getPopularReviews()
+  {
+    this._reviewSevices.getAllReviews().subscribe((res)=>
+    {
+       this.reviwes= res
+       console.log(this.reviwes)
+    })
+  }
 
 
 

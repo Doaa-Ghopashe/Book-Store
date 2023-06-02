@@ -32,6 +32,7 @@ const routes: Routes = [
   {path : "mybook/read", component : UserBookComponent,canActivate:[AuthService]},
   {path : "about", component : AboutComponent},
   {path : "contact", component : ContactComponent},
+<<<<<<< HEAD
   {path : "categoryDetails/:id", component : CategoryDetailsComponent},
   {path : "admin", component : AdminDahboardComponent},
   {path : "admin/category", component : CategoeyForAdminComponent},
@@ -39,6 +40,14 @@ const routes: Routes = [
   {path : "admin/authors", component : AuthorForAdminComponent},
   {path: "bookDetails/:id" ,component: BookDetailsComponent},
   {path: "authorDetails/:id" ,component: AuthorDetailsComponent},
+=======
+  {path : "categoryDetails/:id", component : CategoryDetailsComponent, canActivate:[AuthService]},
+  {path : "admin", component : AdminDahboardComponent, canActivate:[AuthService]},
+  {path : "admin/category", component : CategoeyForAdminComponent, canActivate:[AuthService]},
+  {path : "admin/book", component : BookForAdminComponent, canActivate:[AuthService]},
+  {path : "admin/authors", component : AuthorForAdminComponent, canActivate:[AuthService]},
+  {path: "bookDetails/:id" ,component: BookDetailsComponent, canActivate:[AuthService]},
+>>>>>>> 36239c9a055f7e833c2bc4a23edbbcebc0fe2495
   {path : "**", component : NotFoundComponent}
 ];
 

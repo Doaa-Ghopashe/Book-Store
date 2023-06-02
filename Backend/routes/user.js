@@ -99,7 +99,10 @@ router.post("/register",async (req, res) => {
       // user
       res.status(200).json(user);
     }
-    res.status(400).send("Invalid Credentials");
+    else{
+      res.status(400).send("Invalid Credentials");
+    }
+    
   } catch (err) {
     console.log(err);
   }
@@ -107,7 +110,7 @@ router.post("/register",async (req, res) => {
 
 
     router.post("/welcome", auth, (req, res) => {
-        res.status(200).send("Welcome 🤗❤");
+        res.status(200).send("Welcome");
         
       });
 

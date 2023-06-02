@@ -86,9 +86,15 @@ export class AuthorForAdminComponent {
      let prompt:any = window.prompt("Are You Sure to delete plz write yes or no");
      if(prompt == "yes" ||prompt == "Yes" || prompt == "YES" )
      {
-        this.__authServices.deleteAuthor(id).subscribe((res)=>
-        {
-          console.log(res.data)
+        this.__authServices.deleteAuthor(id).subscribe(
+          {
+          next: res => {
+            alert('Deleted Successfully');
+          },
+          error: err => console.log(`PLZ tray again`),
+          complete: () => {
+    
+         }
         })
      }
     }

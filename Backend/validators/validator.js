@@ -9,7 +9,7 @@ const addBookValidateRule=[
     // body('photo').notEmpty().withMessage("this field is required"),
     body('desc').isString().withMessage("this field accept string only")
                 .notEmpty().withMessage("this field is required")
-                .isLength({min:10}).withMessage("Min length is 3"),
+                .isLength({min:3}).withMessage("Min length is 3"),
 ]
 
 const updateValidatieRule = [

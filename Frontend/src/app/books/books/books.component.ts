@@ -13,13 +13,13 @@ export class BooksComponent {
   allBooks:any[]=[];
   currentPage = 1; // start with the first page
   itemsPerPage = 5; // show 5 items per page
-prex='http://localhost:5000/assets/imgs/books/';
-// img!:any[];
+prex='http://localhost:5000';
+img!:any[];
   constructor(private _booksService:BooksService, private _route:Router){
     _booksService.getBooks().subscribe((res)=>{
       this.allBooks=res.data.book
       console.log(this.allBooks);
-      // this.img=this.allBooks.photo.slice(6);
+      
       // this.img=this.allBooks.photo
     })
    console.log(this.allBooks);

@@ -15,7 +15,6 @@ const bookSchema = new mongoose.Schema({
   desc: { type: String },
   photo: { 
     type: String,
-    requireda:true
    },
   avgRating: { type: Number },
 });

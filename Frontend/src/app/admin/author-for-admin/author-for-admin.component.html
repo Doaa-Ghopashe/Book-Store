@@ -17,8 +17,8 @@
                 </thead>
                 <div class="py-2"></div>
                 <tbody>
-                    <tr *ngFor = "let autor of allAuthores | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
-                        <td >{{1}}</td>
+                    <tr *ngFor = "let autor of allAuthores | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage };index as i">
+                        <td >{{i+1}}</td>
                         <td>
                             <img [src]="autor.Image" alt="Author Photo">
                         </td>

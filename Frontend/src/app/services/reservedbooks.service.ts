@@ -23,6 +23,7 @@ export class ReservedbooksService {
     return this.pubReservedBookStatus;
   }
 
+<<<<<<< HEAD
   getAllReservedBooks(userId:string)
   {
     this._http.get('http://localhost:5000/reservebook').subscribe((reservedBooks:any) =>{
@@ -33,4 +34,6 @@ export class ReservedbooksService {
     });
     return this.allreseveredbooks
   }
+=======
+>>>>>>> 36239c9a055f7e833c2bc4a23edbbcebc0fe2495
 }
