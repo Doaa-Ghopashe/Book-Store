@@ -20,6 +20,7 @@ export class AvgrateService {
   private book = new BehaviorSubject({}); // to got specific book
   pubBook = this.book.asObservable();
 
+  bookdata!:Book;
   book_id!:string;
   counter: number = 0;
   totalrate: number = 0;
@@ -60,6 +61,9 @@ export class AvgrateService {
         
         //store the result on book model specifically on the avgRating property
         this.book.subscribe((res: any) => res.avgRating = this.avg_rate)
+
+        //store the avgrate in the book model in the database
+        this._http.put(`http://localhost:5000/book/${book_id}`,{avgRating:this.avg_rate.value}).subscribe();
         
       })
     })

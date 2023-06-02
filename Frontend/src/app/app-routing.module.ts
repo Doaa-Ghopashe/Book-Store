@@ -17,6 +17,7 @@ import { AdminDahboardComponent } from './admin/admin-dahboard/admin-dahboard.co
 import { CategoeyForAdminComponent } from './admin/categoey-for-admin/categoey-for-admin.component';
 import { BookForAdminComponent } from './admin/book-for-admin/book-for-admin.component';
 import { AuthorForAdminComponent } from './admin/author-for-admin/author-for-admin.component';
+import { AuthorDetailsComponent } from './author/author-details/author-details.component';
 
 const routes: Routes = [
   {path : "", redirectTo:"home", pathMatch : "full"},
@@ -28,6 +29,7 @@ const routes: Routes = [
   {path : "authors", component : AuthorsComponent,canActivate:[AuthService]},
   {path : "book/:id", component : BookDetailsComponent , canActivate:[AuthService]},
   {path : "mybook", component : UserBookComponent,canActivate:[AuthService]},
+  {path : "mybook/read", component : UserBookComponent,canActivate:[AuthService]},
   {path : "about", component : AboutComponent},
   {path : "contact", component : ContactComponent},
   {path : "categoryDetails/:id", component : CategoryDetailsComponent},
@@ -36,6 +38,7 @@ const routes: Routes = [
   {path : "admin/book", component : BookForAdminComponent},
   {path : "admin/authors", component : AuthorForAdminComponent},
   {path: "bookDetails/:id" ,component: BookDetailsComponent},
+  {path: "authorDetails/:id" ,component: AuthorDetailsComponent},
   {path : "**", component : NotFoundComponent}
 ];
 

@@ -6,7 +6,9 @@ const reservedbooksModel = require("../models/reservedbooks"),
                 if (!err) return res.status(200).json(data);
 
                 throw new Error("notFound")
-            })
+            }).populate({path:"book_id",populate : {
+                path : 'AuthorId'
+              }})
         } catch (err) {
             next({ status: errors[err.message].status, message: errors[err.message].errmessage })
         }

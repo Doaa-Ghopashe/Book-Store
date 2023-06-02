@@ -4,7 +4,7 @@
     <div>
         <div class="row" >
             <div *ngFor="let author of allAuthors | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }" class="col-md-3 my-3">
-                <div class="card" style="height:200px">
+                <div class="card" style="height:200px" (click)="showauthordetails(author._id)">
                     <div class="card-body">
                         <img [src]="author.Image" alt="">
                         <h4 my-3>{{author.firstName}} {{author.lastName}}</h4>

@@ -19,7 +19,7 @@ export class NavbarComponent {
 
     this._authservice.logged()
     this.isLog = this._authservice.isLogin;
-    console.log(this.isLog);
+    // console.log(this.isLog);
 
     this._authservice.isAdmin();
     this.isAdmin = this._authservice.isAdmine;

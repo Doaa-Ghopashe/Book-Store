@@ -18,31 +18,27 @@
                 <thead class="mb-3">
                     <th>Cover</th>
                     <th>Name</th>
-                    <th>Auther</th>
+                    <th>Author</th>
                     <th>Avg Rate</th>
                     <th>Rating</th>
                     <th>Shelve</th>
                 </thead>
                 <div class="py-2"></div>
                 <tbody>
-                    <tr *ngFor="let item of items | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
-                        <td><img [src]="item.img" style="width: 100px;" alt=""></td>
-                        <td>{{item.name}}</td>
-                        <td>{{item.auther}}</td>
-                        <td>{{item.avg}}</td>
-                        <td >{{item.rate}}</td>
+                    <tr *ngFor="let item of currentContect | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
+                        <td><img src="https://png.pngitem.com/pimgs/s/170-1707194_free-psd-book-cover-template-book-cover-template.png" style="width: 100px;" alt=""></td>
+                        <td>{{item['book_id'].title}}</td>
+                        <td>{{item['book_id']['AuthorId']['firstName']}} {{item['book_id']['AuthorId']['lastName']}}</td>
+                        <td> <ngb-rating [max]="5" [rate]="item['book_id'].avgRating" class="controllablestars" [readonly]="true"></ngb-rating></td>
+                        <td ><ngb-rating [max]="5" [rate]="0" class="controllablestars" [readonly]="false"></ngb-rating></td>
                         <td>
                             <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
-                                            All
-                                        </button>
-                                <div class="dropdown-menu" aria-labelledby="triggerId">
-                                    <a class="dropdown-item" href="#">Read</a>
-                                    <a class="dropdown-item" href="#">want to read</a>
-                                    <a class="dropdown-item" href="#">Currently reead</a>
-
-                                </div>
+                                <select (change)="changestatus($event,item['book_id']['_id'])" id="shelve">
+                                    <option value="" >--Reserve a book--</option>
+                                    <option value="want to read">want to read</option>
+                                    <option value="currently reading">currently reading</option>
+                                    <option value="read">read</option>
+                                </select>
                             </div>
                         </td>
                     </tr>
