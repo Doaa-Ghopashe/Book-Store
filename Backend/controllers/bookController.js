@@ -48,13 +48,14 @@ const getOneBook = async (req, res) => {
   }
 };
 const addNewBook = async (req, res) => {
+  console.log(req.body);
   try {
     let newBook ={
               title: req.body.title,
               description: req.body.desc,
               AuthorId: req.body.AuthorId,
               categoryId: req.body.categoryId,
-              photo:req.file.filename
+              photo:req.file.path
           }
          
     const addBook = await bookModel.create(
