@@ -7,7 +7,7 @@
             <div *ngFor="let book of allBooks | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage } " class="col-md-3 my-3">
                 <div class="card" (click)="getBookDetails(book._id)">
                     <div class="card-body">
-                        <img class="w-100" src="{{prex+book.photo.spilt('assets')[1]}}" alt="image">
+                        <img class="w-100" src="http://localhost:5000/{{ book.photo.split('assets')[1] }}" alt="image">
                     <h4 my-3>{{book.title}}</h4>
                      <p>{{book.desc}}</p>
                     </div>

@@ -9,8 +9,7 @@ import { UserService } from 'src/app/services/user.service';
 export class UserBookComponent {
   constructor(private _userService :UserService)
   {
-    this.getAllReservedBook()
-    this.getAll("all");
+    this.getAll("all")
   }
 
   getAllReservedBook()

@@ -8,18 +8,18 @@ const getAllBooks = async (req, res) => {
     excludedFields.forEach((el) => delete queryObj[el]);
     let query = bookModel.find(queryObj);
     const page = req.query.page * 1 || 1;
-    const limit = req.query.limit * 1 || 100;
+    const limit = req.query.limit * 1 || 30;
     const skip = (page - 1) * limit;
     query = query.skip(skip).limit(limit);
     //excute query
     const book = await query
       .populate({
-        path:"AuthorId",
+        path: "AuthorId",
       })
       .populate({
         path: "categoryId",
-      })
-    // const book = await bookModel.find({});
+      });
+     //const book = await bookModel.find({});
     res.status(200).json({
       status: "success",
       data: { book },
@@ -67,7 +67,7 @@ const addNewBook = async (req, res) => {
       status: "success",
       data: {
         addBook,
-        photo: req.file.filename
+        //photo: req.file.path
       },
     });
   } catch (error) {
@@ -82,10 +82,9 @@ const editBook = async (req, res) => {
     const { id } = req.params;
     const data = {...req.body};
     const Book = await bookModel.findOneAndUpdate({ _id: id }, data, {new: true});
-
     res.status(200).json({
-      status: "Updated successfully",
-      data: {Book}
+      status: "success",
+      data: "Updated Book successfully",
     });
   } catch (error) {
     res.status(401).json({
@@ -94,51 +93,6 @@ const editBook = async (req, res) => {
     });
   }
 };
-//==============================================================================
-// async function findBook(id) 
-// {
-//   const book = await bookModel.findOne({_id:id})
-//   return book;
-// }
-// async function editBook(request,respone)
-// {
-
-//     let {id} =request.params
-//     const oldbook =  await findBook(id)
-
-//    if(!oldbook){
-//         return respone.json({"message":"This book Is Not in DB"})
-//    }
-//     let newBook ={
-//         title: request.body.title,
-//         description: request.body.desc,
-//         authorId: request.body.AuthorId,
-//         categoryId: request.body.categoryId,
-//     }
-  
-    // if(request.file){
-    //     if(oldbook.image){
-    //         deleteimage(oldbook)
-    //     }
-    //     newBook['image']=request.file.filename
-    // }
-    // else if(oldbook.image)
-    //          newBook['image']=oldbook.image
-        
-   
-
-//     bookModel.updateOne({_id:id},{$set: newBook},(error)=>{
-//         if(!error){
-//             return respone.json({"message":"Book Updated Successfully"})
-//         }else
-//         {
-//             console.log(error)
-//             return respone.json(error)
-
-//         }
-//     })
-// }
-//=========================================================
 const deleteBook = async (req, res) => {
   try {
     const { id } = req.params;

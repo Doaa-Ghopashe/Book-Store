@@ -1,26 +1,39 @@
 const multer = require('multer');
 
 //Configuration for Multer
-const multerStorageBook = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null,'assets/imgs/books');
-  },
-  filename: (req, file, cb) => {
-    const ext = file.mimetype.split('/')[1];
-    cb(null, `image-${file.fieldname}-${Date.now()}.${ext}`);
-  },
-});
-
-//Configuration for Multer
-// const multerStorageAuthor = multer.diskStorage({
+// const multerStorageBook = multer.diskStorage({
 //   destination: (req, file, cb) => {
-//     cb(null, 'public/author');
+//     cb(null,'assets/imgs/books');
 //   },
 //   filename: (req, file, cb) => {
 //     const ext = file.mimetype.split('/')[1];
 //     cb(null, `image-${file.fieldname}-${Date.now()}.${ext}`);
 //   },
 // });
+
+const multerStorageBook = multer.diskStorage({
+
+  destination : "assets/imgs/books",
+  filename : (req, file, cb) =>
+  {
+    cb(null, `${Date.now()}--${file.originalname}`)
+  }
+
+})
+
+
+
+
+//Configuration for Multer
+const multerStorageAuthor = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'assets/imgs/authors');
+  },
+  filename: (req, file, cb) => {
+    const ext = file.mimetype.split('/')[1];
+    cb(null, `image-${file.fieldname}-${Date.now()}.${ext}`);
+  },
+});
 
 // Multer Filter for only images
 const multerFilter = (req, file, cb) => {
@@ -39,5 +52,5 @@ const multerFilter = (req, file, cb) => {
 };
 
 module.exports = { multerFilter, multerStorageBook,
-  //  multerStorageAuthor 
+   multerStorageAuthor 
   };

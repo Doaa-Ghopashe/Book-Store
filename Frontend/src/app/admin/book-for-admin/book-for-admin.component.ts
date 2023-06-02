@@ -26,6 +26,7 @@ export class BookForAdminComponent {
   addBook(form:any)
   {
     let formValue:object = form.value;
+    console.log(form.value)
     this.__bookServices.addBook(formValue).subscribe(
       {
       next: res => {
@@ -33,7 +34,7 @@ export class BookForAdminComponent {
         let layer:any = document.getElementById("layer");
         layer.style.display = "none";
       },
-      error: err => console.log(`${err} Failed to Add Book`),
+      error: err => console.log(`Failed to Add Book`),
       complete: () => {
 
      }
