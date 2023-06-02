@@ -1,15 +1,28 @@
 const multer = require('multer');
 
 //Configuration for Multer
+// const multerStorageBook = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null,'assets/imgs/books');
+//   },
+//   filename: (req, file, cb) => {
+//     const ext = file.mimetype.split('/')[1];
+//     cb(null, `image-${file.fieldname}-${Date.now()}.${ext}`);
+//   },
+// });
+
 const multerStorageBook = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null,'assets/imgs/books');
-  },
-  filename: (req, file, cb) => {
-    const ext = file.mimetype.split('/')[1];
-    cb(null, `image-${file.fieldname}-${Date.now()}.${ext}`);
-  },
-});
+
+  destination : "assets/imgs/books",
+  filename : (req, file, cb) =>
+  {
+    cb(null, `${Date.now()}--${file.originalname}`)
+  }
+
+})
+
+
+
 
 //Configuration for Multer
 // const multerStorageAuthor = multer.diskStorage({
