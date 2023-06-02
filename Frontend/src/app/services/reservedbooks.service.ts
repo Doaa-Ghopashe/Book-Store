@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class ReservedbooksService {
-  allreseveredbooks = new BehaviorSubject({});
+  allreseveredbooks = new BehaviorSubject([]);
   puballreservedbooks = this.allreseveredbooks.asObservable()
   reservedbookstatus = new BehaviorSubject(' ');
   pubReservedBookStatus = this.reservedbookstatus.asObservable();
