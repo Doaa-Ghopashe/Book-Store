@@ -20,21 +20,11 @@ export class HeaderComponent {
 
   }
 
-  
-  books:any[]=
-  [
-    {image : '../../../assets/images/work-1.jpg'},
-    {image : '../../../assets/images/work-3.jpg'},
-    {image : '../../../assets/images/work-6.jpg'},
-    {image : '../../../assets/images/work-1.jpg'},
-   
-  ]
-
   logOut()
   {
     localStorage.clear();
     this._router.navigateByUrl("/user/login");
-
+    location.replace('/user/login');
   }
 
   ngOnInit() {

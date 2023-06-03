@@ -40,11 +40,13 @@ export class LoginComponent {
           if(isAdmin == "true")
           {
             this._router.navigateByUrl('/admin/category');
+            location.replace("/admin/category");
             localStorage.setItem("Admin","true");
           }
           else
           {
             this._router.navigateByUrl('/mybook');
+            location.replace('/mybook');
             localStorage.setItem("Admin","false");
           }
     
