@@ -73,6 +73,7 @@ export class BookDetailsComponent {
     this.avgrateservice.countAvgRate(this.bookid).subscribe();
 
     this.avgrateservice.getAvgRate().subscribe((res:number)=>{
+      console.log(res)
       this.avgrate = res
     })
     this.avgrateservice.pubReadersCount.subscribe((res:number)=>{

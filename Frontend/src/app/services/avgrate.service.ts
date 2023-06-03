@@ -27,15 +27,15 @@ export class AvgrateService {
 
   //constructor
   constructor(private _http: HttpClient, private bookservice: BooksService,private activatedroute:ActivatedRoute) {
-    //at the begin we need to get all rated books
-    this._http.get('http://localhost:5000/rate').subscribe((res: any) => this.rate_list.next(res));
+    this.reloadData()
   }
 
   //to count the average rate we have to know the book id
   countAvgRate(book_id:string) {
-    
-    this.totalrate = 0;
-    this.readers_count.next(0)
+
+    //reload the data from the rate model
+    this.reloadData();
+
     //here we got the book to assign the avgrate to after we finish the function
     
     this.bookservice.getSpecificBook(book_id).subscribe((res: any) => {
@@ -44,10 +44,12 @@ export class AvgrateService {
 
     //we need to search for the book in the booklist 
     this.pubRateList.subscribe((res) => {
+
       //
       this.counter = 0;
       this.totalrate = 0;
       res.filter((result) => {
+        
         //check if this book exist on the list
         if (result['book_id'] === book_id) {
           //here we add all rates value in the total rate var
@@ -68,6 +70,12 @@ export class AvgrateService {
       })
     })
     return this.pubAvgRateVal
+  }
+
+  //reload data from the rate model
+  reloadData(){
+    //at the begin we need to get all rated books
+    this._http.get('http://localhost:5000/rate').subscribe((res: any) => this.rate_list.next(res));
   }
   getAvgRate() {
     return this.pubAvgRateVal
