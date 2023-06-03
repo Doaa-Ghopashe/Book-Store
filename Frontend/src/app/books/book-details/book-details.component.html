@@ -2,7 +2,7 @@
     <div class="row my-5">
         <div class="col-xl-3">
             <div class="bookcover">
-                <img src="http://localhost:5000/{{ book.photo.split('assets')[1]}}" >
+                <img style="height: 500px;" class="me-5 rounded mb-3" src="http://localhost:5000/{{ book.photo.split('assets')[1]}}" >
             </div>
             <app-rate></app-rate>
             <select (change)="changestatus($event)" id="shelve" [(ngModel)]="book.shelve">
@@ -14,7 +14,7 @@
         </div>
         <div class="col-xl-9">
             <span class="bookname">{{book.title}}</span>
-            <span class="authorname">by {{authorname}}</span>
+            <span class="authorname">by{{authorname}}</span>
             <span class="category">{{bookcategory}}</span>
             <div class="bookrate">
                 <div class="avgrate">

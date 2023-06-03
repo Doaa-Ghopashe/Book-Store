@@ -52,7 +52,7 @@ const addNewBook = async (req, res) => {
 
   try {
     // img='assets/imgs/books/'+req.body.photo.split("\\")[2]
-    console.log(img);
+    // console.log(img);
     let newBook ={
               title: req.body.title,
               description: req.body.desc,

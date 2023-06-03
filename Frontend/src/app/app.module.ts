@@ -7,7 +7,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthModule } from './auth/auth.module';
 import { AuthorModule } from './author/author.module';
@@ -56,7 +56,8 @@ import { AuthorForAdminComponent } from './admin/author-for-admin/author-for-adm
     AuthorModule,
     UserModule,
     SharedModule,
-    BooksModule
+    BooksModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

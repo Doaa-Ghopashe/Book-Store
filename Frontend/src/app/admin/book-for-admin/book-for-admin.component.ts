@@ -11,7 +11,7 @@ export class BookForAdminComponent {
   
   updatedCurrentElementId:any;
   currentPage = 1; // start with the first page
-  itemsPerPage = 6; // show 5 items per page
+  itemsPerPage = 4; // show 5 items per page
 
   allBook:any;
   constructor(private __bookServices: BooksService)

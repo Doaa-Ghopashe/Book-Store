@@ -12,7 +12,7 @@ export class CategoeyForAdminComponent {
 
   updatedCurrentElementId:any;
   currentPage = 1; // start with the first page
-  itemsPerPage = 6; // show 5 items per page
+  itemsPerPage = 4; // show 5 items per page
 
   allCategories:any;
   constructor(private _categoryService: CategoryService)

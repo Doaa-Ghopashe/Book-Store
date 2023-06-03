@@ -4,46 +4,37 @@
         <div class="col-md-6">
             <div class="info">
                 <div class="p-5">
-                    <h1>Lorem, ipsum dolor.</h1>
+                    <h1>Good Book-Store.</h1>
                     <div class="d-flex">
                         <div id="typed-strings">
-                            <p>Lorem ipsum dolor sit amet .</p>
-                            <p>Lorem ipsum dolor sit amet</p>
+                            <p>Reading at any time.</p>
+                            <p>You can see the most famous books and authors.</p>
                         </div>
                         <p id="typed"></p>
                     </div>
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus eius non animi blanditiis officia odio laboriosam, distinctio nostrum illum deleniti.</p>
+                    <p>This is a site through which you can know the most famous book and book sections, and you can also read books and express your admiration for this book and know the details about it and know the book and all their books and also know the opinion of everyone who read this book</p>
                     <button class="btn">Show More</button>
                 </div>
             </div>
         </div>
         <div class="col-md-5  px-4">
-            <div id="carouselId" class="carousel slide" data-bs-ride="carousel">
-                <ol class="carousel-indicators">
-                    <li data-bs-target="#carouselId" data-bs-slide-to="0" class="active" aria-current="true" aria-label="First slide"></li>
-                    <li data-bs-target="#carouselId" data-bs-slide-to="1" aria-label="Second slide"></li>
-                    <li data-bs-target="#carouselId" data-bs-slide-to="2" aria-label="Third slide"></li>
-                </ol>
-                <div class="carousel-inner" role="listbox">
-                    <div class="carousel-item active">
-                        <img src="../../../assets/images/About-Carousel-1-4ecdb327a458a36e6e897abe7839e3b9.jpg" class="w-100 d-block" alt="First slide">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="../../../assets/images/About-Carousel-2-9009546b74c49cece686733bbbf5e5d7.jpg" class="w-100 d-block" alt="Second slide">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="../../../assets/images/About-Carousel-3-735e3eb6fd44644fc310139d9e2ebbed.jpg" class="w-100 d-block" alt="Third slide">
-                    </div>
+            <section class="popularBooks container py-3 text-center rounded">
+                <div class="row px-4 mt-4">
+                    <owl-carousel-o [options]="customOptions">
+                        <ng-container *ngFor="let slide of books">
+                          <ng-template carouselSlide [id]="slide.id">
+                                <div class="card text-dark m-2">
+                                    <img style="height: 300px;" class="card-img-top" src="http://localhost:5000/{{ slide.photo.split('assets')[1]}}" alt="Title">
+                                    <div class="card-body">
+                                      <h6 class="card-title">{{slide.title}}</h6>
+                                    </div>
+                                </div>
+                          </ng-template>
+                        </ng-container>
+                    </owl-carousel-o>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselId" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselId" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
+                
+            </section>
         </div>
     </div>
 </section>
@@ -95,7 +86,7 @@
             <ng-container *ngFor="let slide of books">
               <ng-template carouselSlide [id]="slide.id">
                     <div class="card text-dark m-2">
-                        <img class="card-img-top" [src]="slide.image" alt="Title">
+                        <img class="card-img-top" src="http://localhost:5000/{{ slide.photo.split('assets')[1]}}" alt="Title">
                         <div class="card-body">
                           <h6 class="card-title">{{slide.title}}</h6>
                         </div>
@@ -121,7 +112,7 @@
                     <ng-container *ngFor="let slide of author">
                       <ng-template carouselSlide [id]="slide.id">
                         <div class="card text-dark m-2">
-                            <img class="card-img-top" [src]="slide.Image" alt="Title">
+                            <img class="card-img-top" src="http://localhost:5000/{{slide.Image.split('assets')[1] }}" alt="Title">
                             <div class="card-body">
                               <h6 class="card-title">{{slide.firstName}} {{slide.lastName}}</h6>
                             </div>
@@ -151,11 +142,9 @@
                     <div class="review-data m-2">
                         <div class="inner py-4">
                             <div class="rewiew-item m-auto">
-                                <img class="rounded-circle img-fluid p-3" style="width: 150px; height:150px" src="../../../assets/images/work-1.jpg" alt="">
+                                <img class="rounded-circle img-fluid" style="width: 150px; height:150px" src="../../../assets/images/young-smiling-man-avatar-man-with-brown-beard-mustache-hair-wearing-yellow-sweater-sweatshirt-3d-vector-people-character-illustration-cartoon-minimal-style_365941-860.avif" alt="">
                             </div>
-                            <h5 class="my-3">{{slide.review}}</h5>
-                            <i class="fa fa-star"></i>
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non voluptates ex re.</p>
+                            <h5 class="mt-4 mb-3">{{slide.review}}</h5>
                         </div>
                     </div>
                   </ng-template>
