@@ -2,7 +2,7 @@ const authorModel = require('../models/author');
 
 function add(req, res){
     authorModel.create({...req.body,
-        Image:req.file.path
+        // Image:req.file.path
     },(err,userData)=>{
         if(!err) return res.status(201).json(userData);
         res.status(500).json({Error:"DB error"});

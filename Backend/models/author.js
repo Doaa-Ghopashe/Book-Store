@@ -6,7 +6,7 @@ const authorSchema = new mongoose.Schema({
       type: 'string'
   },
   lastName:{type: 'string'},
-  dateOfBirth:{type: 'string'},
+  dateOfBirth:{type: 'date'},
   breif:{type: 'string',required: true},
   Image:{type:'string',default:"default-avatar.png"}
 },{
