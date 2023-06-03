@@ -28,9 +28,12 @@ export class AuthorForAdminComponent {
   addAuthor(form:any)
   {
     let formValue:object = form.value;
-    this.__authServices.addAuthor(formValue).subscribe(
+    console.log(form.value);
+    
+        this.__authServices.addAuthor(formValue).subscribe(
       {
-      next: res => {
+        
+   next: res => {
         alert('Added Successfully')
         let layer:any = document.getElementById("layer");
         layer.style.display = "none";
@@ -39,7 +42,9 @@ export class AuthorForAdminComponent {
       complete: () => {
 
      }
+    
     })
+
     }
 
     showAddBox()

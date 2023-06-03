@@ -4,7 +4,7 @@
     <div>
         <div class="row" >
             <div *ngFor="let author of allAuthors | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }" class="col-md-3 my-3">
-                <div class="card" style="height:200px">
+                <div class="card">
                     <div class="card-body">
                         <img src="http://localhost:5000/{{ author.Image.split('assets')[1] }}" alt="">
                         <h4 my-3>{{author.firstName}} {{author.lastName}}</h4>

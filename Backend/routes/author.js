@@ -18,5 +18,5 @@ router.get('/' , authorController.list );
 router.get('/:id' , authorController.getById );
 router.delete('/:id' , authorController.remove );
 router.put('/:id' , authorController.edit );
-
+router.delete('/',authorController.deleteAll)
 module.exports = router;

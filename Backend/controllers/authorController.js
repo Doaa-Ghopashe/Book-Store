@@ -1,10 +1,6 @@
 const authorModel = require('../models/author');
 
-
-
-
 function add(req, res){
-
     authorModel.create({...req.body,
         Image:req.file.path
     },(err,userData)=>{
@@ -14,10 +10,6 @@ function add(req, res){
 
     console.log(req.body);
 }
-
-
-
-
 function list(req,res){
     let authors =[]
     authorModel.find({},(err, data)=>{
@@ -72,6 +64,19 @@ function edit(req , res) {
      })
 
 }
+const deleteAll = async (req, res) => {
+    try {
+      const deleteAll = await authorModel.find({}).deleteMany({});
+      res.status(200).json({
+        status: "success",
+        data: "deleted All successfully",
+      });
+    } catch (error) {
+      res.status(404).json({
+        status: "failed",
+        err: error.message,
+      });
+    }
+  };
 
-
-module.exports = {add , list , getById , remove ,edit }
+module.exports = {add , list , getById , remove ,edit ,deleteAll}

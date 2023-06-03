@@ -20,11 +20,7 @@ const multerStorageBook = multer.diskStorage({
   }
 
 })
-
-
-
-
-//Configuration for Multer
+// Configuration for Multer
 const multerStorageAuthor = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'assets/imgs/authors');

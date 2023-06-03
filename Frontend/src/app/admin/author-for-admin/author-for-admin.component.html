@@ -20,7 +20,7 @@
                     <tr *ngFor = "let autor of allAuthores | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage };index as i">
                         <td >{{i+1}}</td>
                         <td>
-                            <img [src]="autor.Image" alt="Author Photo">
+                            <img class="w-100" src="http://localhost:5000/{{autor.Image.split('assets')[1]}}" alt="Author Photo">
                         </td>
                         <td>{{autor.firstName}}</td>
                         <td>{{autor.lastName}}</td>

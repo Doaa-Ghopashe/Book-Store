@@ -49,19 +49,21 @@ const getOneBook = async (req, res) => {
 };
 const addNewBook = async (req, res) => {
   console.log(req.body);
+
   try {
+    // img='assets/imgs/books/'+req.body.photo.split("\\")[2]
+    console.log(img);
     let newBook ={
               title: req.body.title,
               description: req.body.desc,
               AuthorId: req.body.AuthorId,
               categoryId: req.body.categoryId,
               photo:req.file.path
+            //  photo:img
           }
-         
     const addBook = await bookModel.create(
       newBook
-      // ...req.body,
-    //  addBook['photo']=req.file.filename
+     
     );
     res.status(200).json({
       status: "success",
