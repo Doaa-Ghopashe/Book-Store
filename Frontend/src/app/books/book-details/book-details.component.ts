@@ -38,8 +38,12 @@ export class BookDetailsComponent {
     this.bookid = this.activetedrouter.snapshot.params['id']
     this.user_id = this.decodeservice.getDecodedAccessToken(localStorage.getItem('token')||'')?.['user_id']
     this.listedBooks.loadBooks();
-    this.reservedbooksservice.getResevedBooks(this.bookid,this.user_id).subscribe((res)=>{
+
+    
+    this.reservedbooksservice.getResevedBooks(this.bookid,this.user_id).subscribe((res:any)=>{
       document.querySelectorAll('option').forEach((option)=>{
+        if(res == undefined)
+          document.querySelectorAll('option')[0].selected = true
         if(option.value == res)
           option.selected=true
       })
@@ -47,7 +51,7 @@ export class BookDetailsComponent {
     
     this.listedBooks.getSpecificBook(this.bookid).
     subscribe((res:any)=> this.book = res);
-
+    
     this.listedBooks.pubBookAuthor.
     subscribe((res:string)=>{
       this.bookAuthor.loadSpecificAuthor(res);
@@ -69,6 +73,7 @@ export class BookDetailsComponent {
     this.avgrateservice.countAvgRate(this.bookid).subscribe();
 
     this.avgrateservice.getAvgRate().subscribe((res:number)=>{
+      console.log(res)
       this.avgrate = res
     })
     this.avgrateservice.pubReadersCount.subscribe((res:number)=>{
@@ -77,6 +82,8 @@ export class BookDetailsComponent {
 
   }
   changestatus(e:any){
-      this.userbook.reseveBook(e.target.value,this.bookid,this.user_id)
+
+      this.userbook.checkreservedbooks(e.target.value,this.bookid,this.user_id)
+
   }
 }

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Review } from 'src/app/interfaces/review';
 import { ReviewService } from 'src/app/services/review.service';
 
@@ -8,12 +9,16 @@ import { ReviewService } from 'src/app/services/review.service';
   styleUrls: ['./reviews.component.scss']
 })
 export class ReviewsComponent {
-  reviewslist!:Review[];
-  constructor(private reviewService:ReviewService) { }
+  @Input() reviewslist!:Review[];
+  bookid!:string;
+  constructor(private reviewService:ReviewService,private activatedrouter:ActivatedRoute) { }
   ngOnInit()
    {
-     this.reviewService.reviewslist.subscribe((res:any)=>{
-       this.reviewslist = res;
+    this.bookid = this.activatedrouter.snapshot.params['id']
+     this.reviewService.getReviews().subscribe((res:any)=>{
+      this.reviewslist = res.filter((result:any)=>{
+          return result['book_id']==this.bookid
+      })
      })
    }
 }
