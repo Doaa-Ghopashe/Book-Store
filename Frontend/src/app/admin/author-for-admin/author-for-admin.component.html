@@ -32,12 +32,6 @@
                             <a (click)="deleteAuthor(autor._id)">
                                 <i class="fa-regular fa-trash-can mt-4"></i>
                             </a> 
-                            <!-- <a (click)="showUpdateBox(autor._id)">
-                                <i class="fa-solid fa-pen me-3 mt-4"></i>
-                            </a>
-                            <a (click)="deleteCategory(category._id)">
-                                <i class="fa-regular fa-trash-can mt-4"></i>
-                            </a> -->
                         </td>
                     </tr>
                 </tbody>
@@ -58,7 +52,7 @@
         <i class="fa fa-close fs-5"></i>
     </a>
     <h1 class="mt-4">Add Author</h1>
-    <form  #addAuthorInput="ngForm"  (ngSubmit)="addAuthor(addAuthorInput)">
+    <!-- <form  #addAuthorInput="ngForm"  (ngSubmit)="addAuthor(addAuthorInput)">
             <div class="form-group mb-3">
                 <input required minlength="3" maxlength="7" ngModel class="form-control" name="firstName" #userEmail="ngModel" placeholder="First Name">
                 <div *ngIf="userEmail.touched">
@@ -69,44 +63,28 @@
             </div>
             <div class="form-group mb-3">
                 <input required minlength="3" maxlength="10" ngModel class="form-control" name="lastName" #userEmail="ngModel" placeholder="last Name">
-                <!-- <div *ngIf="userEmail.touched">
-                    <p *ngIf="userEmail.errors?.['required']" class="text-danger mt-2">Category Name is required</p>
-                    <p *ngIf="userEmail.errors?.['minlength']" class="text-danger mt-2">Min length must be 3</p>
-                    <p *ngIf="userEmail.errors?.['maxlength']" class="text-danger mt-2">Min length must be 7</p>
-                </div> -->
+                
             </div>
 
             <div class="form-group mb-3">
                 <input required minlength="3" maxlength="10" ngModel class="form-control" name="dateOfBirth" #userEmail="ngModel" placeholder="Date of Birth">
-                <!-- <div *ngIf="userEmail.touched">
-                    <p *ngIf="userEmail.errors?.['required']" class="text-danger mt-2">Category Name is required</p>
-                    <p *ngIf="userEmail.errors?.['minlength']" class="text-danger mt-2">Min length must be 3</p>
-                    <p *ngIf="userEmail.errors?.['maxlength']" class="text-danger mt-2">Min length must be 7</p>
-                </div> -->
+                
             </div>
             <div class="form-group mb-3">
                 <textarea required minlength="3" maxlength="30" ngModel class="form-control" name="breif" #userEmail="ngModel" placeholder="Breif"></textarea>
-                <!-- <div *ngIf="userEmail.touched">Breif
-                    <p *ngIf="userEmail.errors?.['required']" class="text-danger mt-2">Category Name is required</p>
-                    <p *ngIf="userEmail.errors?.['minlength']" class="text-danger mt-2">Min length must be 3</p>
-                    <p *ngIf="userEmail.errors?.['maxlength']" class="text-danger mt-2">Min length must be 7</p>
-                </div> -->
+                
             </div>
             <div class="form-group mb-3">
                 <input type="file" required ngModel class="form-control" name="Image" #userEmail="ngModel" placeholder="Image">
-                <!-- <div *ngIf="userEmail.touched">
-                    <p *ngIf="userEmail.errors?.['required']" class="text-danger mt-2">Category Name is required</p>
-                    <p *ngIf="userEmail.errors?.['minlength']" class="text-danger mt-2">Min length must be 3</p>
-                    <p *ngIf="userEmail.errors?.['maxlength']" class="text-danger mt-2">Min length must be 7</p>
-                </div> -->
+
             </div>
 
 
       <button [disabled]="addAuthorInput.invalid" type="submit" class=" mb-2 btn text-light">Add Author</button>
-    </form>
+    </form> -->
 </div>
 
-<div class="updatelayer position-absolute position-relative px-5 py-3 rounded text-center" id="updatelayer">
+<!-- <div class="updatelayer position-absolute position-relative px-5 py-3 rounded text-center" id="updatelayer">
     <a (click)="closeUpdateBox()" class="position-absolute close">
         <i class="fa fa-close fs-5"></i>
     </a>
@@ -122,39 +100,23 @@
             </div>
             <div class="form-group mb-3">
                 <input required minlength="3" maxlength="10" ngModel class="form-control" name="lastName" #userEmail="ngModel" placeholder="last Name">
-                <!-- <div *ngIf="userEmail.touched">
-                    <p *ngIf="userEmail.errors?.['required']" class="text-danger mt-2">Category Name is required</p>
-                    <p *ngIf="userEmail.errors?.['minlength']" class="text-danger mt-2">Min length must be 3</p>
-                    <p *ngIf="userEmail.errors?.['maxlength']" class="text-danger mt-2">Min length must be 7</p>
-                </div> -->
+               
             </div>
 
             <div class="form-group mb-3">
                 <input required minlength="3" maxlength="10" ngModel class="form-control" name="dateOfBirth" #userEmail="ngModel" placeholder="Date of Birth">
-                <!-- <div *ngIf="userEmail.touched">
-                    <p *ngIf="userEmail.errors?.['required']" class="text-danger mt-2">Category Name is required</p>
-                    <p *ngIf="userEmail.errors?.['minlength']" class="text-danger mt-2">Min length must be 3</p>
-                    <p *ngIf="userEmail.errors?.['maxlength']" class="text-danger mt-2">Min length must be 7</p>
-                </div> -->
+               
             </div>
             <div class="form-group mb-3">
                 <textarea required minlength="3" maxlength="30" ngModel class="form-control" name="breif" #userEmail="ngModel" placeholder="Breif"></textarea>
-                <!-- <div *ngIf="userEmail.touched">Breif
-                    <p *ngIf="userEmail.errors?.['required']" class="text-danger mt-2">Category Name is required</p>
-                    <p *ngIf="userEmail.errors?.['minlength']" class="text-danger mt-2">Min length must be 3</p>
-                    <p *ngIf="userEmail.errors?.['maxlength']" class="text-danger mt-2">Min length must be 7</p>
-                </div> -->
+               
             </div>
             <div class="form-group mb-3">
                 <input type="file" required ngModel class="form-control" name="Image" #userEmail="ngModel" placeholder="Image">
-                <!-- <div *ngIf="userEmail.touched">
-                    <p *ngIf="userEmail.errors?.['required']" class="text-danger mt-2">Category Name is required</p>
-                    <p *ngIf="userEmail.errors?.['minlength']" class="text-danger mt-2">Min length must be 3</p>
-                    <p *ngIf="userEmail.errors?.['maxlength']" class="text-danger mt-2">Min length must be 7</p>
-                </div> -->
+                
             </div>
 
 
       <button [disabled]="updateAuthorInput.invalid" type="submit" class=" mb-2 btn text-light">Update Author</button>
     </form>
-</div> 
+</div>  -->
