@@ -85,7 +85,6 @@ ngOnInit()
   this.user_id = this.decodeservice.getDecodedAccessToken(localStorage.getItem('token')||'')?.['user_id']
   this.reservedBooks.getAllReservedBooks(this.user_id).subscribe((res:any[])=>{
     this.items=res
-
     this.currentContect = res
   })
 

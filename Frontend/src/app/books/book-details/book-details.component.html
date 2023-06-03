@@ -2,8 +2,7 @@
     <div class="row my-5">
         <div class="col-xl-3">
             <div class="bookcover">
-                <img
-                    src="https://99designs-start-attachments.imgix.net/alchemy-pictures/2016%2F02%2F12%2F00%2F05%2F05%2F910db405-6bd4-4a5d-bce7-c2e3135dc5e6%2F449070_WAntoneta_55908c_killing.png?auto=format&ch=Width%2CDPR&crop=false&fm=png&w=600&h=600">
+                <img src="http://localhost:5000/{{ book.photo.split('assets')[1]}}" >
             </div>
             <app-rate></app-rate>
             <select (change)="changestatus($event)" id="shelve" [(ngModel)]="book.shelve">
