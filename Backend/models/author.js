@@ -1,14 +1,12 @@
 const mongoose = require('mongoose');
-
-
 const authorSchema = new mongoose.Schema({
   firstName:{
-      type: 'string'
+      type: String
   },
-  lastName:{type: 'string'},
-  dateOfBirth:{type: 'date'},
-  breif:{type: 'string',required: true},
-  Image:{type:'string',default:"default-avatar.png"}
+  lastName:{type:String},
+  dateOfBirth:{type:Date},
+  breif:{type: String,required: true},
+  Image:{type:String,default:"default-avatar.png"}
 },{
   timestamps:true
 });

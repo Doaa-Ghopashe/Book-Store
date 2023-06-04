@@ -1,8 +1,8 @@
 
 <div class="container-fluid" style="background-color: #f1f5f9">
-    <!-- <a (click)="showAddBox()">
+    <a (click)="showAddBox()">
         <i class="fa fa-plus-square fs-5 mt-2"></i>
-    </a> -->
+    </a>
     <div class="row flex-nowrap">
       <div class="container-fluid" style="width: 82vw">
         <div class="pageBox mt-4 ">
@@ -24,14 +24,14 @@
                         </td>
                         <td>{{autor.firstName}}</td>
                         <td>{{autor.lastName}}</td>
-                        <td>{{autor.dateOfBirth|date}}</td>
+                        <td>{{autor.birthOfDate|date}}</td>
                         <td>
-                            <!-- <a (click)="showUpdateBox(autor._id)">
+                            <a (click)="showUpdateBox(autor._id)">
                                 <i class="fa-solid fa-pen me-3 mt-4"></i>
                             </a>
                             <a (click)="deleteAuthor(autor._id)">
                                 <i class="fa-regular fa-trash-can mt-4"></i>
-                            </a>  -->
+                            </a> 
                         </td>
                     </tr>
                 </tbody>
@@ -48,159 +48,90 @@
 </div>
 
 <div class="layer position-absolute position-relative px-5 py-3 rounded text-center" id="layer">
-    <!-- <a (click)="closeAddBox()" class="position-absolute close">
+    <a (click)="closeAddBox()" class="position-absolute close">
         <i class="fa fa-close fs-5"></i>
-    </a> -->
+    </a>
     <h1 class="mt-4">Add Author</h1>
-    <!-- <form  #addAuthorInput="ngForm"  (ngSubmit)="addAuthor(addAuthorInput)">
-            <div class="form-group mb-3">
-                <input required minlength="3" maxlength="7" ngModel class="form-control" name="firstName" #userEmail="ngModel" placeholder="First Name">
-                <div *ngIf="userEmail.touched">
-                    <p *ngIf="userEmail.errors?.['required']" class="text-danger mt-2">Category Name is required</p>
-                    <p *ngIf="userEmail.errors?.['minlength']" class="text-danger mt-2">Min length must be 3</p>
-                    <p *ngIf="userEmail.errors?.['maxlength']" class="text-danger mt-2">Min length must be 7</p>
-                </div>
+    <form  [formGroup]="addAuthorForm" method="post" enctype="multipart/form-data" (ngSubmit)="addAuthor()" class="py-4">
+        <div class="form-group mb-4">
+            <input type="text" class="form-control my-2 bg-transparent" placeholder="Enter first name" formControlName="firstName">
+            <div *ngIf="addAuthorForm.controls['firstName'].errors&& addAuthorForm.controls['firstName'].touched ">
+                <span *ngIf="addAuthorForm.controls['firstName'].errors?.['required']!==undefined" class="text-danger">First Name is required</span>
             </div>
-            <div class="form-group mb-3">
-                <input required minlength="3" maxlength="10" ngModel class="form-control" name="lastName" #userEmail="ngModel" placeholder="last Name">
-                
+        </div>
+        <div class="form-group mb-4">
+            <input type="text" class="form-control my-2 bg-transparent" placeholder="Enter last name" formControlName="lastName">
+            <div *ngIf="addAuthorForm.controls['lastName'].errors&& addAuthorForm.controls['lastName'].touched ">
+                <span *ngIf="addAuthorForm.controls['lastName'].errors?.['required']!==undefined" class="text-danger">Last Name is required</span>
             </div>
-
-            <div class="form-group mb-3">
-                <input required minlength="3" maxlength="10" ngModel class="form-control" name="dateOfBirth" #userEmail="ngModel" placeholder="Date of Birth">
-                
+        </div>
+        <div class="form-group mb-4">
+            <input required type="text" class="form-control my-2 bg-transparent" placeholder="Enter birthDate" formControlName="birthOfDate">
+            <div *ngIf="addAuthorForm.controls['birthOfDate'].errors&& addAuthorForm.controls['birthOfDate'].touched ">
+                <span *ngIf="addAuthorForm.controls['birthOfDate'].errors?.['required']!==undefined" class="text-danger">Date is required</span>
             </div>
-            <div class="form-group mb-3">
-                <textarea required minlength="3" maxlength="30" ngModel class="form-control" name="breif" #userEmail="ngModel" placeholder="Breif"></textarea>
-                
-            </div>
-            <div class="form-group mb-3">
-                <input type="file" required ngModel class="form-control" name="Image" #userEmail="ngModel" placeholder="Image">
-
-            </div>
-
-
-      <button [disabled]="addAuthorInput.invalid" type="submit" class=" mb-2 btn text-light">Add Author</button>
-    </form> -->
-    <div class="row my-5">
-        <h4 class=" text-center">Add Author</h4>
-        <form action="" enctype="multipart/form-data" method="post" [formGroup]="addauthorform" (ngSubmit)="addauthor()">
-            <div class="elm my-3" >
-    
-                <label > Add First Name</label>
-                <input type="text" formControlName="firstName" class="form-control">
-                <span *ngIf="addauthorform.controls['firstName'].touched && addauthorform.controls['firstName'].invalid">
-                    
-                    <span *ngIf="addauthorform.controls['firstName'].errors?.['required']" class="text-danger">
-                            this filed is required
-                    </span>
-                    <span *ngIf="addauthorform.controls['firstName'].errors?.['minlength']" class="text-danger">
-                       minlegth is 6 char
-                      </span>
-                      <span *ngIf="addauthorform.controls['firstName'].errors?.['maxlength']" class="text-danger">
-                        maxLength is 10 char
-                       </span>
-                </span>
-    
-            </div>
-            <div class="elm my-3" >
-    
-                <label > Add Last Name</label>
-                <input type="text" formControlName="lastName" class="form-control">
-    
-                <span *ngIf="addauthorform.controls['lastName'].touched && addauthorform.controls['firstName'].invalid">
-                    
-                    <span *ngIf="addauthorform.controls['lastName'].errors?.['required']" class="text-danger">
-                            this filed is required
-                    </span>
-                    <span *ngIf="addauthorform.controls['lastName'].errors?.['minlength']" class="text-danger">
-                       minlegth is 6 char
-                      </span>
-                      <span *ngIf="addauthorform.controls['lastName'].errors?.['maxlength']" class="text-danger">
-                        maxLength is 10 char
-                       </span>
-                </span>
-    
-            </div>
-            <div class="elm my-3" >
-    
-                <label > Add Birth Date</label>
-                <input type="date" formControlName="birthOfDate" class="form-control">
-    
-                <span *ngIf="addauthorform.controls['birthOfDate'].touched && addauthorform.controls['firstName'].invalid">
-                    
-                    <span *ngIf="addauthorform.controls['birthOfDate'].errors?.['required']" class="text-danger">
-                            this filed is required
-                    </span>
-        
-                </span>
-    
-            </div>
-            <div class="elm my-3" >
-    
-                <label > breif</label>
-                <input type="text" formControlName="breif" class="form-control">
+        </div>
+        <div class="form-group mb-3">
+            <textarea required  class="form-control"  formControlName="breif" placeholder="Breif"></textarea>
+            <div *ngIf="addAuthorForm.controls['breif'].errors&& addAuthorForm.controls['breif'].touched ">
+                <span *ngIf="addAuthorForm.controls['breif'].errors?.['required']!==undefined" class="text-danger">Breif is required</span>
 
             </div>
-            <div class="elm my-3" >
-    
-                <label > Add Photo</label>
-                <input type="file" formControlName="Image" class="form-control" (change)="addphoto($event)">
-    
-    
-                <span *ngIf="addauthorform.controls['Image'].touched && addauthorform.controls['firstName'].invalid">
-                    
-                    <span *ngIf="addauthorform.controls['Image'].errors?.['required']" class="text-danger">
-                            this filed is required
-                    </span>
-        
-                </span>
-    
-            </div> 
-    
-            <div class="elm my-3" >
-    
-              
-                <input type="submit"  class="btn btn-primary "  >
-    
+        </div>
+        <div class="form-group mb-3">
+            <input type="file" required  class="form-control" formControlName="Image" placeholder="Image" (change)="addphoto($event)">
+            <div *ngIf="addAuthorForm.controls['Image'].errors&& addAuthorForm.controls['Image'].touched ">
+                <span *ngIf="addAuthorForm.controls['Image'].errors?.['required']!==undefined" class="text-danger">Photo is required</span>
             </div>
-        </form>
-    </div>
+        </div>
+        <button [disabled]="addAuthorForm.invalid" type="submit" class="btn">Add Author</button>
+    </form>
 </div>
 
-<!-- <div class="updatelayer position-absolute position-relative px-5 py-3 rounded text-center" id="updatelayer">
+
+
+<div class="updatelayer position-absolute position-relative px-5 py-3 rounded text-center" id="updatelayer">
     <a (click)="closeUpdateBox()" class="position-absolute close">
         <i class="fa fa-close fs-5"></i>
     </a>
-    <h1 class="mt-4">Update Author</h1>
-    <form  #updateAuthorInput="ngForm"  (ngSubmit)="updateAuthor(updateAuthorInput)">
-            <div class="form-group mb-3">
-                <input required minlength="3" maxlength="7" ngModel class="form-control" name="firstName" #userEmail="ngModel" placeholder="First Name">
-                <div *ngIf="userEmail.touched">
-                    <p *ngIf="userEmail.errors?.['required']" class="text-danger mt-2">Category Name is required</p>
-                    <p *ngIf="userEmail.errors?.['minlength']" class="text-danger mt-2">Min length must be 3</p>
-                    <p *ngIf="userEmail.errors?.['maxlength']" class="text-danger mt-2">Min length must be 7</p>
-                </div>
+    <h1 class="mt-4">Update Book</h1>
+    <form  [formGroup]="updateAuthorForm" method="post" enctype="multipart/form-data" (ngSubmit)="updateAuthor()" class="py-4">
+        <div class="form-group mb-4">
+            <input type="text" class="form-control my-2 bg-transparent" placeholder="Enter first name" formControlName="firstName">
+            <div *ngIf="updateAuthorForm.controls['firstName'].errors&& updateAuthorForm.controls['firstName'].touched ">
+                <span *ngIf="updateAuthorForm.controls['firstName'].errors?.['required']!==undefined" class="text-danger">First Name is required</span>
             </div>
-            <div class="form-group mb-3">
-                <input required minlength="3" maxlength="10" ngModel class="form-control" name="lastName" #userEmail="ngModel" placeholder="last Name">
-               
+        </div>
+        <div class="form-group mb-4">
+            <input type="text" class="form-control my-2 bg-transparent" placeholder="Enter last name" formControlName="lastName">
+            <div *ngIf="updateAuthorForm.controls['lastName'].errors&& updateAuthorForm.controls['lastName'].touched ">
+                <span *ngIf="updateAuthorForm.controls['lastName'].errors?.['required']!==undefined" class="text-danger">Last Name is required</span>
             </div>
+        </div>
+        <div class="form-group mb-4">
+            <input required type="text" class="form-control my-2 bg-transparent" placeholder="Enter birthDate" formControlName="birthOfDate">
+            <div *ngIf="updateAuthorForm.controls['birthOfDate'].errors&& updateAuthorForm.controls['birthOfDate'].touched ">
+                <span *ngIf="updateAuthorForm.controls['birthOfDate'].errors?.['required']!==undefined" class="text-danger">Date is required</span>
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <textarea required  class="form-control"  formControlName="breif" placeholder="Breif"></textarea>
+            <div *ngIf="updateAuthorForm.controls['breif'].errors&& updateAuthorForm.controls['breif'].touched ">
+                <span *ngIf="updateAuthorForm.controls['breif'].errors?.['required']!==undefined" class="text-danger">Breif is required</span>
 
-            <div class="form-group mb-3">
-                <input required minlength="3" maxlength="10" ngModel class="form-control" name="dateOfBirth" #userEmail="ngModel" placeholder="Date of Birth">
-               
             </div>
-            <div class="form-group mb-3">
-                <textarea required minlength="3" maxlength="30" ngModel class="form-control" name="breif" #userEmail="ngModel" placeholder="Breif"></textarea>
-               
+        </div>
+        <div class="form-group mb-3">
+            <input type="file" required  class="form-control"  placeholder="Image" (change)="addphoto($event)">
+            <div *ngIf="updateAuthorForm.controls['Image'].errors&& updateAuthorForm.controls['Image'].touched ">
+                <span *ngIf="updateAuthorForm.controls['Image'].errors?.['required']!==undefined" class="text-danger">Photo is required</span>
             </div>
-            <div class="form-group mb-3">
-                <input type="file" required ngModel class="form-control" name="Image" #userEmail="ngModel" placeholder="Image">
-                
-            </div>
-
-
-      <button [disabled]="updateAuthorInput.invalid" type="submit" class=" mb-2 btn text-light">Update Author</button>
+        </div>
+        <button [disabled]="updateAuthorForm.invalid" type="submit" class="btn">Update Author</button>
     </form>
-</div>  -->
+</div>
+
+
+
+
+

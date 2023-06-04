@@ -1,4 +1,3 @@
-
 <div class="container-fluid" style="background-color: #f1f5f9">
     <a (click)="showAddBox()">
         <i class="fa fa-plus-square fs-5 mt-2"></i>
@@ -32,12 +31,6 @@
                             <a (click)="deleteBook(book._id)">
                                 <i class="fa-regular fa-trash-can mt-4"></i>
                             </a> 
-                            <!-- <a (click)="showUpdateBox(autor._id)">
-                                <i class="fa-solid fa-pen me-3 mt-4"></i>
-                            </a>
-                            <a (click)="deleteCategory(category._id)">
-                                <i class="fa-regular fa-trash-can mt-4"></i>
-                            </a> -->
                         </td>
                     </tr>
                 </tbody>
@@ -48,115 +41,103 @@
             </div>
         </div>
       </div>
-
-
     </div>
 </div>
+
+
 
 <div class="layer position-absolute position-relative px-5 py-3 rounded text-center" id="layer">
     <a (click)="closeAddBox()" class="position-absolute close">
         <i class="fa fa-close fs-5"></i>
     </a>
     <h1 class="mt-4">Add Book</h1>
-    <form  enctype="multipart/form-data" method="post" #addBookInput="ngForm"  (ngSubmit)="addBook(addBookInput)">
-            <div class="form-group mb-3">
-                <input required  ngModel class="form-control" name="title" #userEmail="ngModel" placeholder="Enter Name">
-                <!-- <div *ngIf="userEmail.touched">
-                    <p *ngIf="userEmail.errors?.['required']" class="text-danger mt-2">Category Name is required</p>
-                    <p *ngIf="userEmail.errors?.['minlength']" class="text-danger mt-2">Min length must be 3</p>
-                    <p *ngIf="userEmail.errors?.['maxlength']" class="text-danger mt-2">Min length must be 7</p>
-                </div> -->
+    <form  [formGroup]="addBookForm" method="post" enctype="multipart/form-data" (ngSubmit)="addBook()" class="py-4">
+        <div class="form-group mb-4">
+            <input type="text" class="form-control my-2 bg-transparent" placeholder="Enter title" formControlName="title">
+            <div *ngIf="addBookForm.controls['title'].errors&& addBookForm.controls['title'].touched ">
+                <span *ngIf="addBookForm.controls['title'].errors?.['required']!==undefined" class="text-danger">Title is required</span>
             </div>
-            <div class="form-group mb-3">
-                <input required  ngModel class="form-control" name="categoryId" #userEmail="ngModel" placeholder="Enter Category Id">
-                <!-- <div *ngIf="userEmail.touched">
-                    <p *ngIf="userEmail.errors?.['required']" class="text-danger mt-2">Category Name is required</p>
-                    <p *ngIf="userEmail.errors?.['minlength']" class="text-danger mt-2">Min length must be 3</p>
-                    <p *ngIf="userEmail.errors?.['maxlength']" class="text-danger mt-2">Min length must be 7</p>
-                </div> -->
+        </div>
+        <div class="form-group mb-4">
+            <input type="text" class="form-control my-2 bg-transparent" placeholder="Enter category Id" formControlName="categoryId">
+            <div *ngIf="addBookForm.controls['categoryId'].errors&& addBookForm.controls['categoryId'].touched ">
+                <span *ngIf="addBookForm.controls['categoryId'].errors?.['required']!==undefined" class="text-danger">Category ID is required</span>
             </div>
-            <div class="form-group mb-3">
-                <input required ngModel class="form-control" name="AuthorId" #userEmail="ngModel" placeholder="Enter Author Id">
-                <!-- <div *ngIf="userEmail.touched">
-                    <p *ngIf="userEmail.errors?.['required']" class="text-danger mt-2">Category Name is required</p>
-                    <p *ngIf="userEmail.errors?.['minlength']" class="text-danger mt-2">Min length must be 3</p>
-                    <p *ngIf="userEmail.errors?.['maxlength']" class="text-danger mt-2">Min length must be 7</p>
-                </div> -->
-            </div>
-            <div class="form-group mb-3">
-                <textarea required  ngModel class="form-control" name="desc" #userEmail="ngModel" placeholder="Description"></textarea>
-                <!-- <div *ngIf="userEmail.touched">Breif
-                    <p *ngIf="userEmail.errors?.['required']" class="text-danger mt-2">Category Name is required</p>
-                    <p *ngIf="userEmail.errors?.['minlength']" class="text-danger mt-2">Min length must be 3</p>
-                    <p *ngIf="userEmail.errors?.['maxlength']" class="text-danger mt-2">Min length must be 7</p>
-                </div> -->
-            </div>
-            <div class="form-group mb-3">
-                <input type="file" required ngModel class="form-control" name="photo" #userEmail="ngModel" placeholder="photo">
-                <!-- <div *ngIf="userEmail.touched">
-                    <p *ngIf="userEmail.errors?.['required']" class="text-danger mt-2">Category Name is required</p>
-                    <p *ngIf="userEmail.errors?.['minlength']" class="text-danger mt-2">Min length must be 3</p>
-                    <p *ngIf="userEmail.errors?.['maxlength']" class="text-danger mt-2">Min length must be 7</p>
-                </div> -->
-            </div>
+        </div>
+        <div class="form-group mb-4">
+            <input required type="text" class="form-control my-2 bg-transparent" placeholder="Enter Author Id" formControlName="AuthorId">
+            <div *ngIf="addBookForm.controls['AuthorId'].errors&& addBookForm.controls['AuthorId'].touched ">
+                <span *ngIf="addBookForm.controls['AuthorId'].errors?.['required']!==undefined" class="text-danger">Author ID is required</span>
 
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <textarea required  class="form-control"  formControlName="desc" placeholder="Description"></textarea>
+            <div *ngIf="addBookForm.controls['desc'].errors&& addBookForm.controls['desc'].touched ">
+                <span *ngIf="addBookForm.controls['desc'].errors?.['required']!==undefined" class="text-danger">Description is required</span>
 
-      <button [disabled]="addBookInput.invalid" type="submit" class=" mb-2 btn text-light">Add Book</button>
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <input type="file" required  class="form-control"  placeholder="photo" (change)="addphoto($event)">
+            <div *ngIf="addBookForm.controls['photo'].errors&& addBookForm.controls['photo'].touched ">
+                <span *ngIf="addBookForm.controls['photo'].errors?.['required']!==undefined" class="text-danger">Photo is required</span>
+            </div>
+        </div>
+        <button [disabled]="addBookForm.invalid" type="submit" class="btn">Add Book</button>
     </form>
 </div>
+
+
 
 <div class="updatelayer position-absolute position-relative px-5 py-3 rounded text-center" id="updatelayer">
     <a (click)="closeUpdateBox()" class="position-absolute close">
         <i class="fa fa-close fs-5"></i>
     </a>
     <h1 class="mt-4">Update Book</h1>
-    <form  #updateBookInput="ngForm"  (ngSubmit)="updateBook(updateBookInput)">
-        <div class="form-group mb-3">
-            <input required ngModel class="form-control" name="title" #userEmail="ngModel" placeholder="Enter Name">
-            <!-- <div *ngIf="userEmail.touched">
-                <p *ngIf="userEmail.errors?.['required']" class="text-danger mt-2">Category Name is required</p>
-                <p *ngIf="userEmail.errors?.['minlength']" class="text-danger mt-2">Min length must be 3</p>
-                <p *ngIf="userEmail.errors?.['maxlength']" class="text-danger mt-2">Min length must be 7</p>
-            </div> -->
+   <form  [formGroup]="updateBookForm" method="post" enctype="multipart/form-data" (ngSubmit)="updateBook()" class="py-4">
+        <div class="form-group mb-4">
+            <input type="text" class="form-control my-2 bg-transparent" placeholder="Enter title" formControlName="title">
+            <div *ngIf="updateBookForm.controls['title'].errors&& updateBookForm.controls['title'].touched ">
+                <span *ngIf="updateBookForm.controls['title'].errors?.['required']!==undefined" class="text-danger">Title is required</span>
+            </div>
+        </div>
+        <div class="form-group mb-4">
+            <input type="text" class="form-control my-2 bg-transparent" placeholder="Enter category Id" formControlName="categoryId">
+            <div *ngIf="updateBookForm.controls['categoryId'].errors&& updateBookForm.controls['categoryId'].touched ">
+                <span *ngIf="updateBookForm.controls['categoryId'].errors?.['required']!==undefined" class="text-danger">Category ID is required</span>
+            </div>
+        </div>
+        <div class="form-group mb-4">
+            <input required type="text" class="form-control my-2 bg-transparent" placeholder="Enter Author Id" formControlName="AuthorId">
+            <div *ngIf="updateBookForm.controls['AuthorId'].errors&& updateBookForm.controls['AuthorId'].touched ">
+                <span *ngIf="updateBookForm.controls['AuthorId'].errors?.['required']!==undefined" class="text-danger">Author ID is required</span>
+            </div>
         </div>
         <div class="form-group mb-3">
-            <input required ngModel class="form-control" name="categoryId" #userEmail="ngModel" placeholder="Enter Category Id">
-            <!-- <div *ngIf="userEmail.touched">
-                <p *ngIf="userEmail.errors?.['required']" class="text-danger mt-2">Category Name is required</p>
-                <p *ngIf="userEmail.errors?.['minlength']" class="text-danger mt-2">Min length must be 3</p>
-                <p *ngIf="userEmail.errors?.['maxlength']" class="text-danger mt-2">Min length must be 7</p>
-            </div> -->
+            <textarea required  class="form-control"  formControlName="desc" placeholder="Description"></textarea>
+            <div *ngIf="updateBookForm.controls['desc'].errors&& updateBookForm.controls['desc'].touched ">
+                <span *ngIf="updateBookForm.controls['desc'].errors?.['required']!==undefined" class="text-danger">Description is required</span>         
+            </div>
         </div>
         <div class="form-group mb-3">
-            <input required  ngModel class="form-control" name="AuthorId" #userEmail="ngModel" placeholder="Enter Author Id">
-            <!-- <div *ngIf="userEmail.touched">
-                <p *ngIf="userEmail.errors?.['required']" class="text-danger mt-2">Category Name is required</p>
-                <p *ngIf="userEmail.errors?.['minlength']" class="text-danger mt-2">Min length must be 3</p>
-                <p *ngIf="userEmail.errors?.['maxlength']" class="text-danger mt-2">Min length must be 7</p>
-            </div> -->
-        </div>
-        <div class="form-group mb-3">
-            <textarea required ngModel class="form-control" name="desc" #userEmail="ngModel" placeholder="Description"></textarea>
-            <!-- <div *ngIf="userEmail.touched">Breif
-                <p *ngIf="userEmail.errors?.['required']" class="text-danger mt-2">Category Name is required</p>
-                <p *ngIf="userEmail.errors?.['minlength']" class="text-danger mt-2">Min length must be 3</p>
-                <p *ngIf="userEmail.errors?.['maxlength']" class="text-danger mt-2">Min length must be 7</p>
-            </div> -->
-        </div>
-        <div class="form-group mb-3">
-            <!-- <input type="file" required ngModel class="form-control" name="image" #userEmail="ngModel" placeholder="Enter Image"> -->
-            <!-- <div *ngIf="userEmail.touched">
-                <p *ngIf="userEmail.errors?.['required']" class="text-danger mt-2">Category Name is required</p>
-                <p *ngIf="userEmail.errors?.['minlength']" class="text-danger mt-2">Min length must be 3</p>
-                <p *ngIf="userEmail.errors?.['maxlength']" class="text-danger mt-2">Min length must be 7</p>
-            </div> -->
-        </div>
+            <input type="file" required  class="form-control" formControlName="photo" placeholder="photo" (change)="addphoto($event)">
+            <div *ngIf="updateBookForm.controls['photo'].errors&& updateBookForm.controls['photo'].touched ">
+                <span *ngIf="updateBookForm.controls['photo'].errors?.['required']!==undefined" class="text-danger">photo is required</span>  
 
-
-
-      <button [disabled]="updateBookInput.invalid" type="submit" class=" mb-2 btn text-light">Update Book</button>
+            </div>
+        </div>
+        <button [disabled]="updateBookForm.invalid" type="submit" class="btn">Update Book</button>
     </form>
-</div> 
+</div>
+
+
+
+
+
+
+
+
 
 
 

@@ -1,4 +1,6 @@
+
 import { Component } from '@angular/core';
+import {FormControl, FormGroup, Validators } from '@angular/forms';
 import { BooksService } from 'src/app/services/books.service';
 
 @Component({
@@ -8,7 +10,7 @@ import { BooksService } from 'src/app/services/books.service';
 })
 export class BookForAdminComponent {
 
-  
+  imageFile!:File;
   updatedCurrentElementId:any;
   currentPage = 1; // start with the first page
   itemsPerPage = 4; // show 5 items per page
@@ -23,16 +25,58 @@ export class BookForAdminComponent {
     })
   }
 
-  addBook(form:any)
+
+  addBookForm:FormGroup = new FormGroup(
+    {
+      title: new FormControl('',[Validators.required]),
+      categoryId: new FormControl('',[Validators.required]),
+      AuthorId :  new FormControl('',[Validators.required]),
+      desc : new FormControl('',[Validators.required]),
+      photo : new FormControl('',[Validators.required]),
+    }
+  )
+
+  updateBookForm:FormGroup = new FormGroup(
+    {
+      title: new FormControl('',[Validators.required]),
+      categoryId: new FormControl('',[Validators.required]),
+      AuthorId :  new FormControl('',[Validators.required]),
+      desc : new FormControl('',[Validators.required]),
+      photo : new FormControl('',[Validators.required]),
+    }
+  )
+
+  addphoto(event:any)
+  {     
+     console.log(event.target);
+     console.log(this.addBookForm);
+
+    if(event.target.files.length>0){
+       this.imageFile=event.target.files[0];
+       this.addBookForm.patchValue({
+         photo:this.imageFile
+       });
+  }
+  }
+  
+  addBook()
   {
-    let formValue:object = form.value;
-    console.log(form.value)
-    this.__bookServices.addBook(formValue).subscribe(
+const formdata=new FormData();
+      formdata.append('title',this.addBookForm.get('title')?.value)
+      formdata.append('categoryId',this.addBookForm.get('categoryId')?.value)
+      formdata.append('AuthorId',this.addBookForm.get('AuthorId')?.value)
+      formdata.append('desc',this.addBookForm.get('desc')?.value)
+
+      formdata.append('photo',this.imageFile)
+      
+
+    this.__bookServices.addBook(formdata).subscribe(
       {
       next: res => {
         alert('Added Successfully')
         let layer:any = document.getElementById("layer");
-        layer.style.display = "none";
+        layer.style.display ="none";
+        location.replace("/admin/book");
       },
       error: err => console.log(`Failed to Add Book`),
       complete: () => {
@@ -46,6 +90,7 @@ export class BookForAdminComponent {
       let layer:any = document.getElementById("layer");
       layer.style.display = "block";
     }
+
     closeAddBox()
     {
       let layer:any = document.getElementById("layer");
@@ -58,22 +103,32 @@ export class BookForAdminComponent {
       updatelayer.style.display = "block";
       this.updatedCurrentElementId = id;
     }
+
     closeUpdateBox()
     {
       let updatelayer:any = document.getElementById("updatelayer");
       updatelayer.style.display = "none";
     }
-    updateBook(form:any)
+
+    updateBook()
     {
-      let formValue:object = form.value
-      this.__bookServices.updateBook(this.updatedCurrentElementId,formValue).subscribe(
+      const formdata=new FormData();
+      formdata.append('title',this.addBookForm.get('title')?.value)
+      formdata.append('categoryId',this.addBookForm.get('categoryId')?.value)
+      formdata.append('AuthorId',this.addBookForm.get('AuthorId')?.value)
+      formdata.append('desc',this.addBookForm.get('desc')?.value)
+
+      formdata.append('photo',this.imageFile)
+      
+      this.__bookServices.updateBook(this.updatedCurrentElementId,formdata).subscribe(
         {
         next: res => {
           alert('Update Successfully')
           let updatelayer:any = document.getElementById("updatelayer");
           updatelayer.style.display = "none";
+          location.replace("/admin/book");
         },
-        error: err => alert(`${err.error.status} Failed to update2`),
+        error: err => alert(`${err.error.status} Failed to update`),
         complete: () => {
   
         }
@@ -85,13 +140,26 @@ export class BookForAdminComponent {
      let prompt:any = window.prompt("Are You Sure to delete plz write yes or no");
      if(prompt == "yes" ||prompt == "Yes" || prompt == "YES" )
      {
-        this.__bookServices.deleteBook(id).subscribe((res)=>
-        {
-          console.log(res.data)
+        this.__bookServices.deleteBook(id).subscribe(
+          {
+          next: res => {
+            alert('Deleted Successfully');
+            location.replace("/admin/book");
+          },
+          error: err => alert(`${err.error.status} Failed to update`),
+          complete: () => {
+    
+          }
         })
+            
      }
     }
-
-
-
 }
+
+
+
+
+
+
+
+
