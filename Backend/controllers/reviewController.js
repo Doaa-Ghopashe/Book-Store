@@ -62,7 +62,9 @@ const review_model = require('../models/review'),
                 if (!err) return res.status(200).json(data);
 
                 throw new Error("notFound")
-            })
+            }).populate({
+                path: "user_id",
+              })
         } catch (err) {
             next({status:errors[err.message].status,message:errors[err.message].errmessage})
         }

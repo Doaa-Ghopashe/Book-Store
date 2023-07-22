@@ -25,7 +25,6 @@ const getAllBooks = async (req, res) => {
       data: { book },
     });
   } catch (error) {
-    console.log(error);
     res.status(401).json({
       status: "failed",
       err: error.message,
@@ -48,14 +47,11 @@ const getOneBook = async (req, res) => {
   }
 };
 const addNewBook = async (req, res) => {
-  console.log(req.body);
 
   try {
-    // img='assets/imgs/books/'+req.body.photo.split("\\")[2]
-    // console.log(img);
     let newBook ={
               title: req.body.title,
-              description: req.body.desc,
+              desc: req.body.desc,
               AuthorId: req.body.AuthorId,
               categoryId: req.body.categoryId,
               photo:req.file.path

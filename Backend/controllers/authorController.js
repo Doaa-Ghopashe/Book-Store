@@ -7,8 +7,6 @@ function add(req, res){
         if(!err) return res.status(201).json(userData);
         res.status(500).json({Error:"DB error"});
     })
-
-    console.log(req.body);
 }
 function list(req,res){
     let authors =[]
