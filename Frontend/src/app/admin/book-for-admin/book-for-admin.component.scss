@@ -1,3 +1,4 @@
+
 .pageBox {
   background-color: #fff;
   box-shadow: 1px 1px 4px #797878;
@@ -28,14 +29,14 @@ transform: translate(-50%,-50%);
 }
 .layer button, .updatelayer button
 {
-background-color: #ab64bd;
+background-color: #1b90ad;
 color :#fff
 }
 .layer svg,  .updatelayer svg
 {
 width:15px;
 height: 15px;
-background-color: #ab64bd;
+background-color: #1b90ad;
 color :#fff;
 border-radius: 50%;
 padding: 4px;
@@ -65,5 +66,12 @@ color: #fff;
 }
 .ngx-pagination .current
 {
-  color :#ab64bd !important
+  color :#1b90ad !important
+}
+.addbtn{
+  margin-left: auto;
+  display: block;
+  margin-top: 14px;
+  background-color: #ffd664;
+  width: fit-content;
 }

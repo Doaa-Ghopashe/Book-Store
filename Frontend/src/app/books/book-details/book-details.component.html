@@ -6,7 +6,7 @@
             </div>
             <app-rate></app-rate>
             <select (change)="changestatus($event)" id="shelve" [(ngModel)]="book.shelve">
-                <option value="" >--Reserve a book--</option>
+                <option value="" selected>--Reserve a book--</option>
                 <option value="want to read">want to read</option>
                 <option value="currently reading">currently reading</option>
                 <option value="read">read</option>
@@ -14,7 +14,7 @@
         </div>
         <div class="col-xl-9">
             <span class="bookname">{{book.title}}</span>
-            <span class="authorname">by{{authorname}}</span>
+            <span class="authorname">by {{authorname}}</span>
             <span class="category">{{bookcategory}}</span>
             <div class="bookrate">
                 <div class="avgrate">

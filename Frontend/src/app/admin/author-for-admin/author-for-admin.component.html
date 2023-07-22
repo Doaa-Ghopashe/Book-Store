@@ -1,14 +1,14 @@
 
-<div class="container-fluid" style="background-color: #f1f5f9">
-    <a (click)="showAddBox()">
-        <i class="fa fa-plus-square fs-5 mt-2"></i>
+<div class="container-fluid" >
+    <a class="btn addbtn" (click)="showAddBox()">
+        Add Author <i class="fa fa-plus-square fs-5 mt-2"></i>
     </a>
-    <div class="row flex-nowrap">
+    
+    <div class="row flex-nowrap author-info">
       <div class="container-fluid" style="width: 82vw">
         <div class="pageBox mt-4 ">
             <table class="text-center">
                 <thead class="mb-3">
-                    <th>id</th>
                     <th>Photo</th>
                     <th>First Name</th>
                     <th>Last Name</th>
@@ -18,13 +18,12 @@
                 <div class="py-2"></div>
                 <tbody>
                     <tr *ngFor = "let autor of allAuthores | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage };index as i">
-                        <td >{{i+1}}</td>
                         <td>
                             <img style="height: 50px; width:50px;" class="mb-3" src="http://localhost:5000/{{autor.Image.split('assets')[1]}}" alt="Author Photo">
                         </td>
                         <td>{{autor.firstName}}</td>
                         <td>{{autor.lastName}}</td>
-                        <td>{{autor.birthOfDate|date}}</td>
+                        <td>{{autor.dateOfBirth}}</td>
                         <td>
                             <a (click)="showUpdateBox(autor._id)">
                                 <i class="fa-solid fa-pen me-3 mt-4"></i>
@@ -66,9 +65,9 @@
             </div>
         </div>
         <div class="form-group mb-4">
-            <input required type="text" class="form-control my-2 bg-transparent" placeholder="Enter birthDate" formControlName="birthOfDate">
-            <div *ngIf="addAuthorForm.controls['birthOfDate'].errors&& addAuthorForm.controls['birthOfDate'].touched ">
-                <span *ngIf="addAuthorForm.controls['birthOfDate'].errors?.['required']!==undefined" class="text-danger">Date is required</span>
+            <input required type="text" class="form-control my-2 bg-transparent" placeholder="Enter dateOfBirth" formControlName="dateOfBirth">
+            <div *ngIf="addAuthorForm.controls['dateOfBirth'].errors&& addAuthorForm.controls['dateOfBirth'].touched ">
+                <span *ngIf="addAuthorForm.controls['dateOfBirth'].errors?.['required']!==undefined" class="text-danger">Date is required</span>
             </div>
         </div>
         <div class="form-group mb-3">
@@ -95,7 +94,7 @@
         <i class="fa fa-close fs-5"></i>
     </a>
     <h1 class="mt-4">Update Book</h1>
-    <form  [formGroup]="updateAuthorForm" method="post" enctype="multipart/form-data" (ngSubmit)="updateAuthor()" class="py-4">
+    <form  [formGroup]="updateAuthorForm" #updateAuthorInput="ngForm"  method="post" enctype="multipart/form-data" (ngSubmit)="updateAuthor(updateAuthorInput)" class="py-4">
         <div class="form-group mb-4">
             <input type="text" class="form-control my-2 bg-transparent" placeholder="Enter first name" formControlName="firstName">
             <div *ngIf="updateAuthorForm.controls['firstName'].errors&& updateAuthorForm.controls['firstName'].touched ">
@@ -109,9 +108,9 @@
             </div>
         </div>
         <div class="form-group mb-4">
-            <input required type="text" class="form-control my-2 bg-transparent" placeholder="Enter birthDate" formControlName="birthOfDate">
-            <div *ngIf="updateAuthorForm.controls['birthOfDate'].errors&& updateAuthorForm.controls['birthOfDate'].touched ">
-                <span *ngIf="updateAuthorForm.controls['birthOfDate'].errors?.['required']!==undefined" class="text-danger">Date is required</span>
+            <input required type="text" class="form-control my-2 bg-transparent" placeholder="Enter dateOfBirth" formControlName="dateOfBirth">
+            <div *ngIf="updateAuthorForm.controls['dateOfBirth'].errors&& updateAuthorForm.controls['dateOfBirth'].touched ">
+                <span *ngIf="updateAuthorForm.controls['dateOfBirth'].errors?.['required']!==undefined" class="text-danger">Date is required</span>
             </div>
         </div>
         <div class="form-group mb-3">

@@ -10,6 +10,8 @@ import { BooksService } from 'src/app/services/books.service';
 export class CategoryDetailsComponent {
   AllBooks!:any[];
   categoryId!:number;
+  categoryname!:string;
+
   currentBooks:any[]=[];
 constructor(private _ActivatedRoute:ActivatedRoute ,private _BooksService:BooksService){
   this.getId()
@@ -23,9 +25,11 @@ this._BooksService.getBooks().subscribe((res)=>{
   // console.log( this.AllBooks);
   for(let i=0; i<this.AllBooks.length; i++){
    this.categoryId= this.AllBooks[i].categoryId._id
+   
   //  console.log(this.categoryId);
    if(this.categoryId==id){
     // console.log(this.AllBooks[i]);
+    this.categoryname = this.AllBooks[i].categoryId.Name
     this.currentBooks.push(this.AllBooks[i])
     // console.log(this.currentBooks); 
    } }  

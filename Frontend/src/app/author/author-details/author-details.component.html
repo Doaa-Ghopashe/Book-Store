@@ -11,14 +11,15 @@
         <div class="row">
             <div class="col-xl-3">
                 <div class="author-img">
-                    <img style="height: 500px; width:200; " src="http://localhost:5000/{{ author.Image.split('assets')[1] }}">
+                    <img  src="http://localhost:5000/{{ author.Image.split('assets')[1] }}">
                 </div>
             </div>
             <div class="col-xl-9">
                 <div class="author-info">
-                    <h1>{{author.firstName}} {{author.lastName}}</h1>
-                    <span>{{author.dateOfBirth}}</span>
-                    <p>
+                    <h2>{{author.firstName}} {{author.lastName}}</h2>
+                    <span class="dob">Date of birth: {{author.dateOfBirth}}</span>
+                    <p class="author-breif">
+                        Breif: 
                         {{author.breif}}
                     </p>
                 </div>

@@ -9,13 +9,13 @@
 <body>
     <div *ngFor="let book of books" class="book">
         <div class="row ">
-            <div class="col-xl-2">
+            <div class="col-xl-1">
                 <div class="book-cover">
-                    <img src="https://diybookcovers.com/3Dmockups/assets/images/thumbs/groupF.png" >
+                    <img src="http://localhost:5000/{{ book.photo.split('assets')[1]}}" >
                 </div>
             </div>
-            <div class="col-xl-10">
-                <h2>{{book.title}}</h2>
+            <div class="col-xl-11">
+                <h2 class="book-title">{{book.title}}</h2>
                 <div class="avgrate">
                     <ngb-rating [max]="5"  [rate]="book.avgRating" class="controllablestars" [readonly]="true" ></ngb-rating>
                 </div>

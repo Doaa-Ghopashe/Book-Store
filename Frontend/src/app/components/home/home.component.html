@@ -4,7 +4,7 @@
         <div class="col-md-6">
             <div class="info">
                 <div class="p-5">
-                    <h1>Good Book-Store.</h1>
+                    <h1>Book Store</h1>
                     <div class="d-flex">
                         <div id="typed-strings">
                             <p>Reading at any time.</p>
@@ -112,7 +112,9 @@
                     <ng-container *ngFor="let slide of author">
                       <ng-template carouselSlide [id]="slide.id">
                         <div class="card text-dark m-2">
-                            <img class="card-img-top" src="http://localhost:5000/{{slide.Image.split('assets')[1] }}" alt="Title">
+                            <div class="author-img">
+                                <img class="card-img-top" src="http://localhost:5000/{{slide.Image.split('assets')[1] }}" alt="Title">
+                            </div>
                             <div class="card-body">
                               <h6 class="card-title">{{slide.firstName}} {{slide.lastName}}</h6>
                             </div>
@@ -128,7 +130,7 @@
 
 <!-- Popular Reviews -->
 <section class="popularRewviews py-5 text-center">
-    <h4>Popular Rewiews</h4>
+    <h4>Latest Rewiews</h4>
     <div class="deoration">
         <hr class="line1">
         <hr class="line2">

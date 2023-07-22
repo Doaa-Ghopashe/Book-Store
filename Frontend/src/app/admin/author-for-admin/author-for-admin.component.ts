@@ -22,7 +22,6 @@ export class AuthorForAdminComponent {
     this.__authServices.getAuthor().subscribe((res)=>
     {
       this.allAuthores = res;
-      console.log(this.allAuthores)
     })
 
   }
@@ -31,7 +30,7 @@ export class AuthorForAdminComponent {
     {
       firstName: new FormControl('',[Validators.required]),
       lastName: new FormControl('',[Validators.required]),
-      birthOfDate :  new FormControl('',[Validators.required]),
+      dateOfBirth :  new FormControl('',[Validators.required]),
       breif : new FormControl('',[Validators.required]),
       Image : new FormControl('',[Validators.required]),
     }
@@ -41,7 +40,7 @@ export class AuthorForAdminComponent {
     {
       firstName: new FormControl('',[Validators.required]),
       lastName: new FormControl('',[Validators.required]),
-      birthOfDate :  new FormControl('',[Validators.required]),
+      dateOfBirth :  new FormControl('',[Validators.required]),
       breif : new FormControl('',[Validators.required]),
       Image : new FormControl('',[Validators.required]),
     }
@@ -63,7 +62,7 @@ export class AuthorForAdminComponent {
     const formdata=new FormData();
       formdata.append('firstName',this.addAuthorForm.get('firstName')?.value)
       formdata.append('lastName',this.addAuthorForm.get('lastName')?.value)
-      formdata.append('birthOfDate',this.addAuthorForm.get('birthOfDate')?.value)
+      formdata.append('dateOfBirth',this.addAuthorForm.get('dateOfBirth')?.value)
       formdata.append('breif',this.addAuthorForm.get('breif')?.value)
       formdata.append('Image',this.imagefile)
         this.__authServices.addAuthor(formdata).subscribe(
@@ -71,7 +70,6 @@ export class AuthorForAdminComponent {
         
    next: res => {
         alert('Added Successfully');
-        console.log(res)
         let layer:any = document.getElementById("layer");
         layer.style.display = "none";
         location.replace("admin/authors");
@@ -100,7 +98,20 @@ export class AuthorForAdminComponent {
     {
       let updatelayer:any = document.getElementById("updatelayer");
       updatelayer.style.display = "block";
-      this.updatedCurrentElementId = id;
+      let updatedAuhtor = this.allAuthores.filter((res:any)=>{
+        return res._id == id;
+      })
+      this.updateAuthorForm.setValue({
+        'firstName':updatedAuhtor[0].firstName,
+        'lastName':updatedAuhtor[0].lastName,
+        'dateOfBirth':updatedAuhtor[0].dateOfBirth,
+        'breif':updatedAuhtor[0].breif,
+        'Image':updatedAuhtor[0].Image,
+
+
+      })
+
+      this.updatedCurrentElementId = updatedAuhtor;
     }
     closeUpdateBox()
     {
@@ -108,17 +119,11 @@ export class AuthorForAdminComponent {
       updatelayer.style.display = "none";
     }
 
-    updateAuthor()
+    updateAuthor(form:any)
     {
-      const formdata=new FormData();
-      formdata.append('firstName',this.updateAuthorForm.get('firstName')?.value)
-      formdata.append('lastName',this.updateAuthorForm.get('lastName')?.value)
-      formdata.append('birthOfDate',this.updateAuthorForm.get('birthOfDate')?.value)
-      formdata.append('breif',this.updateAuthorForm.get('breif')?.value)
+      let formValue:object = form.value
 
-      formdata.append('photo',this.imagefile)
-      
-      this.__authServices.updateAuthor(this.updatedCurrentElementId,formdata).subscribe(
+      this.__authServices.updateAuthor(this.updatedCurrentElementId[0]._id,formValue).subscribe(
         {
         next: res => {
           alert('Update Successfully')

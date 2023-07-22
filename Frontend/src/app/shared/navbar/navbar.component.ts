@@ -18,18 +18,18 @@ export class NavbarComponent {
     if(cuurentUserSate == "true")
     {
       this.isadmine = true;
-      console.log(this.isadmine)
+      // console.log(this.isadmine)
     }
     else
     {
       this.isadmine = false;
-      console.log(this.isadmine)
+      // console.log(this.isadmine)
     }
 
     this._authservice.logged()
     this.isLog = this._authservice.isLogin;
 
-    console.log(this.isLog);
+    // console.log(this.isLog);
 
   }
 }

@@ -1,15 +1,17 @@
-$mainColor :#ab64bd;
+$mainColor :#1c8eab;
 .navbar
 {
     margin:0px 60px;
     padding: 15px 60px;
     .navbar-brand ,.nav-link
     {
+        cursor: pointer;
+
         color :#000
     }
     .logo-icone
     {
-        color:#ab64bd
+        color:#1c8eab
     }
     .dropdown-menu
     {
@@ -20,6 +22,7 @@ $mainColor :#ab64bd;
     }
     .dropdown-item:hover
     {
+        cursor: pointer;
         background-color: #ede8ef;
         
     }

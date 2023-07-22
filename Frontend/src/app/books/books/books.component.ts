@@ -12,7 +12,7 @@ export class BooksComponent {
 
   allBooks:any[]=[];
   currentPage = 1; // start with the first page
-  itemsPerPage = 5; // show 5 items per page
+  itemsPerPage = 8; // show 5 items per page
 prex='http://localhost:5000';
 img!:any[];
   constructor(private _booksService:BooksService, private _route:Router){

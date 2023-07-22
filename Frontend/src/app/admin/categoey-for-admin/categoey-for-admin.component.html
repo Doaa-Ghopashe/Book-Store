@@ -1,14 +1,14 @@
 
-<div class="container-fluid" style="background-color: #f1f5f9">
-    <a (click)="showAddBox()">
-        <i class="fa fa-plus-square fs-5 mt-2"></i>
+<div class="container-fluid">
+    <a class="btn addbtn" (click)="showAddBox()">
+        Add Category <i class="fa fa-plus-square fs-5 mt-2"></i>
     </a>
     <div class="row flex-nowrap">
       <div class="container-fluid" style="width: 82vw">
         <div class="pageBox mt-4 ">
-            <table class="text-center">
+            <table class="text-center ">
                 <thead class="mb-3">
-                    <th>id</th>
+                    <th>#</th>
                     <th>Name</th>
                     <th>Action</th>
                 </thead>
@@ -64,9 +64,9 @@
         <i class="fa fa-close fs-5"></i>
     </a>
     <h1 class="mt-4">Update Category</h1>
-    <form  #updateCategoryInput="ngForm"  (ngSubmit)="updateCategory(updateCategoryInput)">
+    <form  [formGroup]="updateCategoryForm" #updateCategoryInput="ngForm"  (ngSubmit)="updateCategory(updateCategoryInput)">
             <div class="form-group mb-3">
-                <input required minlength="3" maxlength="7" ngModel class="form-control" name="Name" #userEmail="ngModel">
+                <input required minlength="3" maxlength="7" formControlName="Name" ngModel class="form-control" name="Name" >
                 <div *ngIf="userEmail.touched">
                     <p *ngIf="userEmail.errors?.['required']" class="text-danger mt-2">Category Name is required</p>
                     <p *ngIf="userEmail.errors?.['minlength']" class="text-danger mt-2">Min length must be 3</p>

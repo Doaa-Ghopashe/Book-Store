@@ -59,10 +59,10 @@ export class AvgrateService {
         }
         
         //we count the average by dividing the total rate on the total records and assign it to the var avgrate
-        this.avg_rate.next(Math.round(this.totalrate / this.readers_count.value))
+        this.avg_rate.next(Math.round(this.totalrate / (this.readers_count.value == 0 ? 1 : this.readers_count.value)))
         
         //store the result on book model specifically on the avgRating property
-        this.book.subscribe((res: any) => res.avgRating = this.avg_rate)
+        this.book.subscribe((res: any) => res.avgRating = this.avg_rate )
 
         //store the avgrate in the book model in the database
         this._http.put(`http://localhost:5000/book/${book_id}`,{avgRating:this.avg_rate.value}).subscribe();

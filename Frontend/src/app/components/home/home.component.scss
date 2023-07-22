@@ -2,11 +2,12 @@
 
 .home-info
 {
-    background-color:#efd7f6;
+    background:linear-gradient(#1b90ad, #eae9e9);
     .info button
     {
-        background-color: #ab64bd;
+        background-color: #1b90ad;
         color: #fff;
+        font-weight: 600;
     }
     h1
     {
@@ -35,7 +36,7 @@
 .ring .col-md-3 div svg
 {
     margin-bottom: 20px;
-    color: #ab64bd;
+    color: #1b90ad;
     font-size: 23px;
 }
 
@@ -126,7 +127,7 @@
 }
 .popularRewviews .review-data .inner
 {
-    background-color: #f6e1a4;
+    background-color: #1b90ad33
 }
 
 
@@ -137,3 +138,12 @@
 //     height: 600px;
 // }
 // }
+
+.card-img-top{
+    height: 370px;
+    object-fit: cover;
+}
+.author-img{
+    overflow: hidden;
+}
+

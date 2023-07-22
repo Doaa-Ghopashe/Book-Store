@@ -1,53 +1,47 @@
 import { Component } from '@angular/core';
 import { CategoryService } from 'src/app/services/category.service';
 import {FormControl,FormGroup,Validators} from '@angular/forms';
+import { AuthorService } from 'src/app/services/author.service';
 
 @Component({
-  selector: 'app-categoey-for-admin',
-  templateUrl: './categoey-for-admin.component.html',
-  styleUrls: ['./categoey-for-admin.component.scss']
+  selector: 'app-author-for-admin',
+  templateUrl: './author-for-admin.component.html',
+  styleUrls: ['./author-for-admin.component.scss']
 })
-export class CategoeyForAdminComponent {
+export class AuthorForAdminComponent {
 
-
+  
   updatedCurrentElementId:any;
   currentPage = 1; // start with the first page
-  itemsPerPage = 4; // show 5 items per page
+  itemsPerPage = 6; // show 5 items per page
 
-  allCategories:any;
-  constructor(private _categoryService: CategoryService)
+  allAuthores:any;
+  constructor(private __authServices: AuthorService)
   {
-    this._categoryService.getCategory().subscribe((res)=>
+    this.__authServices.getAuthor().subscribe((res)=>
     {
-      this.allCategories = res.data.categories;
+      this.allAuthores = res;
+      console.log(this.allAuthores)
     })
   }
 
-  addCategoryForm:FormGroup = new FormGroup(
-    {
-      Name: new FormControl('',[Validators.required,Validators.minLength(3), Validators.maxLength(20)]),
-    }
-  )
-
-  updateCategoryForm:FormGroup = new FormGroup(
-    {
-      Name: new FormControl('',[Validators.required]),
-    }
-  )
-  addCategory(form:any)
+  addAuthor(form:any)
   {
-    let formValue:object = form.value;
-    this._categoryService.addCategry(formValue).subscribe(
+    let formValue:any = form.value;
+    console.log(formValue)
+    let image = form.value.Image.split('\\')[2]
+    formValue.Image = image
+    this.__authServices.addAuthor(formValue).subscribe(
       {
       next: res => {
-        alert(res.status)
+        alert('Added Successfully')
         let layer:any = document.getElementById("layer");
         layer.style.display = "none";
       },
-      error: err => alert(`${err.error.status} Category is already exist`),
+      error: err => console.log(`${err} Author is already exist`),
       complete: () => {
 
-      }
+     }
     })
     }
 
@@ -67,45 +61,48 @@ export class CategoeyForAdminComponent {
       let updatelayer:any = document.getElementById("updatelayer");
       updatelayer.style.display = "block";
       this.updatedCurrentElementId = id;
-      let updatedCategory = this.allCategories.filter((res:any)=>{
-        return res._id == id;
-      })
-      this.updateCategoryForm.setValue({
-        'Name':updatedCategory[0].Name
-      })
     }
     closeUpdateBox()
     {
       let updatelayer:any = document.getElementById("updatelayer");
       updatelayer.style.display = "none";
     }
-    updateCategory(form:any)
+    updateAuthor(form:any)
     {
       let formValue:object = form.value
-      this._categoryService.updateCategory(this.updatedCurrentElementId,formValue).subscribe(
+      this.__authServices.updateAuthor(this.updatedCurrentElementId,formValue).subscribe(
         {
         next: res => {
-          alert(res.status)
+          alert('Update Successfully')
           let updatelayer:any = document.getElementById("updatelayer");
           updatelayer.style.display = "none";
         },
-        error: err => alert(`${err.error.status} Category is already exist`),
+        error: err => alert(`${err.error.status} Author is already exist`),
         complete: () => {
   
         }
       })
     }
 
-    deleteCategory(id:any)
+    deleteAuthor(id:any)
     {
      let prompt:any = window.prompt("Are You Sure to delete plz write yes or no");
      if(prompt == "yes" ||prompt == "Yes" || prompt == "YES" )
      {
-        this._categoryService.deleteCategory(id).subscribe((res)=>
-        {
-          console.log(res.data)
+        this.__authServices.deleteAuthor(id).subscribe(
+          {
+          next: res => {
+            alert('Deleted Successfully');
+          },
+          error: err => console.log(`PLZ tray again`),
+          complete: () => {
+    
+         }
         })
      }
     }
 
+
+
 }
+

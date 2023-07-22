@@ -1,7 +1,9 @@
 
 import { Component } from '@angular/core';
 import {FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthorService } from 'src/app/services/author.service';
 import { BooksService } from 'src/app/services/books.service';
+import { CategoryService } from 'src/app/services/category.service';
 
 @Component({
   selector: 'app-book-for-admin',
@@ -9,19 +11,26 @@ import { BooksService } from 'src/app/services/books.service';
   styleUrls: ['./book-for-admin.component.scss']
 })
 export class BookForAdminComponent {
+  categories!:any;
+  authors!:any;
 
   imageFile!:File;
   updatedCurrentElementId:any;
   currentPage = 1; // start with the first page
-  itemsPerPage = 4; // show 5 items per page
-
+  itemsPerPage = 5; // show 5 items per page
   allBook:any;
-  constructor(private __bookServices: BooksService)
+  constructor(private __bookServices: BooksService , private _categoryServices:CategoryService , private _authorServices:AuthorService)
   {
     this.__bookServices.getBooks().subscribe((res)=>
     {
       this.allBook = res.data.book;
-      console.log(this.allBook)
+    });
+    this._categoryServices.getCategory().subscribe((res)=>{
+      this.categories = res.data.categories;
+    })
+    this._authorServices.getAuthor().subscribe((res)=>{
+      // console.log(res);
+      this.authors = res;
     })
   }
 
@@ -48,9 +57,6 @@ export class BookForAdminComponent {
 
   addphoto(event:any)
   {     
-     console.log(event.target);
-     console.log(this.addBookForm);
-
     if(event.target.files.length>0){
        this.imageFile=event.target.files[0];
        this.addBookForm.patchValue({
@@ -61,7 +67,8 @@ export class BookForAdminComponent {
   
   addBook()
   {
-const formdata=new FormData();
+
+      const formdata=new FormData();
       formdata.append('title',this.addBookForm.get('title')?.value)
       formdata.append('categoryId',this.addBookForm.get('categoryId')?.value)
       formdata.append('AuthorId',this.addBookForm.get('AuthorId')?.value)
@@ -87,6 +94,8 @@ const formdata=new FormData();
 
     showAddBox()
     {
+  console.log(this.addBook)
+
       let layer:any = document.getElementById("layer");
       layer.style.display = "block";
     }
@@ -101,7 +110,19 @@ const formdata=new FormData();
     {
       let updatelayer:any = document.getElementById("updatelayer");
       updatelayer.style.display = "block";
-      this.updatedCurrentElementId = id;
+
+      let updatedbook = this.allBook.filter((res:any)=>{
+        return res._id == id;
+      })
+      this.updateBookForm.setValue({
+        'title':updatedbook[0].title,
+        'photo':updatedbook[0].photo,
+        'desc':updatedbook[0].desc,
+        'categoryId':updatedbook[0].categoryId._id,
+        'AuthorId':updatedbook[0].AuthorId._id
+      })
+
+      this.updatedCurrentElementId = updatedbook;
     }
 
     closeUpdateBox()
@@ -110,17 +131,11 @@ const formdata=new FormData();
       updatelayer.style.display = "none";
     }
 
-    updateBook()
+    updateBook(form:any)
     {
-      const formdata=new FormData();
-      formdata.append('title',this.addBookForm.get('title')?.value)
-      formdata.append('categoryId',this.addBookForm.get('categoryId')?.value)
-      formdata.append('AuthorId',this.addBookForm.get('AuthorId')?.value)
-      formdata.append('desc',this.addBookForm.get('desc')?.value)
-
-      formdata.append('photo',this.imageFile)
+      let formValue:object = form.value
       
-      this.__bookServices.updateBook(this.updatedCurrentElementId,formdata).subscribe(
+      this.__bookServices.updateBook(this.updatedCurrentElementId?.[0]._id,formValue).subscribe(
         {
         next: res => {
           alert('Update Successfully')
@@ -134,7 +149,6 @@ const formdata=new FormData();
         }
       })
     }
-
     deleteBook(id:any)
     {
      let prompt:any = window.prompt("Are You Sure to delete plz write yes or no");
