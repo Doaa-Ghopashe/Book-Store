@@ -22,4 +22,4 @@ Admin Side:
 1. Angular
 2. Node JS
 3. MongoDB
-4. SASS
+4. Postman
