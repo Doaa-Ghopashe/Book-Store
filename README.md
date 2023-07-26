@@ -23,3 +23,6 @@ Admin Side:
 2. Node JS
 3. MongoDB
 4. Postman
+
+## Video
+[![Watch the video](https://i.stack.imgur.com/Vp2cE.png)](https://youtu.be/vt5fpE0bzSY)
