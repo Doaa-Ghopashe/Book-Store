@@ -1,19 +1,27 @@
-# Book-Store
+# Angular
 
-# ![alt text](https://media.istockphoto.com/id/1349688040/vector/hand-book-logo-design-education-logo-with-hand-concept-vector-hand-and-book-logo-design.jpg?s=612x612&w=0&k=20&c=kp2ZWkFL4U4-wtzZeL68OWvxJ25erp4RO-mJjFdZV64=)
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.2.
 
-## follow this instructions to stop the conflicts
-1. any updated if you are sure it's work ok so push it here in the main
-2. all of you should pull this update in thier local 
-3. the front end keep it at aya branch don't push it here in the main
+## Development server
 
-## Note
-Here write the name of the used variables and the name of the routes
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Folow this instructions to stop the conflicts
-1. any updated if you are sure it's work ok so push it here in the main
-2. all of you should pull this update in thier local 
-3. the front end keep it at aya branch don't push it here in the main
+## Code scaffolding
 
-# Helpers
-1. https://docs.google.com/document/d/1dFw9sPVGysHMiBKBmI8b8uy4XU7hTt88DGFSGG10nM0/edit
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+
+## Build
+
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+
+## Running unit tests
+
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+## Running end-to-end tests
+
+Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+
+## Further help
+
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
